@@ -1,3 +1,90 @@
 \chapter{Overall description}
+\section{Product perspective}Before analysing in detail all the aspects of the system we are proposing, for the sake of clarity, it is useful to state its structure, and give mnemonic names to the different components. 
+The central system, to which the other components refer to, is called myTaxiService; this is to be accessed by the office of the municipality in charge of the service, who will administer it (for example, by adding and removing taxi drivers). Users can use a mobile application, myTaxiApp, or the website, myTaxiWeb, to communicate with the system. As of the taxi drivers, their activity is supported by another mobile application, named myTaxiAssist. 
+When it is clear from the context, however, we will refer to the whole ecosystem as myTaxiService too, by extension of the name of the main system. 
+In the following subsections we will always consider each component of the system separately.
 
-qwertyuiop
+\subsection{System interfaces}
+
+\begin{description}
+	\item [myTaxiApp] since it is a mobile application, it needs a smartphone or tablet to work on; a connection to the Internet is also needed. To reach the widest portion of population, we need the application to be available for Apple’s iOS, Android and Windows Phone devices.
+	\item [myTaxiWeb] given that a browser is always present in any operating system, the only requirement is that a connection to the Internet is available.
+	\item [myTaxiAssist] considering that there are some technological devices (now our interest is focused on the GPS device) on board of the taxi cab, the application should integrate with them; with this in mind, we decide to provide every taxi driver with an Android smartphone, which is the best platform to provide integrated services; as before, an Internet connection is needed.
+	\item [myTaxiService] we believe that a good trade-off between costs and performances is the installation of a server farm based on cloning (Reliable Array of Cloned Services, or RACS. Obviously, for the whole ecosystem to work correctly, an Internet connection is needed.
+\end{description}
+
+
+\subsection{User interfaces}
+
+\begin{description}
+	\item [myTaxiApp] since the application is designated for mobile handsets, limited screen size and resolution will be a major design consideration. Moreover, navigability, effectiveness and ease of use are fundamental, so every function shall be fulfilled by the user within no more than (two) screens, and every screen shall contain a link to a help page as well.
+	\item [myTaxiWeb] here we have less constraints on resolution than in myTaxiApp, since the website is to be accessible only from personal computers. However, we need it to be lightweight, so that on a 7 Mbit/s connection (which we assume to be available everywhere in Milan) the page can fully load in no more than 2 seconds. Moreover, the requirements regarding the ease of use still hold, so also here every function shall be fulfilled within no more than (two) screens, and every screen shall contain a link to a help page.
+	\item [myTaxiAssist] this application is specifically designated for smartphones, so some resolution constraints hold. Furthermore, taxi drivers need to be extremely rapid while using it: after two hours of training, every taxi driver can exploit any function of the application in less than a minute. This is also possible thanks to the use of big (no more than four in a screen), self-explanatory icons. Every function shall be fulfilled within no more than (two) screens, and every screen shall contain a link to a help page.
+	\item [myTaxiService] as was stated before, some employees of the municipality shall be able to perform some administrative functions on the system, such as the insertion of new taxi drivers; this can be done through a webpage. As a consequence, no resolution constraint holds.
+\end{description}
+
+
+
+\subsection{Hardware interfaces}Location services are of central importance for the operation of the system. However, the GPS coordinates are always provided to the applications or the website by the operating system. In particular:
+
+\begin{description}
+	\item [myTaxiApp] receives them from the APIs of the specific operating system;
+	\item [myTaxiWeb] gets them through the localization services provided by every reasonably modern web browser;
+	\item [myTaxiAssist] is provided with the localization by the GPS sensor placed in the taxi cab.
+\end{description}
+Nevertheless, since we cannot assume that a GPS sensor (or other technological solutions) are available and reliable in customers’ devices, the possibility to manually specify the address is given. On the contrary, it is reasonable to take for granted the accuracy of the GPS device on board of taxi cabs.   
+The same holds for Internet access: it is the operating system which provides a connection both to the applications and to the web browser.
+
+\subsection{Software interfaces} 
+
+Due to the great variety of operating systems and browsers, each of which bearing a potentially different configuration, the website myTaxiWeb shall not require Java nor Adobe Flash plugins; it will be developed using HTML 5 technology, so a suitable web browser is needed (as of Microsoft Internet Explorer, al least version 7 is needed; on the other browsers, compatibility is taken for granted). 
+
+The system itself has to communicate with a database, which contains both the personal details of the taxi drivers, along with the information about taxi cabs, and the record of all the reservations (pending, accomplished, cancelled). A relational database is the most suitable solution.
+
+On the other hand, the two applications, from this point of view, are rather self-contained, so no particular software interface is needed.
+
+\subsection{Communications interfaces}The myTaxiService server is HTTP-based and it contains also an SMTP component to send emails. Applications, obviously, send to and receive data from the system over the same HTTP protocol.
+Bluetooth is required by myTaxiAssist application, since this is the integration technology between taxi drivers’ handsets and the devices on board of their taxy cabs. If the connection is lost, arguably because the taxi driver has left the cab, the system is notified, and the driver is considered “off duty” until the reconnection.
+
+\subsection{Memory constraints}Since this system is not aimed to data analysis, we have no need of great memory availability. As a consequence, this is not to be considered a major constraint.
+
+\subsection{Operations}The data processing features of the system are limited, since they are not needed. Every day at 3AM, however, backup operations are performed. 
+
+\section{Product functions}  Before moving on with our analysis, it is appropriate to provide a summary of the major functions that the software will perform. 
+Passengers can request a taxi either through a web application (myTaxiWeb) or a mobile app (myTaxiApp). As soon as the request is received by the system (myTaxiService), it is immediately forwarded to the nearest waiting taxi driver. If he accepts, the system answers to the request by providing the passenger with the code of the incoming taxi and the waiting time. If the request is rejected, or ignored, the system looks for another taxi driver. In particular conditions, a user can also reserve a taxi for a later ride, by specifying its time, origin and destination. 
+Taxi drivers use a mobile application (myTaxiAssist) to inform the system about their availability and to confirm that they are going to take care of a certain call. 
+
+\section{User characteristics}There are three types of users that interact with the system: users of the mobile application or website, taxi drivers and administrators. 
+Since no educational level can be assumed for the users of myTaxiApp and myTaxyWeb, we need both to be as easy to use as possible, which means that every screen shall have a precise help page. Obviously a very basic web and technological knowledge is needed to benefit from the service.
+The taxi drivers will follow a mandatory two-hour course, to gain the necessary expertise to use the application myTaxyAssist. 
+The administrators' functionalities are limited, but they also need a two-hour course to gain the necessary knowledge.
+
+
+\section{Constraints}  The current Italian law that regulates the taxi service (REFERENCE) allows all the modifications to the service that we are proposing. However, since we process personal data, we are subject to the Italian law concerning the protection of personal data (REFERENCE).
+
+
+\section{Assumptions and dependencies}We have to make some assumptions, since the high level description of the project given by the city council is ambiguous and incomplete:
+
+\begin{itemize}
+	\item the number and distribution of taxi cabs in service are always sufficient to serve any request within 30 minutes;
+	\item the reservation for a delayed ride can be cancelled before its confirmation (that is, before the 10 minutes limit);
+	\item to cross an area, a taxi needs about 10 minutes;
+	\item if the user reserves a taxi, he means to take it;
+	\item a taxi driver who accepts a request, cannot refuse to accept the client;
+	\item the origin of the ride must be within the borders of the Metropolitan City of Milan;
+	\item we have only taxi cabs for four people (plus the driver); if the group is more numerous, then a proper number of cabs is reserved (one every four people);
+	\item a taxi can bring no more than four people; if the reservation is for a larger group, then an appropriate number of taxi cabs (that is N/4 +1) is allocated;
+	\item a pending request is automatically forwarded to the next taxi driver after (2) minutes;
+\end{itemize}
+
+\section{Apportioning of requirements}The system, as it is outlined in this document, can be expanded in many ways. The city council explicitly mentions a taxi sharing functionality, which means that a user can share a taxi ride with others if possible, thus splitting the cost of the ride too.We also suggest that the system, through myTaxiAssist application, can record payments. A relatively easy integration may be with PayPal payment system, which allows fast and seamless online money transactions without disclosing bank account details. PayPal registered users can be charged directly and can pay by using their own handset. %Strumenti utilizzati: Microsoft Office Word 2015 per Mac.%(OLD: Paolo: 18/07 2h; 19/10 1,30h)%PAOLO: 22/10 circa 1h; 23/10 circa 1h; 24/10 circa 1:30h; 25/10: circa 3h; 26/10 circa 1h; 27/10: 1h; 29/10 3:30h.
+
+
+
+%\begin{description}
+%	\item [myTaxiApp] 
+%	\item [myTaxiWeb] 
+%	\item [myTaxiAssist] 
+%	\item [myTaxiService] 
+%\end{description}
+
