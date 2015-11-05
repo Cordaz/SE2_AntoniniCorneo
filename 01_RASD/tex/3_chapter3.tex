@@ -1,0 +1,166 @@
+\chapter{Specific requirements}
+
+\section{Functions}
+
+\subsection{Taxi Request}
+
+
+\paragraph{Scenario 1}\begin{fullwidth}\small\itshape Alexei, Anna's husband, is out of town for work. Thus, she decides to go and visit her lover, Count Vronsky. She recently came to know that a new Taxi service was active in the city, which seems suitable enough for her class, so after a brief lookup in the Internet she finds the website, myTaxiWeb.it. She finds out that there is an app as well, but she is too eager to meet her lover to download it, so she quickly fills in the form with her data (name and surname, mobile phone number, and her origin and destination addresses) to request a taxi ride. Her request is sent by the system to the nearest taxi driver, who is named Kostya and drives the taxi number 1878, and he accepts without hesitation by clicking the proper button on his company smartphone. In a few seconds Anna receives an SMS confirmation that taxi T1878 is due in four minutes. Then she puts some lipstick, grabs her handbag and calmly leaves. Kostya is already waiting for her in the street, and in twenty minutes or so she is hugging her beloved. As soon as she gets off his taxi, Kostia confirms that he is available again to the system, by clicking the proper icon on his smartphone.\end{fullwidth}
+
+
+	\paragraph{Scenario 2}\begin{fullwidth}\small\itshape Jay is quite a wealthy man, and as it happens, he has not always lived a perfect life. Today, like every other month, he has an appointment with a man of his past, some Meyer, in a rough area of the town. So he opens myTaxiApp on his smartphone, to which he registered recently, and looks for his destination in the small set of saved addresses. Once he found it, he lets the GPS locate him, then confirms the request for a taxi ride. myTaxiService system looks for a driver in Jay’s area, but there is none; fortunately, in an adjacent one there is George, on Taxi T1925, who has been idle for some time. However, as George sees the destination of the request, he immediately understands that he had better not go there, so he rejects the request. myTaxiService registers his refusal, but since the nearest taxi is more than half an hour far from Jay, it asks him whether he wants to withdraw his reservation, which he does. He cannot be late at his appointment with Meyer.\end{fullwidth}
+	
+	
+	\begin{fullwidth}
+		\begin{tabular}{ l p{1.2\textwidth} }
+	\toprule
+	name	&	TaxiRequest
+	\\ \midrule
+	actors	&	GuestCustomer, RegistredCustomer
+	\\ \midrule
+	entry conditions & a customer request a taxi
+	\\ \midrule
+	flow of events & \begin{enumerate}
+	
+		\item RegisteredCustomer can log in, GuestCustomer can registrarsi;
+		\item GuestCustomer inserts his personal data, RegisteredCustomer views his personal data;
+		\item GuestCustomer inserts the address or send his GPS position, RegisteredCustomer can also select an address from the memorized;
+		\item Customer sends the request.
+	
+	\end{enumerate}\\ \midrule
+	exit conditions	&	 all data provided are correct
+	\\ \midrule
+	exceptions & \begin{itemize}
+		
+		\item Address not valid, an error message is shown and it is asked to provide a valid address
+	
+	\end{itemize}\\ \bottomrule
+\end{tabular}
+	\end{fullwidth}
+
+
+
+
+
+	\begin{fullwidth}
+		\begin{tabular}{ l p{1.2\textwidth} }
+	\toprule
+	name	&	TaxiAllocation
+	\\ \midrule
+	actors	&	myTaxiService
+	\\ \midrule
+	entry conditions & request received
+	\\ \midrule
+	flow of events & \begin{enumerate}
+	
+		\item The system will determine the pertinence area
+		\item A request is sent to the taxi driver of the first taxi in the queue
+		\item If accepted the address will be sent to the driver, while the ETA will be notified to the customer; otherwise the system proceeds to allocate the next taxi in the queue
+	
+	\end{enumerate}\\ \midrule
+	exit conditions	&	 driver has accepted the request
+	\\ \midrule
+	exceptions & \begin{itemize}
+		
+		\item If no taxis are available in the area, the system would recursively allocate the first taxi in the longest queue of the adjacent areas.
+		\item If no taxis are available at all, the system notifies the customer of the situation and sends an ETA based on the average occupied time of the taxis. The customer can cancel the call made until a taxi is allocated to him. The allocated taxi is from the pertinence area, to not svuotare la zona di provenienza.
+	
+	\end{itemize}\\ \bottomrule
+\end{tabular}
+	\end{fullwidth}
+
+\subsection{Taxi Reservation}\paragraph{Scenario}\begin{fullwidth}\small\itshape Cookie has been in prison for a year, now. Her husband Lucious, notwithstanding the great weight of running a newly born entertainment company, growing three children all alone, and some sense of guilt for not being able to help her, wants their children to visit her. So tomorrow afternoon he is going to the jail by taxi with them. This morning, at about 9:30 AM, he tried to reserve a taxi, to guarantee a ride for themselves. However, his reservation was rejected, because he was making it more than 24 hours before the ride. But now, at 5:45 PM, he tries again, and he is successful: his reservation is registered, and Lucious is notified that 10 minutes before the ride, he will receive a confirmation, with the number of the taxi too.\end{fullwidth}
+	\begin{fullwidth}
+		\begin{tabular}{ l p{1.2\textwidth} }
+	\toprule
+	name	&	TaxiReservation
+	\\ \midrule
+	actors	&	RegisteredCustomer
+	\\ \midrule
+	entry conditions & RegisteredCustomer has successfully logged in
+	\\ \midrule
+	flow of events & \begin{enumerate}
+	
+		\item RegisteredCustomer can insert the address, select it from the memorized or send his GPS position
+		\item RegisteredCustomer selects the time
+		\item The reservation is sent
+	
+	\end{enumerate}\\ \midrule
+	exit conditions	&	 no exit condition
+	\\ \midrule
+	exceptions & \begin{itemize}
+		
+		\item Address not valid, an error message is shown and it is asked to provide a valid address
+	
+	\end{itemize}\\ \bottomrule
+\end{tabular}
+	\end{fullwidth}
+
+
+
+
+	\begin{fullwidth}
+		\begin{tabularx}{\fullwidthlength}{ l X }
+	\toprule
+	name	&	ReservationManagement
+	\\ \midrule
+	actors	&	myTaxiService
+	\\ \midrule
+	entry conditions & reservation received
+	\\ \midrule
+	flow of events & \begin{enumerate}
+	
+		\item The system will evaluate the time, if it is more than 24 hours or less than 2 hours before it will be refused
+		\item The system will register the reservation
+		\item 10 mins before the provided time a taxi is allocated as in TaxiAllocation use case
+	
+	\end{enumerate}\\ \midrule
+	exit conditions	&	 taxi successfully allocated
+	\\ \midrule
+	exceptions & \begin{itemize}
+		
+		\item Exception as in TaxiAllocation use case
+		\item If the reservation is out of time a notification will be sent to the customer
+	
+	\end{itemize}\\ \bottomrule
+\end{tabularx}
+	\end{fullwidth}
+
+
+
+
+
+
+\subsection{Fault report}\paragraph{Scenario}\begin{fullwidth}\small\itshape While on duty, a taxi broke down. The taxi driver reports the fault via the app and an operator provides assistance to him and allocate a new taxi.\end{fullwidth}
+
+
+	\begin{fullwidth}
+		\begin{tabular}{ p{0.3\textwidth} p{0.7\textwidth} }
+	\toprule
+	name	&	TaxiBrokeDown
+	\\ \midrule
+	actors	&	Operator
+	\\ \midrule
+	entry conditions & TaxiDriver reported a fault
+	\\ \midrule
+	flow of events & \begin{enumerate}
+	
+		\item The operator gets the GPS position of the taxi
+		\item If a customer is on board, he will provide a new taxi, like in TaxiAllocation use case; if the taxi broke down while going to customer position, a new taxi is allocated directly to the customer
+		\item The operator calls soccorso stradale
+	
+	\end{enumerate}\\ \midrule
+	exit conditions	&	 customer, if any, is on another taxi
+		\\ \midrule
+	exceptions & \begin{itemize}
+		
+		\item If the taxi had an accident, the operator calls the driver to provide support based on the situation
+	
+	\end{itemize}\\ \bottomrule
+\end{tabular}
+	\end{fullwidth}
+
+
+\subsection{Taxi Available}\paragraph{Scenario}\begin{fullwidth}\small\itshape Whenever a taxi driver marks himself as “available'' or, already available, changes area, the system detects his (new) position by the on board GPS and queues him at the end of area’s queue.\end{fullwidth}
+
+

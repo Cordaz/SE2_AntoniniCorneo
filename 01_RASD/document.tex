@@ -7,6 +7,13 @@
 \usepackage{alloy}
 
 
+\makeatletter
+\newlength{\fullwidthlength}
+\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+\makeatother
+
+\usepackage{tabularx}
+
 \title{myTaxiService}
 %\author{Paolo Antonini, Andrea Corneo}
 
@@ -26,6 +33,8 @@
 \include{./tex/1_chapter1}
 
 \include{./tex/2_chapter2}
+
+\include{./tex/3_chapter3}
 
 \chapter{APPENDIX}
 
