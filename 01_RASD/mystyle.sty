@@ -6,19 +6,35 @@
 
 \usepackage[UKenglish]{babel}
 \usepackage[british, nocleanlook]{isodate}
+
 \usepackage{rotating}
 \usepackage{tikz}
 \usepackage{graphicx}
-%\graphicspath{ {img/} }
-
 \usepackage{xcolor}
-\definecolor{red}{rgb}{0.95,0.20,0.20}% red 
-\definecolor{black}{rgb}{0,0,0}% black
-\definecolor{grey}{rgb}{0.45,0.45,0.45}% dark grey
-
+\definecolor{red}{rgb}{0.95,0.20,0.20} % red 
+\definecolor{black}{rgb}{0,0,0} % black
+\definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
 
 \setcounter{secnumdepth}{3}
 
 \usepackage{url}
 
 \usepackage{booktabs}
+
+\usepackage[binary-units = true]{siunitx}
+
+\usepackage{fancyref}
+
+\usepackage{listings}
+
+\usepackage{alloy}
+
+
+\makeatletter
+\newlength{\fullwidthlength}
+\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+\makeatother
+
+\usepackage{tabularx}
+
+\usepackage{appendix}
