@@ -1,0 +1,36 @@
+\ProvidesPackage{mystyle}
+
+\usepackage[extralight,semibold]{raleway}
+\usepackage{microtype}
+
+\usepackage[UKenglish]{babel}
+\usepackage[british, nocleanlook]{isodate}
+\usepackage[binary-units = true]{siunitx}
+
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{red}{rgb}{0.95,0.20,0.20} % red 
+\definecolor{black}{rgb}{0,0,0} % black
+\definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\setcounter{secnumdepth}{3}
+
+\usepackage{url}
+
+\usepackage{fancyref}  % for cross-references
+
+%\usepackage{appendix}
+
+\makeatletter
+\newlength{\fullwidthlength}
+\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+\makeatother
+
+\setcounter{tocdepth}{2}
+
+\usepackage{lipsum}
