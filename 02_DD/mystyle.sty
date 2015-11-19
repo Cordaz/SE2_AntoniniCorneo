@@ -22,9 +22,19 @@
 
 \usepackage{url}
 
+%TODO: Sistemare!
 \usepackage{fancyref}  % for cross-references
+\newcommand*{\fancyrefalglabelprefix}{alg}
+%\frefformat{vario}{\fancyrefalglabelprefix}{algorithm\fancyrefdefaultspacing#1#2}
+%\Frefformat{vario}{\fancyreffiglabelprefix}{Algorithm\fancyrefdefaultspacing#1#2}
+\frefformat{plain}{\fancyrefalglabelprefix}{algorithm\fancyrefdefaultspacing#1}
+%\Frefformat{plain}{\fancyreffiglabelprefix}{Algorithm\fancyrefdefaultspacing#1}
+
 
 %\usepackage{appendix}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \makeatletter
 \newlength{\fullwidthlength}
@@ -33,4 +43,4 @@
 
 \setcounter{tocdepth}{2}
 
-\usepackage{lipsum}
+\usepackage{lipsum} %TODO Rimuovere!
