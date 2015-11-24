@@ -14,8 +14,9 @@
 \definecolor{red}{rgb}{0.95,0.20,0.20} % red 
 \definecolor{black}{rgb}{0,0,0} % black
 \definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
-\usepackage[caption=false]{subfig}
 
+\usepackage[caption=false]{subfig}
+\newcommand{\MuW}{0.42} % Mockup width
 
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -30,10 +31,10 @@
 \usepackage[noend]{algpseudocode}
 \algnewcommand\aNull{\Call{null}{}}
 
-\makeatletter
-\newlength{\fullwidthlength}
-\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
-\makeatother
+%\makeatletter
+%\newlength{\fullwidthlength}
+%\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
+%\makeatother
 
 \setcounter{tocdepth}{2}
 

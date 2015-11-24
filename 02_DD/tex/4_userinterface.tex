@@ -1,90 +1,87 @@
 \chapter{User interface design} \label{chap:userinterface}
+As the product we are designing is intended to be distributed to general public, its user interfaces shall be friendly and appealing. Nevertheless, the purpose of this document is to guide the many professionals who will work on the project, without excessively constraining their abilities and creativity. For this reason, we are going to provide some mock-ups of the two mobile applications (myTaxiWeb is omitted, for the sake of compactness, as it does not offer to users anything more than myTaxiApp). The following mock-ups should be intended as a reference for the structure of each screen, and by no means shall be used as an ``artistic'' model.
 
-
-\lipsum[2] %TODO: Spiegare che i mockup fanno schifo perché l'ho deciso io. 
+While working on the user interfaces for this project, the requirements expressed in the RASD in paragraph~2.1.2 and in section~2.3 must be taken into consideration, together with this chapter.
 
 
 \section{myTaxiApp}
-When the user opens myTaxiApp, he can choose whether to login, or to sign up, or to request a taxi ride.
+Upon opening the application, the user is presented with the following options: log in the system, sign up, and request a taxi ride (as a guest).
 
-\begin{figure}
-	\centering
-	\fbox{\includegraphics[page=1,width=0.45\linewidth]{img/mTS_iOS}}
-	\caption{First page after opening the application.}
-	\label{fig:firstPage}
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=1,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\hfill%
+	\caption{Home page, presented to the user after his opening the application.}\label{fig:firstPage}
 \end{figure}
 
-\newpage %TODO: Remove.
+\newpage 
 
-If he chooses to log in, then he will need to fill in the form with his email and password details. Obviously he needs to be registered on the system, otherwise the login procedure will fail. Should he not be registered, he can sign up.
+If he chooses to log in, then he will need to fill in the form with his email and password details. Obviously he needs to be registered on the system, otherwise the login procedure will fail. Should he not be registered, he can sign up, by providing some personal details (name, phone number, email).
 
-\begin{figure}
-	\subfloat{\fbox{\includegraphics[page=2,width=0.45\linewidth]{img/mTS_iOS}}}
-	\hfill
-	\subfloat{\fbox{\includegraphics[page=4,width=0.45\linewidth]{img/mTS_iOS}}}
-	\caption[][1em]{Login and Sign up pages.}
-	\label{fig:loginSignup}
+\begin{figure}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=2,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=4,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\caption[][1em]{Login and Sign up pages.}\label{fig:loginSignup}
 \end{figure}
 
-\newpage %TODO: Remove.
+After the login, the user (now he is identified in the system as a registered customer) has the possibility to request or reserve a taxi, manage his favourite addresses (a convenient feature which lets users to save some addresses, for a faster retrieval).
 
-
-
-After the login, the user can do lots of things.\begin{figure}
-	\centering
-	\fbox{\includegraphics[page=3,width=0.45\linewidth]{img/mTS_iOS}}
-	\caption{Lots of things that the user can do after login.}
-	\label{fig:logged}
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=3,width=\MuW\linewidth]{img/mTS_iOS}}
+	\hfill%
+	\caption{Registered customer's home page.}\label{fig:logged}
 \end{figure}
 
+\newpage
 
-\newpage %TODO: Remove.
+Actually, the screen which allows to request a taxi is the same for registered and guest users, as origin, destination and number of people shall be specified in both cases. However, we have to make some distinctions: only registered customers can select favourite addresses as origin and destination; name and number details are requested only to guest users. 
 
-
-Both registered and guests can request a taxi ride, but only registered can select preferred addresses:
-
-\begin{figure}
-	\centering
-	\fbox{\includegraphics[page=5,width=0.45\linewidth]{img/mTS_iOS}}
-	\caption{Request a taxi ride.}
-	\label{fig:request}
+\begin{figure}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=5,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=10,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\caption[][1em]{Request a taxi ride (mind the distinctions for registered and guest users).}\label{fig:request}
 \end{figure}
 
-\newpage %TODO: Remove.
+Registered users are given the possibility to reserve a taxi ride. This means that they have to select date and time for the ride. 
 
-
-Only registered can reserve a taxi ride.
-
-\begin{figure}
-	\centering
-	\fbox{\includegraphics[page=6,width=0.45\linewidth]{img/mTS_iOS}}
-	\caption{Reservation.}
-	\label{fig:reservation}
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=6,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\hfill%
+	\caption{Reserve a taxi ride.}\label{fig:reservation}
 \end{figure}
 
-\newpage %TODO: Remove.
+\newpage
 
+Also, registered users can have a list of favourite addresses, which they can manage by adding, deleting and editing addresses.
 
-They can also manage their favourite addresses.
-
-\begin{figure}
-	\subfloat{\fbox{\includegraphics[page=7,width=0.45\linewidth]{img/mTS_iOS}}}
-	\hfill
-	\subfloat{\fbox{\includegraphics[page=8,width=0.45\linewidth]{img/mTS_iOS}}}
-	\caption[][1em]{Manage addresses.}
-	\label{fig:manageAddresses}
+\begin{figure}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=7,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\subfloat{\fbox{\includegraphics[page=8,width=\MuW\linewidth]{img/mTS_iOS}}}%
+	\hfill%
+	\caption[][1em]{Manage the list of favourite addresses.}\label{fig:manageAddresses}
 \end{figure}
 
-\newpage %TODO: Remove.
+Finally, registered users can obviously manage their own account by changing the phone number, email address or password, and even delete the account (these functions are not expanded since trivial).
 
-
-
-And even manage their account (no details because trivial).
-
-\begin{figure}
-	\centering
-	\fbox{\includegraphics[page=9,width=0.45\linewidth]{img/mTS_iOS}}
-	\caption{Manage account.}
-	\label{fig:manageAccount}
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=9,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\hfill%
+	\caption{Manage account.}\label{fig:manageAccount}
 \end{figure}
 
+\newpage
+
+\section{myTaxiAssist}
+
+\lipsum[1-2]
