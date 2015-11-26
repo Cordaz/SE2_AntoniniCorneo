@@ -1,44 +1,66 @@
 \chapter{Algorithm design} \label{chap:algorithm}
-In this section we are going to outline the main algorithms that will govern our ecosystem. Notice that the application logic will reside in myTaxiService core system, whereas the applications myTaxiApp, myTaxiAssist and the website myTaxiWeb will offer only the presentation layer (that is, the layer concerned with presenting the information to the user and managing all user interaction)\footnote{COS\`I VA BENE?}. %TODO: Così va bene? 
+In this chapter we are going to outline the main algorithms that will govern our ecosystem. The application logic will reside in myTaxiService core system, whereas the applications myTaxiApp, myTaxiAssist and the website myTaxiWeb will offer only the presentation layer (that is, the layer concerned with presenting the information to the user and managing user interactions). 
 
 As one may remember, the city is divided into small areas, each of which has an associated taxi queue. Basically, the whole system has to manage the taxi queue of each area. While a taxi driver is waiting for a call in an area, his taxi is enlisted in the queue of that area: upon the reception of a request, the system forwards it to the first taxi in the queue of the area, according to the algorithms that will be specified soon.
 
 
 \section{Theoretical recall}
-First, let us make a brief theoretical introduction, for the sake of clarity. Notice that the word \emph{queue} has a technical meaning, which nevertheless corresponds to the common idea of a queue. This means that a queue is a data structure which models, for example, a line of customers waiting to pay a cashier. The queue has a head and a tail. When an element is inserted in the queue, it takes its place at the tail of the queue, just as a newly arriving customer takes a place at the end of the line. The element to be removed by the queue is always the one at the head of it, like the customer at the head of the line (who, by the way, has waited the longest). This is to say that the management policy of a queue is FIFO\footnote{FIFO stands for ``First In, First Out''.}. We call the insertion operation on a queue \emph{enqueue}, and we call the deletion operation \emph{dequeue}.
+First, let us make a brief theoretical introduction, for the sake of clarity. Notice that the word \emph{queue} has a technical meaning, which nevertheless corresponds to the common idea of a queue. This means that a queue is a data structure which models, for example, a line of customers waiting to pay a cashier. The queue has a head and a tail. When an element is inserted in the queue, it takes its place at the tail of the queue, just as a newly arriving customer takes a place at the end of the line. The element to be removed by the queue is always the one at the head of it, like the customer at the head of the line (who, by the way, has waited the longest).
 
-We can now refer to the specific context of our project, in order to provide further details. Every area has an associated queue $Q$. Its elements will be taxis, and their number in the queue is represented by the attribute $Q.length$.
+This is to say that the management policy of a queue is FIFO\footnote{FIFO stands for ``First In, First Out'', which is the mnemonic for the queue management policy.}. We call the insertion operation on a queue \emph{enqueue}, and we call the deletion operation \emph{dequeue}.
 
-\newpage%TODO Remove.
+We prefer not to detail the  specific procedures to manage a queue for a number of reasons: they are well documented in every valid algorithms book\footnote{e.g. Thomas~H.~Cormen, Charles~E.~Leiserson, Robert~L.~Rivest, Clifford~Stein. \emph{Introduction to Algorithms}. The MIT Press, 2009.}; they are (or rather, they should be) well known to every good developer; they strongly depend on the implementation choices. We believe that other algorithms deserve our attention.
 
+\clearpage
 
 \section{Implementation in myTaxiService}
-The objective of this section is to provide the developers with the main algorithms that govern the myTaxiService in particular. As a consequence, we prefer not to detail the  specific procedures to manage a queue for a number of reasons: they are well documented in every valid algorithms book\footnote{e.g. Thomas~H.~Cormen, Charles~E.~Leiserson, Robert~L.~Rivest, Clifford~Stein. \emph{Introduction to Algorithms}. The MIT Press, 2009.}; they are (or rather, they should be) well known to every good developer; they strongly depend on the implementation choices. 
+We can now refer to the specific context of our project, in order to provide further details. Every area has an associated queue $Q$. Its elements will be taxis, and their number is represented by the attribute $Q.length$. Since there is a one to one relationship between areas and queues, we may use the two words as synonyms.
 
-{\textbf{So in the following we provide the procedure to get a taxi. $Q_0$ is the area of the call. $validQueues$ are the queues whose length is greater than $0$. $final$ is the longest queue, so the one to consider. $t$ is the taxi to return.}} %TODO: Spiega meglio.
+Suppose that a request is made in area $0$, which has $Q_0$ as associated queue. The system then looks for an available taxi in that area; if none is available, then it chooses one from the nearest area which has the longest queue, iteratively, up to a distance of three areas.
 
-\begin{algorithm}\caption{Procedure to find a taxi.} \label{alg:getTaxi}\begin{algorithmic}[1]
+In the following algorithm, $validQueues$ is the set of queues whose length is greater than $0$; $final$ is, among those, the longest one, thus the one to consider.
+
+\begin{algorithm}\caption{Procedure to select a taxi.} \label{alg:getTaxi}\begin{algorithmic}[1]
 \Procedure{GetTaxi}{$Q_0$}
-	\State $i \gets 0$
-	\Repeat
-		\State $validQueues \gets \aNull$
-		\ForAll{$Q : \Call{Distance}{Q,Q_0}=i$}
+	\State $i \gets 0$ \Comment{$i$: distance to consider.} %TODO: Sinonimo!
+	\Repeat \label{gt:repeat}
+		\State $validQueues \gets \aNull$ \label{gt:init2}
+		\ForAll{$Q : \Call{Distance}{Q,Q_0}=i$}\label{gt:forValid}
 			\If{$Q.length > 0$} 
 				\State $validQueues \gets validQueues + Q$
 			\EndIf
-		\EndFor
-		\ForAll{$Q \in validQueues$}
+		\EndFor\label{gt:endForValid}
+		\ForAll{$Q \in validQueues$}\label{gt:forFinal}
 			\If{$Q.length > final.length$}
 				\State $final \gets Q$
 			\EndIf
-		\EndFor
+		\EndFor\label{gt:endForFinal}
 		\State $i \gets i + 1$
-	\Until{$final \neq \aNull$} 
-	\State $t \gets \Call{Dequeue}{final}$
+	\Until{$final \neq \aNull \aOr i>3$} \label{gt:until}
+	\State $t \gets \Call{Dequeue}{final}$ \Comment{$t$: taxi to return.}
 	\State \Return $t$ 
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+%TODO: Sinonimo.
+The cycle in \crefrange{gt:repeat}{gt:until} is obviously crucial in the algorithmic definition. The initialisation on \cref{gt:init2} is done at every iteration, that is, every time we have to increase {the distance of consideration}\footnote{EWWWWWWWWWWWW!!!!}. The first \textbf{for} loop (\crefrange{gt:forFinal}{gt:endForFinal}) scans all the queues at distance $i$ to find and store in $validQueues$ those whose length is not null, that is, those which enlist available taxis (notice that, in case of $i=0$, we have to consider only $Q_0$, since it is the only area at distance $0$ from itself). Once the $validQueues$ set has been (possibly) populated, then the second loop (\crefrange{gt:forValid}{gt:endForValid}) selects, among the valid queues, the longest one.
+
+The \textbf{repeat} cycle ends either when a queue from which to extract a taxi is selected, or when no valid area at a suitable distance is found.
+
+This algorithm described above 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
