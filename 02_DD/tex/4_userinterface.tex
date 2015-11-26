@@ -9,20 +9,20 @@ Upon opening the application, the user is presented with the following options: 
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=1,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=1,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Home page, presented to the user after his opening the application.}\label{fig:firstPage}
 \end{figure}
 
-\newpage 
+\clearpage 
 
 If he chooses to log in, then he will need to fill in the form with his email and password details. Obviously he needs to be registered on the system, otherwise the login procedure will fail. Should he not be registered, he can sign up, by providing some personal details (name, phone number, email).
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=2,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=2,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
-	\fbox{\includegraphics[page=4,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=4,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Login and Sign up pages.}\label{fig:loginSignup}
 \end{figure}
@@ -31,20 +31,20 @@ After the login, the user (now he is identified in the system as a registered cu
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=3,width=\MuW\linewidth]{img/mTS_iOS}}
+	\fbox{\includegraphics[page=3,width=\MuW\linewidth]{img/myTaxiApp}}
 	\hfill%
 	\caption{Registered customer's home page.}\label{fig:logged}
 \end{figure}
 
-\newpage
+\clearpage
 
 Actually, the screen which allows to request a taxi is the same for registered and guest users, as origin, destination and number of people shall be specified in both cases. However, we have to make some distinctions: only registered customers can select favourite addresses as origin and destination; name and number details are requested only to guest users. 
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=5,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=5,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
-	\fbox{\includegraphics[page=10,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=10,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Request a taxi ride (mind the distinctions for registered and guest users).}\label{fig:request}
 \end{figure}
@@ -53,20 +53,20 @@ Registered users are given the possibility to reserve a taxi ride. This means th
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=6,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=6,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Reserve a taxi ride.}\label{fig:reservation}
 \end{figure}
 
-\newpage
+\clearpage
 
 Also, registered users can have a list of favourite addresses, which they can manage by adding, deleting and editing addresses.
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=7,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=7,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
-	\fbox{\includegraphics[page=8,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=8,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Manage the list of favourite addresses.}\label{fig:manageAddresses}
 \end{figure}
@@ -75,13 +75,86 @@ Finally, registered users can obviously manage their own account by changing the
 
 \begin{figure}%
 	\hfill%
-	\fbox{\includegraphics[page=9,width=\MuW\linewidth]{img/mTS_iOS}}%
+	\fbox{\includegraphics[page=9,width=\MuW\linewidth]{img/myTaxiApp}}%
 	\hfill%
 	\caption{Manage account.}\label{fig:manageAccount}
 \end{figure}
 
-\newpage
+\clearpage
 
 \section{myTaxiAssist}
+Taxi drivers receive their credentials from the municipality office in charge of the taxi service. As a consequence, upon opening myTaxiAssist application, they are presented with the login form. After the login process, they gain access to the functionalities of the application, which are the report of their availability and of a taxi accident.
+
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=2,width=\MuW\linewidth]{img/myTaxiAssist}}%
+	\hfill%
+	\fbox{\includegraphics[page=3,width=\MuW\linewidth]{img/myTaxiAssist}}%
+	\hfill%
+	\caption{Login and homepage for taxi drivers.}\label{fig:homeTaxi}
+\end{figure}
+
+
+The taxi driver has to report his availability: he has to announce to the system the begin and the end of his shift, by clicking respectively ``On duty'' and ``Off duty'', and also the successful end of the ride, by pressing on ``Available'' (this also enlists him in the queue of the current area).
+
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=4,width=\MuW\linewidth]{img/myTaxiAssist}}%
+	\hfill%
+	\caption{Availability report.}\label{fig:availReport}
+\end{figure}
+
+
+\clearpage
+
+Should an accident happen, the taxi driver shall report the situation to the system. In particular, it is important to know whether some passengers are in the taxi or not.  
+
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=5,width=\MuW\linewidth]{img/myTaxiAssist}}%
+	\hfill%
+	\caption{Accident report.}\label{fig:accidentReport}
+\end{figure}
+
+At any moment while available (that is, while he is neither driving somewhere a customer nor off duty), the taxi driver can receive the notification of a new request for a ride. 
+
+\begin{figure}%
+	\hfill%
+	\fbox{\includegraphics[page=6,width=\MuW\linewidth]{img/myTaxiAssist}}%
+	\hfill%
+	\caption{New request notification.}\label{fig:notif}
+\end{figure}
+
+
+
+\clearpage
+
+
+%TODO: Fare?
+\section{Final considerations}
+
+----------------------------------------------------
+
+-- help page everywhere
+
+-- maybe other pages
+
+-- maybe arranged otherwise
+
+----------------------------------------------------
 
 \lipsum[1-2]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
