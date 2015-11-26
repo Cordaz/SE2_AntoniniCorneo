@@ -20,8 +20,10 @@ Suppose that a request is made in area $0$, which has $Q_0$ as associated queue.
 
 In the following algorithm, $validQueues$ is the set of queues whose length is greater than $0$; $final$ is, among those, the longest one, thus the one to consider.
 
-\begin{algorithm}\caption{Procedure to select a taxi.} \label{alg:getTaxi}\begin{algorithmic}[1]
-\Procedure{GetTaxi}{$Q_0$}
+\newcommand{\GetTaxi}{GetTaxi}
+
+\begin{algorithm}\caption{Procedure to select a taxi.} \label{alg:selectTaxi}\begin{algorithmic}[1]
+\Procedure{\GetTaxi}{$Q_0$}
 	\State $i \gets 0$ \Comment{$i$: distance to consider.} %TODO: Sinonimo!
 	\Repeat \label{gt:repeat}
 		\State $validQueues \gets \aNull$ \label{gt:init2}
@@ -48,7 +50,28 @@ The cycle in \crefrange{gt:repeat}{gt:until} is obviously crucial in the algorit
 
 The \textbf{repeat} cycle ends either when a queue from which to extract a taxi is selected, or when no valid area at a suitable distance is found.
 
-This algorithm described above 
+
+%TODO Completare da qua.
+This algorithm described above is used in a greater procedure, which aims to effectively assign a taxi to a request $r$.
+%TODO confermato, rifiutato, non ha fatto nulla
+\begin{algorithm}\caption{Procedure to assign a taxi.} \label{alg:assignTaxi}\begin{algorithmic}[1]
+\Procedure{AssignTaxi}{$r$}
+	\State $Q_0 \gets \Call{GetAddress}{r}$
+	\Repeat
+		\State $t \gets \Call{\GetTaxi}{Q_0}$
+		\State $\Call{NotifyDriver}{t}$
+		\State $\Call{StartTimer}{timer,2}$ \Comment{Set timer $timer$ to two minutes.}
+		\While{$!\left( t.hasConfirmed \right)$ \aOr $t.out$} %TODO RIFARE.
+			\State $\Call{Wait}{\nullfont}$
+		\EndWhile 
+		\If{$!\left( t.hasConfirmed \right)$}
+			\State $\Call{Enqueue}{Q_0,t}$
+		\EndIf
+	\Until{$t.hasConfirmed$}
+	\State $\Call{Assign}{t,r}$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 
 
@@ -65,73 +88,4 @@ This algorithm described above
 
 
 
-
-%\chapter*{Algorithm design [OLD]}
-%In this section we are going to outline the main algorithms that will govern our ecosystem. Notice that the application logic will reside in myTaxiService core system, whereas the applications myTaxiApp, myTaxiAssist and the website myTaxiWeb will offer only the presentation layer (that is, the layer concerned with presenting the information to the user and managing all user interaction)\footnote{COS\`I VA BENE?}. %TODO: Così va bene? 
-
-%As one may remember, the city is divided into small areas, each of which has an associated taxi queue. Basically, the whole system has to manage the taxi queue of each area. While a taxi driver is waiting for a call in an area, his taxi is enlisted in the queue of that area: upon the reception of a request, the system forwards it to the first taxi in the queue of the area, according to the algorithms that will be specified soon.
-
-
-%\section*{Theoretical recall}
-%First, let us make a brief theoretical introduction, for the sake of clarity. Notice that the word \emph{queue} has a technical meaning, which nevertheless corresponds to the common idea of a queue. This means that a queue is a data structure which models, for example, a line of customers waiting to pay a cashier. The queue has a head and a tail. When an element is inserted in the queue, it takes its place at the tail of the queue, just as a newly arriving customer takes a place at the end of the line. The element to be removed by the queue is always the one at the head of it, like the customer at the head of the line (who, by the way, has waited the longest). This is to say that the management policy of a queue is FIFO\footnote{FIFO stands for ``First In, First Out''.}. We call the insertion operation on a queue \emph{enqueue} (\cref{alg:enqueue}), and we call the deletion operation \emph{dequeue} (\cref{alg:dequeue}). 
-
-%We can now refer to the specific context of our project, in order to provide further details. Given an area, we consider its associated queue. Its elements will be taxis, and let us suppose that it can store at most $n-1$ of them, using an array $Q\left[1..n\right]$. The queue has an attribute $Q.head$ that indexes, or points to, its head. The attribute $Q.tail$ indexes the location at which a newly arriving element will be inserted in the queue. Notice that position $1$ immediately follows position $n$, so there may be $Q.tail < Q.head$ (\cref{line:enqueueWrap} in \cref{alg:enqueue}). When $Q.head = Q.tail$, the queue is empty, and initially, we have $Q.head = Q.tail = 1$. Finally, $Q.length$ is an attribute representing the length of the array $Q$, so $n = Q.length$ (notice that $Q.length$ does not store the actual number of elements in the queue, which is computed by the procedure). %TODO: procedura lunghezza effettiva
-
-
-%\section*{Implementation in myTaxiService}
-%Now we are ready to present the two fundamental procedures that govern the system: \textsc{Enqueue} and \textsc{Dequeue}. Due to its readability, conciseness and accuracy, we believe pseudocode to be the most effective method to express algorithms, and so we adopt it in the following.
-
-%Little has to be specified before we begin. In addition to the already stated attributes ($Q.head$, $Q.tail$, $Q.length$), we will refer to the generic taxi, external to the queue, as $t$.
-
-%
-%\begin{algorithm}%\caption{Enqueue procedure.} \label{alg:enqueue}%\begin{algorithmic}[1]
-%\Procedure{Enqueue}{$Q$,$t$}
-%	\State $Q\left[Q.tail\right] \gets t$
-%	\If{$Q.tail = Q.length$}
-%		\State $Q.tail \gets 1$ \label{line:enqueueWrap}
-%	\Else
-%		\State $Q.tail \gets Q.tail + 1$
-%	\EndIf
-%\EndProcedure
-%\end{algorithmic}
-%\end{algorithm}
-%
-%
-%\begin{algorithm}%\caption{Dequeue procedure.} \label{alg:dequeue}%\begin{algorithmic}[1]
-%\Procedure{Dequeue}{$Q$} 
-%	\State $t \gets Q\left[Q.head\right]$
-%	\If{$Q.head = Q.length$}
-%		\State $Q.head \gets 1$
-%	\Else
-%		\State $Q.head \gets Q.head + 1$
-%	\EndIf
-%	\State \Return $t$ \Comment{dequeued taxi $t$ is returned.}
-%\EndProcedure
-%\end{algorithmic}
-%\end{algorithm}
-%
-%Distance, QueueLength
-%\begin{algorithm}%\caption{Procedure to find a taxi.} \label{alg:getTaxi}%\begin{algorithmic}[1]
-%\Procedure{GetTaxi}{$Q_0$} \Comment{$Q_0$ is the area I am in now.}
-%	\State $i \gets 0$
-%	\Repeat
-%		\State $validQueues \gets \aNull$
-%		\ForAll{$Q :  \Call{Distance}{Q,Q_0}=i$}
-%			\If{$\Call{QueueLength}{Q} > 0$} 
-%				\State $validQueues \gets validQueues + Q$
-%			\EndIf
-%		\EndFor
-%		\State $final \gets validQueues\left[0\right]$
-%		\ForAll{$Q \in validQueues$}
-%			\If{$\Call{QueueLength}{Q} > \Call{QueueLength}{final}$}
-%				\State $final \gets Q$
-%			\EndIf
-%		\EndFor
-%		\State $i \gets i + 1$
-%	\Until{$final \neq \aNull$} 
-%	\State \Return $\Call{Dequeue}{final}$ 
-%\EndProcedure
-%\end{algorithmic}
-%\end{algorithm}
-%
 
