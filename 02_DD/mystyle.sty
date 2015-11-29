@@ -36,15 +36,18 @@
 % Pseudocode
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
-\algnewcommand\aNull{\Call{null}{}} %typeset NULL as textsc (EWWW)
-\algnewcommand\aOr{\textbf{ or }{}} %typeset OR (EWWWW)
-\algnewcommand\aAnd{\textbf{ and }{}} %typeset AND (EWWWW)
+\algnewcommand\aNull{\textsc{null}} %typeset NULL as textsc (EWWW)
+\algnewcommand\aOr{\textbf{or}} %typeset OR (EWWWW)
+\algnewcommand\aAnd{\textbf{and}} %typeset AND (EWWWW)
 
-%Prevent hyphenation of the following
+% Prevent hyphenation of the following
 \hyphenation{myTaxiService}
 \hyphenation{myTaxiApp}
 \hyphenation{myTaxiAssist}
 \hyphenation{myTaxiWeb}
+
+% Inline lists
+\usepackage[inline]{enumitem}
 
 % Misc
 \usepackage{url}
