@@ -2,21 +2,20 @@
 
 
 \section{Overview}
-This chapter, arguably the longest of this document, analyses different aspects of the architecture of myTaxiService system. In \cref{sec:highlevel} we give a high level description of the structure of the system; inevitably this section will be pretty theoretical.
+This chapter, arguably the longest of this document, analyses different aspects of the architecture of myTaxiService system.
+
+In \cref{sec:highlevel} we give a high level description of the structure of the system. Inevitably this section will be pretty theoretical.
 
 Then in \cref{sec:componentView} we focus on the components of the system. With the word \emph{component} we refer to an independent software element that encapsulates a set of related functions, namely that is defined by its interfaces. The interfaces between the components are fully analysed in \cref{sec:componentInterfaces}. In opposition to the focus on the interactions within the system, the deployment view in \cref{sec:deployment} provides further details on the structure of its various parts.
 
 In the runtime view (\cref{sec:runtime}) we show the behaviour of the system in case of a request and a reservation. 
 
-Finally, \cref{sec:styles} and \cref{sec:decisions} are meant to give further details and explanations about our design and architectural choices.
+Finally, \cref{sec:styles} and \cref{sec:decisions} are meant to give further details and explanations about our design and architectural choices. %TODO Togliere riferimento sec:2.8?
 
-In the whole chapter, we will make extensive use of UML diagrams, UML being an agreed and relatively easy to understand language.
+UML being an agreed and relatively easy to understand language, in the whole chapter we will make extensive use of it.
 
 
-\section{High level components and their interaction}\label{sec:highlevel}%[JavaEE architecture > see Quinton]
-%[here you can introduce the high level components of your architecture (in our basic example in the slides about design you find these in slide 7) and describe the main interaction between them (no details here. You can say why some components talk to each other, why, if the communication is synchronous or asynchronous, any other info you think is useful at this point).]
-
-For our myTaxiService ecosystem, we will adopt the Java Enterprise Edition (Java EE) application model for enterprise applications. This will allow the design, building and production of a solid, fast and reliable system, with a special focus on money and resources. 
+\section{High level components and their interaction}\label{sec:highlevel}For our myTaxiService ecosystem, we will adopt the Java Enterprise Edition\footnote{In the following, JavaEE.} application model for enterprise applications. This will allow the design, building and production of a solid, fast and reliable system, with a special focus on money and resources. We believe that such an architecture can be easy to understand and to set up; also, it is highly scalable, which is a huge bonus since we cannot foresee the evolution of the use of the system in the city.
 
 \begin{figure}%
 	\centering%
@@ -24,34 +23,21 @@ For our myTaxiService ecosystem, we will adopt the Java Enterprise Edition (Java
 	\caption{High level architecture. Source: \emph{Java Platform, Enterprise Edition. The Java EE Tutorial, Release 7}. Oracle, September 2014.}\label{fig:jeett}%
 \end{figure}
 
-The Java EE platform uses a distributed multitiered application model, shown in \cref{fig:jeett}. Application logic is divided into components according to function (these will be detailed further in the chapter), and the application components that make up a Java EE application are installed on various machines depending on the tier to which the application component belongs. \Cref{fig:jeett} shows the model we will adopt, which consists of four tiers:
+The JavaEE platform uses a distributed multitiered application model, shown in \cref{fig:jeett}. Application logic is divided into components according to function, and the application components that make up a JavaEE application are installed on various machines depending on the tier to which the application component belongs. \Cref{fig:jeett} shows the model we will adopt, which consists of four tiers:
 
 \begin{description}
 	\item [Client tier] it contains all the components which run on the client machine (applications, web pages); in our case myTaxiWeb web pages, and myTaxiApp, myTaxiAssist mobile applications are the clients. These are all \emph{thin clients}, which means that they do not directly query the database, nor execute complex operations. 
 	
-	\item [Web tier] the components of this tier run on the Java EE server; this tier is intended to mange the data flow between clients and Java EE server and between server components and the database.
+	\item [Web tier] the components of this tier run on the JavaEE server; this tier is intended to mange the data flow between clients and Java EE server and between server components and the database.
 
-	\item [Business tier] this tier, which runs on the Java EE server as well, contains the so called \emph{enterprise beans}. Enterprise beans handle business code, which is logic that govern myTaxiService system; to do so, they also retrieve data from storage, processes it (if necessary), and sends it back to the client program.
+	\item [Business tier] this tier, which runs on the JavaEE server as well, contains the so called \emph{enterprise beans}. Enterprise beans handle business code, which is logic that govern myTaxiService system; to do so, they also retrieve data from storage, processes it (if necessary), and sends it back to the client program.
 
-	\item [EIS tier] this tier, typically, handles EIS\footnote{EIS stands for Enterprise information system.} software and includes enterprise infrastructure systems, such as enterprise resource planning (ERP), mainframe transaction processing, database systems, and other legacy information systems. In our specific case, Java EE application components might need access to enterprise information systems for database connectivity.
+	\item [EIS tier] this tier, typically, handles EIS\footnote{EIS stands for Enterprise information system.} software and includes enterprise infrastructure systems, such as enterprise resource planning (ERP), mainframe transaction processing, database systems, and other legacy information systems. In our specific case, JavaEE application components might need access to enterprise information systems for database connectivity.
 	
 \end{description}
 
 
-
-
-
-
-
-
-
-
-
-
-
-\section{Component view}\label{sec:componentView}%[here you have a refinement of what you have in Section 4.B and identify sub-components. For instance, the diagram in slide 6 could be a diagram showing a  component view]
-
-Now let us refine what was given in \cref{sec:highlevel}. In the following component diagram (\cref{fig:component}) the architecture of the system has been expanded.
+\section{Component view}\label{sec:componentView}Now let us refine what was given in \cref{sec:highlevel}. In the following component diagram (\cref{fig:component}) the architecture of the system has been expanded.
 
 \begin{figure*}%
 	\centering%
@@ -61,7 +47,7 @@ Now let us refine what was given in \cref{sec:highlevel}. In the following compo
 
 In the diagram, each application of the system (myTaxiApp, myTaxiWeb, myTaxiAssist, myTaxiService) is represented, together with its own components. Moreover, for the sake of clarity, some subsystems have been introduced, to gather logically similar components. Each component may offer or require some interfaces. These interfaces reflect the services that the component provides (which are indicated in UML by a circle at the end of a line from the component icon) and the services that the component requires to operate correctly (the symbol for this kind of interface is a semicircle at the end of a line from the component icon).
 
-For example, let us consider the \texttt{Re\-quest\-And\-Res\-er\-va\-tion\-Man\-age\-ment} subsystem in myTaxiService server. It has two components, \texttt{Res\-er\-va\-tion\-Man\-age\-ment} and \texttt{Re\-quest\-Man\-age\-ment}. The former, as the name suggests, handles the reservations, from the reception until their conversion to requests (remember that our system confirms the reservation and allocates a taxi \num{10} minutes before the meeting time with the customer, as though it was a request). In order to do the conversion, the component needs a service, namely \texttt{Re\-quest\-Cre\-ation}, which is offered by \texttt{Re\-quest\-Man\-age\-ment} component.
+For example, let us consider the \texttt{Re\-quest\-And\-Res\-er\-va\-tion\-Man\-age\-ment} subsystem in myTaxiService server. It has two components, \texttt{Res\-er\-va\-tion\-Man\-age\-ment} and \texttt{Re\-quest\-Man\-age\-ment}. The former, as the name suggests, handles the reservations, from the reception until their conversion to requests\footnote{Remember that our system confirms the reservation and allocates a taxi \num{10} minutes before the meeting time with the customer, as though it was a request.}. In order to do the conversion, the component needs a service, namely \texttt{Re\-quest\-Cre\-ation}, which is conveniently offered by \texttt{Re\-quest\-Man\-age\-ment} component.
 
 For the sake of clarity, we preferred to draw only the connections between the applications, and to exclude all the links between interfaces that would lie outside the subsystems. By doing so, we avoid the otherwise inevitable tangle of connections. Further details about the interfaces are provided in \cref{sec:componentInterfaces}.
 
@@ -76,7 +62,7 @@ Before we proceed with our analysis, we would like to focus our attention on \te
 \section{Component interfaces}\label{sec:componentInterfaces}
 \textbf{[communication between components] [here you define the interfaces of your components, that is, which operations they offer to the external world, their meaning, any input and output parameter (name, possible set of values/type)]}
 
-\lipsum[1-5]
+\lipsum[1]
 
 
 
@@ -90,10 +76,8 @@ Before we proceed with our analysis, we would like to focus our attention on \te
 
 
 
-\clearpage%TODO Remove.\section{Deployment view}\label{sec:deployment}
-%[this is what you have in slide 8, that is, the identification of the artifact that need to be deployed to have the system working]
-
-After focusing on the logical structure of the system, in the component view, and on the interactions within the system, it is appropriate to provide a lower level view on the architecture of the system. In particular the deployment diagram in \cref{fig:deployment} shows the distribution of the components over the various hardware devices.
+\clearpage%TODO Clearpage: remove.\section{Deployment view}\label{sec:deployment}
+After focusing on the logical structure of the system and on the interactions within, it is appropriate to provide a lower level view on the architecture of the system. In particular the deployment diagram in \cref{fig:deployment} shows the distribution of the concrete software artifacts over the various computational nodes of our system.
 
 \begin{figure*}%
 	\centering%
@@ -101,7 +85,7 @@ After focusing on the logical structure of the system, in the component view, an
 	\caption{Deployment diagram.}\label{fig:deployment}%
 \end{figure*}
 
-To reflect the architecture shown in \cref{sec:highlevel}, the diagram develops over three types of hardware systems: \texttt{App\-Cli\-ent}, \texttt{Brows\-er\-Cli\-ent} and \texttt{Driver\-Smart\-phone} are the three possible client machines, then we have the \texttt{Java\-EE Ser\-ver}, intended for the business logic, and the \texttt{Per\-sist\-ence\-Ser\-ver}, which is a different machine, dedicated to the database.
+To reflect the architecture shown in \cref{sec:highlevel}, the diagram develops over three types of hardware systems: \texttt{App\-Cli\-ent}, \texttt{Brows\-er\-Cli\-ent} and \texttt{Driver\-Smart\-phone} are the three possible client machines, then we have the \texttt{Java\-EE Ser\-ver}, intended for the business logic, and the \texttt{Per\-sist\-ence\-Ser\-ver}, dedicated to the database.
 
 The main interactions between the components have been drawn. Moreover, the nature of the various components (executable, service) has been specified, so as to give a comprehensive view on the architecture of the system.
 
@@ -116,13 +100,20 @@ The main interactions between the components have been drawn. Moreover, the natu
 
 
 
+\clearpage%TODO Clearpage: remove.\section{Runtime view}\label{sec:runtime}
+To complete our extensive analysis on myTaxiService ecosystem, we introduce here a runtime view of the system, by means of a \mbox{UML-like} diagram (\cref{fig:runtime}) and two sequence diagrams (\cref{fig:reqSequence,fig:resSequence}).
 
-\clearpage%TODO Remove.\section{Runtime view}\label{sec:runtime}
-%[You can use sequence diagrams to describe the way components interact to accomplish specific tasks typically related to your use cases.] [this is what you have in slide 9 plus sequence diagrams describing the way components behave in order to accomplish a certain activity]
+In particular, we are supposing the following flow of events: \begin{enumerate*}[itemjoin={{; }}, label={{(\arabic*)}}]
+	
+	\item \texttt{cus\-tom\-er1} makes a reservation for a taxi ride (\texttt{reservation1}) through myTaxiApp
+	
+	\item \texttt{res\-er\-va\-tion1} is converted to a request (\texttt{re\-quest1}), and \texttt{taxi1} is allocated
+	
+	\item \texttt{cus\-tom\-er2} requests a taxi ride (\texttt{re\-quest2}) via myTaxiWeb, and \texttt{taxi1} is again allocated\footnotemark.
+	
+\end{enumerate*}\footnotetext{Time constraints compliance is intended: \texttt{re\-quest2} occurs after the completion of \texttt{res\-er\-va\-tion1}/\texttt{re\-quest1} task.}
 
-Qui si è voluta presentare una visione delle istanze che possono essere attive sul sistema quando sono state effettuate due richieste, una tramite prenotazione (app) ed una diretta (web) alle quali per comodità è stato allocato lo stesso taxi (ipotizzate consecutive).
-Alcune delle relazioni tra le istanze sono date per scontate per motivi di leggibilità (ad esempio il customer della reservation1 (customer1) è lo stesso della request1, ma non viene esplicitato alla request1).
-
+This is obviously an ideal and simplified world, which nevertheless should make clear how the system actually works. Some of the links between instances have been omitted, to preserve readability (for example, \texttt{res\-er\-va\-tion1} and \texttt{re\-quest1} should be both linked to \texttt{cus\-tom\-er1}, but the association was omitted, since trivial, as the request is automatically created as a result of the reservation).
 
 \begin{figure*}%
 	\centering%
@@ -132,11 +123,14 @@ Qui si è voluta presentare una visione delle istanze che possono essere attive 
 
 
 
-SEQUENCE
 
-Questi diagrammi vogliono evidenziare il comportamento del sistema in due casi tipici (una richiesta ed una prenotazione), evidenziando gli scambi di messaggi e i metodi invocati tra i vari component del sistema.
+\clearpage%TODO Clearpage: remove.
 
 
+
+
+
+In addition to the runtime view diagram, we provide two sequence diagrams, to show the actual behaviour of the system, and in particular the interactions among the components. The first one (\cref{fig:reqSequence}) is the expansion of figure~3.2 in the RASD; while the second (\cref{fig:resSequence}) further expands the sequence diagram in figure~3.10 in the same document.
 
 \begin{figure*}%
 	\centering%
@@ -173,22 +167,35 @@ Questi diagrammi vogliono evidenziare il comportamento del sistema in due casi t
 
 
 
-\clearpage%TODO Remove.\section{Selected architectural styles and patterns}\label{sec:styles}
-[Please explain which styles/patterns you used, why, and how.] [3-tier architecture STYLE; ]
+\clearpage%TODO Clearpage: remove.\section{Selected architectural styles and patterns}\label{sec:styles}
+
+
+%Name MVC (Model-View-Controller)
+%%Description Separates presentation and interaction from the system data. The system is structured into three logical components that interact with each other. The Model component manages the system data and associated operations on that data. The View component defines and manages how the data is presented to the user. The Controller component manages user interaction (e.g., key presses, mouse clicks, etc.) and passes these interactions to the View and the Model. See Figure 6.3.
+%%Example Figure 6.4 shows the architecture of a web-based application system organized using the MVC pattern.
+%%When used Used when there are multiple ways to view and interact with data. Also used when the future requirements for interaction and presentation of data are unknown.
+%%Advantages Allows the data to change independently of its representation and vice versa. Supports presentation of the same data in different ways with changes made in one representation shown in all of them.
+%%Disadvantages Can involve additional code and code complexity when the data model and interactions are simple.
+
+
+
+
+\begin{figure}%
+	\centering%
+	\includegraphics{img/sommMVC}%
+	\caption{MVC.}
+\end{figure}
+
+\begin{figure}%
+	\centering%
+	\includegraphics{img/sommMVCweb}%
+	\caption{MVC web.}
+\end{figure}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-\clearpage%TODO Remove.\section{Other design decisions}\label{sec:decisions}
-\lipsum[8]
+\clearpage%TODO Clearpage: remove.\section{Other design decisions}\label{sec:decisions}
+\lipsum[1-2]
