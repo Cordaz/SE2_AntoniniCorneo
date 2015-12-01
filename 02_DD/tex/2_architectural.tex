@@ -60,9 +60,122 @@ Before we proceed with our analysis, we would like to focus our attention on \te
 
 
 \section{Component interfaces}\label{sec:componentInterfaces}
-\textbf{[communication between components] [here you define the interfaces of your components, that is, which operations they offer to the external world, their meaning, any input and output parameter (name, possible set of values/type)]}
+%\textbf{[communication between components] [here you define the interfaces of your components, that is, which operations they offer to the external world, their meaning, any input and output parameter (name, possible set of values/type)]}
 
-\lipsum[1]
+%Component - Interfaces provided - Description
+
+\newcommand{\cW}{4cm}
+\newcommand{\iW}{3.5cm}
+
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}c C{\iW} X }\toprule
+	
+	UserLogin 
+	& 
+	CredentialInsertion 
+	& 
+	This interface offers all the methods necessary to successfully log in a User (both RegisteredCustomer and TaxiDriver). After the insertion of the credentials, it will interact with PersonalDataManager component to complete the login and initiate the user session.
+	\\ 
+
+\midrule
+	UserRegistration 
+	& 
+	UserRegistration 
+	& 
+	Provides all the methods for the insertion of a new customer in the database, validating his data. It also adds the User Credential in the db.
+	\\ 
+
+\midrule
+	PersonalDataManager
+	& 
+	CredentialValidation 
+	& 
+	Provides the methods that check the personal credential in the db. \textbf{Component general description}: All the personal data stored are accessible using this component. Moreover, this component provides also validation methods on all the data that can describe a person.
+	\\ \cmidrule{2-3}
+	&
+	DataValidation
+	&
+	Provides all the methods useful to validate personal data, for instance the correctness of a name (no number\dots) or of a birthdate (not in the future\dots)
+	\\ \cmidrule{2-3}
+	&
+	DataReader
+	&
+	This interface provides all the methods to access Customer data stored in the database. For instance, it provides a method to return a formatted string of the type +39 02 1234567 with the phone number of the provided customer.
+	\\
+
+\midrule
+	ReservationManagement 
+	& 
+	ReservationCreation 
+	& 
+	Provides methods to make a reservation, it will interact with PersonalDataManager component for the validation and JPA for db storing.
+	\\ 
+
+\midrule
+	RequestManagement 
+	& 
+	RequestCreation 
+	& 
+	Offers methods to make a request. The component will validate the data, store the request in the db and will interact with all the component to allocate a taxi.	
+	\\ 
+
+
+\bottomrule\end{tabularx}\end{figure*}
+
+\clearpage
+
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}c C{\iW} X }\toprule
+
+%\midrule
+
+
+
+	AddressManagement
+	& 
+	AddressValidation 
+	& 
+	Offers all the method to validate an address, checking the existence in the db. Also provides methods to convert and address in GPS coordinates and vice versa.	
+	\\ \cmidrule{2-3}
+	&
+	AddressMapping
+	&
+	Provides methods to map and address into the system, returning the pertinence area.	\\
+
+\midrule
+
+	AreaManagement 
+	& 
+	TaxiAllocation 
+	& 
+	Provides all the methods for managing the taxi allocation, from the enqueuer to the dequeue in case of request or the change of a taxi driver availability.
+	\\ 
+
+\midrule
+	NotificationEngine 
+	& 
+	Notifier 
+	& 
+	Provides all the methods for the notification of client systems.
+	\\ 
+
+\midrule
+	NotificationReader 
+	& 
+	ClientNotifier 
+	& 
+	Provides (RMI ?) methods to notify the clients.
+	\\ 
+
+\midrule
+	RideManagement 
+	& 
+	RideInit 
+	& 
+	Provides all the methods necessary to instantiate a ride for the driver, from getting the customer position to the destination. This component will also interact with on board navigator.
+	\\ 
+
+\bottomrule\end{tabularx}\end{figure*}
+
+\nobreakspace \newline
 
 
 

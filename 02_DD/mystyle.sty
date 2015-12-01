@@ -28,6 +28,11 @@
 %\newlength{\fullwidthlength}
 %\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
 %\makeatother
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 
 % Fixes to tufte-book document class
 \setcounter{secnumdepth}{3}
