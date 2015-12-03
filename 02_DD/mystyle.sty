@@ -33,7 +33,6 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-
 % Fixes to tufte-book document class
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
@@ -52,13 +51,16 @@
 \hyphenation{myTaxiWeb}
 
 % Inline lists
-\usepackage[inline]{enumitem}
+%\usepackage[inline]{enumitem}
 
 % Misc
 \usepackage{url}
 
 % Cross referencing (it MUST be loaded AFTER every other package)
+\usepackage{xspace}
+\newcommand{\rasd}{\hyperlink{subsec:references}{RASD}\xspace}
 \usepackage[noabbrev]{cleveref}
+\crefname{sidenote}{sidenote}{sidenotes}
 
 
 

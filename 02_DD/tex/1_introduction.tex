@@ -1,16 +1,22 @@
 \chapter{Introduction} \label{chap:introduction}
 
 
-\section{Purpose}After the presentation of our \emph{Requirement analysis and specification document}\footnote{Briefly, RASD.} on \printdate{2015-11-6}, we are requested to provide a functional description of myTaxiService project. The result is this document, which tries to give a comprehensive look on all the technological aspects that characterise the system, and above all its architecture.
-As a consequence, this document addresses the professionals, and primarily developers, who will use it as a solid basis for their implementation work. A section is also dedicated to designers, who will have to work on the user interfaces of the applications and website.
+\section{Purpose}After the presentation of our \emph{Requirement analysis and specification document}\footnote{Briefly, RASD.} on \printdate{2015-11-6}, we are requested to provide a functional description of myTaxiService project. The result is this document, which tries to give a comprehensive look on the architecture of the system.
+As a consequence, this document addresses professionals, and primarily developers, who will use it as a solid basis for their implementation work. A section is also dedicated to designers, who will have to work on the user interfaces of the applications and website.
 
-\section{Scope}The behaviour of myTaxiService system was completely outlined in the RASD, so it is appropriate to refer to that document for a general description of it. Here we will detail the overall design of the system and its architecture, and also we will show how the components of the system interact to accomplish the specific tasks. An analysis of the main algorithms that govern the operation of myTaxiService is provided, as well, to aid developers in their work. Moreover, to complete the specification of how the system will look like at the end of the development phase, we give an overview on the user interface design. 
+\section{Scope}The behaviour of myTaxiService system was completely outlined in the \rasd, so it is appropriate to refer to that document for a general description of it. In the following, we are taking for granted a reasonable familiarity with its contents.
+
+Here we will detail the overall design of the system and its architecture, and we will also show how the components of the system interact to accomplish the specific tasks. An analysis of the main algorithms that govern the operation of myTaxiService is provided, as well, to aid developers in their work. Moreover, to complete the specification, we give an overview on the user interface design. 
 This document being the natural follow-up of the analysis started in the RASD, we will try to provide a solid cross-referencing to that document, for the sake of coherence and consistency.
 \section{Definitions, acronyms, and abbreviations}
-Please refer to the corresponding section in the RASD for the definitions of words used in the document. Some technical expressions and abbreviations are used in the following, but definitions are given when necessary. 
+Please refer to the corresponding section in the \rasd for the definitions of words used in the document. Some technical expressions and abbreviations are used in the following, but definitions are given when necessary. 
 
-\section{References}
-As it was already stated, throughout this writing, we keep the consistency and traceability with the the Requirement analysis and specification document. The RASD can be retrieved on the following link: \url{https://github.com/Cordaz/SE2_AntoniniCorneo/raw/master/Deliveries/1_RASD.pdf}.
+
+\section{References}\hypertarget{subsec:references}{}
+As it was already mentioned, throughout this writing, we keep the consistency and traceability with the the \emph{Requirement analysis and specification document}. The RASD can be retrieved on the following link: \url{https://github.com/Cordaz/SE2_AntoniniCorneo/raw/master/Deliveries/1_RASD.pdf}.
 
 \section{Overview of the document}	
-This document develops as follows. \Cref{chap:architectural} analyses the architectural design of the system: every module will be described, as well as its interaction with the other components. Some UML diagrams will be used as a support. \Cref{chap:algorithm} defines the most relevant algorithms on which the system relies. In \cref{chap:userinterface} we offer an overview on how the user interfaces of your system will look like, through some mock-ups. Finally, \cref{chap:traceability} shows any correspondence between the requirements defined in our RASD and the design elements expressed in this document. %TODO Togliere riferimento chap:5?
+This document develops as follows. \Cref{chap:architectural} analyses the architectural design of the system, at different levels of detail and from different points of view. Some UML diagrams will be used as a support. \Cref{chap:algorithm} defines the most relevant algorithms on which the system relies. In \cref{chap:userinterface} we offer an overview on how the user interfaces of your system will look like, through some mock-ups. 
+
+\Cref{chap:appendix} is to be considered external to the document.
+
