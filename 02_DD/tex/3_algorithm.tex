@@ -78,6 +78,8 @@ The \textbf{repeat} cycle ends either when a queue from which to extract a taxi 
 
 After getting the queue $Q_0$, corresponding to the area from which the request $r_0$ arrived (\cref{at:getQueue}), a cycle begins (\crefrange{at:repeat}{at:until}). The cycle is designed to select a taxi with the procedure shown in \cref{alg:selectTaxi} (\cref{at:selectTaxi}), and then to wait for the selected taxi driver to confirm or for a timer to expire (\crefrange{at:startTimer}{at:endWhile}). Moreover, if the taxi driver does not confirm (that is, the $\Call{Status}{}$ function called on taxi $t$ returns either \texttt{"rejected"} or \aNull), then the taxi $t$ shall be enqueued (hence put at the tail of the queue). On the contrary, if taxi $t$ accepts the request ($\Call{Status}{t}$ returns \texttt{"accepted"}), the cycle ends and the taxi $t$ is assigned to the request $r_0$ (\cref{at:assign}).
 
+Given that in the city there are only taxi cabs for four passengers, procedure in \cref{alg:assignTaxi} is performed as many times as needed.
+
 
 \section{Final considerations}
 As it was already mentioned, the algorithms in this chapter are presented as \mbox{high-level} procedures, as some implementation decisions should be made only at the time of coding. As a result we are not specifying what data structure should be used to actually implement a queue, or, for instance, how the condition $Q : \Call{Distance}{Q,Q_0}=i$ (\cref{gt:forValid} in \cref{alg:selectTaxi}) should be checked.
