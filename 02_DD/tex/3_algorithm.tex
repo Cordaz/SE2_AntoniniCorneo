@@ -1,7 +1,7 @@
 \chapter{Algorithm design} \label{chap:algorithm}
 In this chapter we are going to outline the main algorithms that will govern our ecosystem. The application logic will reside in myTaxiService core system, whereas the applications myTaxiApp, myTaxiAssist and the website myTaxiWeb will offer only the presentation layer (that is, the layer concerned with presenting the information to the user and managing user interactions). 
 
-To specify the algorithms in this chapter we will take advantage of the great expressivity and conciseness of pseudocode. We will use it a high level, in order not to make premature decisions, which instead should be made at the time of coding. That is also why many of the procedures exploited in the (pseudo)code will not be further specified.
+To specify the algorithms in this chapter we will take advantage of the great expressivity and conciseness of pseudocode. We will present them as \mbox{high-level} procedures, in order not to make premature implementation decisions, which instead should be made at the time of coding. That is why many of the procedures mentioned in the following listings will not be further specified.
 
 As one may remember, the city is divided into small areas, each of which has an associated taxi queue. Basically, the whole system has to manage the taxi queue of each area. While a taxi driver is waiting for a call in an area, his taxi is enlisted in the queue of that area: upon the reception of a request, the system forwards it to the first taxi in the queue of the area, according to the algorithms that will be specified soon.
 
@@ -11,7 +11,7 @@ First, let us make a brief theoretical introduction, for the sake of clarity. No
 
 This is to say that the management policy of a queue is FIFO\footnote{FIFO stands for ``First In, First Out'', which is the mnemonic for the queue management policy.}. We call the insertion operation on a queue \emph{enqueue}, and we call the deletion operation \emph{dequeue}.
 
-We prefer not to detail the specific procedures to manage a queue for a number of reasons: they are well documented in every valid algorithms book\footnote{e.g. Thomas~H.~Cormen, Charles~E.~Leiserson, Robert~L.~Rivest, Clifford~Stein. \emph{Introduction to Algorithms}. The MIT Press, 2009.}; they are (or rather, they should be) well known to every good developer; they strongly depend on the implementation choices. We believe that other algorithms deserve greater attention.
+We prefer not to detail the specific procedures to manage a queue for a number of reasons: they are well documented in every valid book about algorithms\footnote{e.g. Thomas~H.~Cormen, Charles~E.~Leiserson, Robert~L.~Rivest, Clifford~Stein. \emph{Introduction to Algorithms}. The MIT Press, 2009.}; they are (or rather, they should be) well known to every good developer; they strongly depend on the implementation choices. We believe that other algorithms deserve greater attention.
 
 
 \section{Implementation in myTaxiService}
@@ -21,8 +21,7 @@ Suppose that a request is made in the area which has $Q_0$ as associated queue. 
 
 In the following algorithm, $validQueues$ is the set of queues whose length is greater than $0$; $final$ is, among those, the longest one, thus the one to consider.
 
-\newcommand{\GetTaxi}{GetTaxi} % To ease a change of the name, if necessary.
-%\newcommand{\var}[1]{\texttt{#1}}
+\newcommand{\GetTaxi}{SelectTaxi} % To ease a change of the name, if necessary.
 
 \begin{algorithm}
 \caption{Procedure to select a taxi.}\label{alg:selectTaxi}\begin{algorithmic}[1]
@@ -48,11 +47,11 @@ In the following algorithm, $validQueues$ is the set of queues whose length is g
 \end{algorithmic}
 \end{algorithm}
 
-The cycle in \crefrange{gt:repeat}{gt:until} is obviously crucial in the algorithmic definition; its body is run until either one or no valid taxi cab is found. If no taxi is found at distance $0$ ($i=0$), which means in area $Q_0$, then the algorithm performs the same set of operations on the areas at distance $1$, and if needed also at distance $2$. The first \textbf{for} loop (\crefrange{gt:forValid}{gt:endForValid}) scans all the queues at distance $i$ to find and store in $validQueues$ those whose length is not null, that is, those which enlist available taxis. Once the $validQueues$ set has been (possibly) populated, then the second loop (\crefrange{gt:forFinal}{gt:endForFinal}) selects, among the valid queues, the longest one.
+The cycle in \crefrange{gt:repeat}{gt:until} is obviously crucial in the algorithmic definition; its body is run until either one or no valid taxi cab is found. If no taxi is found at distance $0$ ($i=0$), which means in area $Q_0$, then the algorithm performs the same set of operations on the areas at distance $1$, and if needed also at distance $2$. The first \textbf{for} loop (\crefrange{gt:forValid}{gt:endForValid}) scans all the queues at distance $i$ to find and store in $validQueues$ those whose length is not null, that is, those which enlist available taxis. Once the $validQueues$ set has been (possibly) populated, then the second loop (\crefrange{gt:forFinal}{gt:endForFinal}) selects the longest one within the set.
 
-The \textbf{repeat} cycle ends either when a queue from which to extract a taxi is selected, or when no valid area at a suitable distance is found.
+The \textbf{repeat} cycle ends either when a queue from which to extract a taxi is selected, or when no valid area at a suitable distance (namely, at more than two areas from $Q_0$, which means at more than \num{30} minutes by car) is found.
 
-\Cref{alg:selectTaxi} described above is used in a greater procedure (\cref{alg:assignTaxi}), which aims at effectively assigning a taxi to a request $r_0$. The procedure is shown next.
+\Cref{alg:selectTaxi} presented above is used in a greater procedure (\cref{alg:assignTaxi}), which aims at effectively assigning a taxi to a request $r_0$. The procedure is shown next.
 
 
 
@@ -64,21 +63,25 @@ The \textbf{repeat} cycle ends either when a queue from which to extract a taxi 
 		\State $t \gets \Call{\GetTaxi}{Q_0}$ \label{at:selectTaxi}
 		\State $\Call{NotifyDriver}{t}$ \label{at:notifyDriver}
 		\State $\Call{StartTimer}{timer,2}$ \Comment{Set $timer$ to two minutes.}\label{at:startTimer}
-		\While{$\left( \Call{Status}{t} \neq \texttt{"accept"} \right) \wedge \neg\left(t.out\right)$}
+		\While{$\left( \Call{Status}{t} \neq \texttt{"accepted"} \right) \wedge \neg\left(timer.out\right)$}
 			\State $\Call{Wait}{\nullfont}$
 		\EndWhile \label{at:endWhile}
-		\If{$\Call{Status}{t} \neq \texttt{"accept"}$}
+		\If{$\Call{Status}{t} \neq \texttt{"accepted"}$}
 			\State $\Call{Enqueue}{Q_0,t}$
 		\EndIf
-	\Until{$\Call{Status}{t} = \texttt{"accept"}$} \label{at:until}
+	\Until{$\Call{Status}{t} = \texttt{"accepted"}$} \label{at:until}
 	\State $\Call{Assign}{t,r_0}$ \label{at:assign}
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
 
-After getting the queue $Q_0$, corresponding to the area from which the request $r_0$ arrived (\cref{at:getQueue}), a cycle begins (\crefrange{at:repeat}{at:until}). The cycle is designed to select a taxi with the procedure shown in \cref{alg:selectTaxi} (\cref{at:selectTaxi}), and then wait for the selected taxi driver to confirm or for a timer to expire (\crefrange{at:startTimer}{at:endWhile}). Moreover, if the taxi driver does not confirm (that is, the \textsc{Status} function called on taxi $t$ returns either \texttt{"rejected"} or \textsc{null}), then the taxi $t$ shall be enqueued (hence put at the tail of the queue). On the contrary, if taxi $t$ accepts the request (\textsc{Status}$\left(t\right)$ returns \texttt{"confirm"} or \textsc{null}), the cycle ends and the taxi $t$ is assigned to the request $r_0$ (\cref{at:assign}).
+After getting the queue $Q_0$, corresponding to the area from which the request $r_0$ arrived (\cref{at:getQueue}), a cycle begins (\crefrange{at:repeat}{at:until}). The cycle is designed to select a taxi with the procedure shown in \cref{alg:selectTaxi} (\cref{at:selectTaxi}), and then to wait for the selected taxi driver to confirm or for a timer to expire (\crefrange{at:startTimer}{at:endWhile}). Moreover, if the taxi driver does not confirm (that is, the $\Call{Status}{}$ function called on taxi $t$ returns either \texttt{"rejected"} or \aNull), then the taxi $t$ shall be enqueued (hence put at the tail of the queue). On the contrary, if taxi $t$ accepts the request ($\Call{Status}{t}$ returns \texttt{"accepted"}), the cycle ends and the taxi $t$ is assigned to the request $r_0$ (\cref{at:assign}).
 
 
+\section{Final considerations}
+As it was already mentioned, the algorithms in this chapter are presented as \mbox{high-level} procedures, as some implementation decisions should be made only at the time of coding. As a result we are not specifying what data structure should be used to actually implement a queue, or, for instance, how the condition $Q : \Call{Distance}{Q,Q_0}=i$ (\cref{gt:forValid} in \cref{alg:selectTaxi}) should be checked.
+
+As a consequence, the algorithms presented above cannot be directly translated in actual code. However, they should not be regarded as the one and only source of information for developers: the whole chapter, which this section closes, contains useful information for development phase.
 
 
