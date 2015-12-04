@@ -20,7 +20,7 @@ UML being an agreed and relatively easy to understand language, in the whole cha
 \begin{figure}%
 	\centering%
 	\includegraphics[width=0.83\textwidth]{img/JEETT}%
-	\caption{High level architecture. Source: \emph{Java Platform, Enterprise Edition. The Java EE Tutorial, Release 7}. Oracle, September 2014.}\label{fig:jeett}%
+	\caption{High level architecture.\hfill\break Source: \emph{Java Platform, Enterprise Edition. The Java EE Tutorial, Release 7}. Oracle, September 2014.}\label{fig:jeett}%
 \end{figure}
 
 The JavaEE platform uses a distributed multitiered application model. Application logic is divided into components according to function, and the application components that make up a JavaEE application are installed on various machines depending on the tier to which the application component belongs. \Cref{fig:jeett} shows the model we will adopt, which consists of four tiers:
@@ -60,10 +60,10 @@ In this section we are going to analyse the most significant interfaces between 
 
 %Component - Interfaces provided - Description
 
-\newcommand{\cW}{4cm}
-\newcommand{\iW}{3.5cm}
+\newcommand{\cW}{3.8cm}
+\newcommand{\iW}{3.8cm}
 
-\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}c C{\iW} X }\toprule%
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\ttfamily\bfseries}C{\cW} >{\ttfamily}C{\iW} X }\toprule%
 %
 \normalfont{\centering\textsc{Component}} & \normalfont{\centering\textsc{Interfaces}} & \normalfont{\textsc{Description}}
 \\%
@@ -167,7 +167,7 @@ In this section we are going to analyse the most significant interfaces between 
 \end{tabularx}%
 \end{figure*}
 \clearpage
-\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}c C{\iW} X }\toprule
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\ttfamily\bfseries}C{\cW} >{\ttfamily}C{\iW} X }\toprule
 \normalfont{\centering\textsc{Component}} & \normalfont{\centering\textsc{Interfaces}} & \normalfont{\textsc{Description}}%
 \\%
 \toprule%
@@ -254,33 +254,28 @@ Some of the links between instances have been omitted, to preserve readability (
 
 
 \section{Selected architectural styles and patterns}\label{sec:styles}
+The approach we used to design the whole system traces back to the well known Model-View-Controller (MVC) architectural pattern. 
 
+Basically, this pattern separates presentation and interaction from the system data by structuring the system into three logical components\footnote{Notice that here we are not using the word \emph{component} with the same technical meaning as in \cref{sec:componentView}, but in a broader sense.} that interact with each other. The Model component manages the system data and associated operations on that data. The View component defines and manages how the data is presented to the user. The Controller component manages user interaction and passes them to the View and the Model (see \cref{fig:mvc}).
 
-%Name MVC (Model-View-Controller)
-%%Description Separates presentation and interaction from the system data. The system is structured into three logical components that interact with each other. The Model component manages the system data and associated operations on that data. The View component defines and manages how the data is presented to the user. The Controller component manages user interaction (e.g., key presses, mouse clicks, etc.) and passes these interactions to the View and the Model. See Figure 6.3.
-%%Example Figure 6.4 shows the architecture of a web-based application system organized using the MVC pattern.
-%%When used Used when there are multiple ways to view and interact with data. Also used when the future requirements for interaction and presentation of data are unknown.
-%%Advantages Allows the data to change independently of its representation and vice versa. Supports presentation of the same data in different ways with changes made in one representation shown in all of them.
-%%Disadvantages Can involve additional code and code complexity when the data model and interactions are simple.
+This pattern allows the data to change independently of its representation and vice versa, which is particularly useful when there are multiple ways to view and interact with data and the evolution of the system is unknown. Also, it supports presentation of the same data in different ways.
 
-
-\lipsum[1-2]
+The main drawback is that it may involve additional code and code complexity, but we believe that the advantages largely offset this downside.
 
 \begin{figure}%
 	\centering%
-	\includegraphics{img/sommMVC}%
-	\caption{MVC.}
+	\includegraphics[width=0.83\textwidth]{img/sommMVC}%
+	\caption{Model-View-Controller general organisation.\hfill\break Source: Ian~Sommerville. \emph{Software Engineering}. 10th edition. Pearson, 2015.}\label{fig:mvc}%
 \end{figure}
 
-%\begin{figure}%
-%	\centering%
-%	\includegraphics{img/sommMVCweb}%
-%	\caption{MVC web.}
-%\end{figure}
+Referring in particular to the main components of our system (see \cref{sec:componentView,sec:componentInterfaces}) we can draw the following correspondences:
 
-
-
-
-
-
-
+\begin{description}
+	
+	\item [Model] for example, the components \texttt{Per\-son\-al\-Data\-Man\-ager} and \texttt{Ad\-dress\-Man\-age\-ment} are part of the Model of the system, as they deal with the system data;
+	
+	\item [View] the three clients (myTaxi App, myTaxiWeb and myTaxiAssist) constitute, trivially, the View;
+	
+	\item [Controller] the \texttt{Re\-quest\-And\-Res\-er\-va\-tion\-Man\-age\-ment} subsystem, for example, receives and manages requests and reservations from customers, so it belongs to the Controller.
+		
+\end{description}
