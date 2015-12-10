@@ -12,7 +12,14 @@ A user can reserve a taxi by specifying the origin and the destination of the ri
 + **Requirements Analysis and Specification Document** submission deadline 6/11/2015 - [link](./Deliveries/1_RASD.pdf)
 + **Design Document** submission deadline 4/12/2015 - [link](./Deliveries/2_DD.pdf)
 
+
+## GlassFish 4.1.1
+>Code inspection (e.g., code analysis, visual inspection, reverse engineering, etc.) is systematic examination (often known as peer review) of computer source code. It is intended to find mistakes overlooked in the initial development phase, improving both the overall quality of software and the developers' skills. Reviews are done in various forms such as pair programming, informal walkthroughs, and formal inspections. You are to apply Code Inspection techniques (supported by the review checklist at the end of this document) for the purpose of evaluating the general quality of selected code extracts from a release of the Glassfish 4.1 application server (see the information at the end of the document).
+In the scope of this assignment, you will be given a selected number of classes extracted from said software release. Said selection is done systematically, and will assign different sets of classes to different groups. The systematic selection makes sure that the difficulty of the assignment is homogeneous per every group and takes into account the fact that we have groups of different sizes. We have allocated about 80 lines of code per person.
+
++ **Inspection document** submission deadline 05/01/2016 - WORK IN PROGRESS
+
+
 ## Future assignments
-+ **Inspection document** submission deadline 05/01/2016
 + **Testing document** submission deadline 21/01/2016
 + **Function points document** submission deadline 30/01/2016
