@@ -1,4 +1,4 @@
-\chapter{Specific requirements}
+\chapter{Specific requirements}\label{chap:requirements}
 
 
 \section{Functions}
@@ -14,231 +14,212 @@ To specify the functional requirements, that are all the fundamental actions tha
 \paragraph{Scenario 2}{\small\itshape Jay is quite a wealthy man, and as it happens, he has not always lived a perfect life. Today, like every other month, he has an appointment with a man of his past, some Meyer, in a rough area of the town. So he opens myTaxiApp on his smartphone, to which he registered recently, and looks for his destination in the small set of saved addresses. Once he found it, he lets the GPS locate him, then confirms the request for a taxi ride. myTaxiService system looks for a driver in Jay's area, but there is none; fortunately, in an adjacent one there is George, on Taxi T1925, who has been idle for some time. However, as George sees the destination of the request, he immediately understands that he had better not go there, so he rejects the request. myTaxiService registers his refusal, but since the nearest taxi is about half an hour far from Jay, it asks him whether he wants to withdraw his reservation, which he does. He cannot be late at his appointment.}
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/U_TaxiRequestGLOBAL}
-	\caption{Comprehensive use case diagram for the taxi request. It will be further expanded in the following with more detailed diagrams.}
+\begin{figure*}%
+	\includegraphics[width=\textwidth]{img/U_TaxiRequestGLOBAL}%
+	\caption{Comprehensive use case diagram for the taxi request. It will be further expanded in the following with more detailed diagrams.}%
 \end{figure*}	
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/S_TaxiRequest}
-	\caption{Sequence diagram for the taxi request analysis.}
+\begin{figure*}%
+	\includegraphics[width=\textwidth]{img/S_TaxiRequest}%
+	\caption{Sequence diagram for the taxi request analysis.}%
 \end{figure*}
 
-
-\begin{tabularx}{\fullwidthlength}{ l X }
-	\toprule
-	name				&	TaxiRequest
-	\\ \midrule
-	actors				&	GuestCustomer, RegisteredCustomer
-	\\ \midrule
-	entry conditions	&	a customer opens myTaxiApp/myTaxiWeb to request a taxi
-	\\ \midrule
-	flow of events		&	\begin{enumerate}
-	
-		\item RegisteredCustomer can log in, GuestCustomer can sign in;
-		
-		\item GuestCustomer inserts his personal data, RegisteredCustomer views his personal data;
-		
-		\item GuestCustomer sends his GPS position or inserts the address, RegisteredCustomer can also select an address from the set of saved ones;
-		
-		\item Customer sends the request.
-	
-	\end{enumerate} \\ \midrule
-	exit conditions		&	 all provided data are correct
-	\\ \midrule
-	exceptions			&	\begin{itemize}
-		
-		\item invalid address: an error message is shown and a correct addressed is requested
-	
-	\end{itemize} \\ \bottomrule
-\end{tabularx}
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}l X }\toprule%
+	name				&	TaxiRequest%
+	\\ \midrule%
+	actors				&	GuestCustomer, RegisteredCustomer%
+	\\ \midrule%
+	entry conditions	&	a customer opens myTaxiApp/myTaxiWeb to request a taxi%
+	\\ \midrule%
+	flow of events		&	\begin{enumerate}%
+	%
+		\item RegisteredCustomer can log in, GuestCustomer can sign in;%
+	%
+		\item GuestCustomer inserts his personal data, RegisteredCustomer views his personal data;%
+	%
+		\item GuestCustomer sends his GPS position or inserts the address, RegisteredCustomer can also select an address from the set of saved ones;%
+	%
+		\item Customer sends the request.%
+	%
+	\end{enumerate} \\ \midrule%
+	exit conditions		&	 all provided data are correct%
+	\\ \midrule%
+	exceptions			&	\begin{itemize}%
+	%
+		\item invalid address: an error message is shown and a correct address is requested%
+	%
+	\end{itemize} \\ \bottomrule%
+\end{tabularx}\end{figure*}
 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_CustomerManagementGLOBAL}
-	\caption{The customer can be either registered or guest. A guest can register and request a taxi (see figure \protect\ref{fig:taxiRequest}). A registered customer can make a reservation (see figure \protect\ref{subsec:taxiReservation}) and manage his favourite addresses.}
+
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_CustomerManagementGLOBAL}%
+	\caption{The customer can be either registered or guest. A guest can register and request a taxi (see \protect\cref{fig:taxiRequest}). A registered customer can make a reservation (see \protect\cref{fig:taxiReservation}) and manage his favourite addresses.}%
+\end{figure}
+
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_TaxiRequest.pdf}%
+	\caption{Detailed use case for the taxi ride request.}%
+	\label{fig:taxiRequest}%
 \end{figure}	
 
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_TaxiRequest.pdf}
-	\caption{Detailed use case for the taxi ride request.}
-	\label{fig:taxiRequest}	
-\end{figure}	
-
-%TODO rifare grafico (?)
-
-\begin{tabularx}{\fullwidthlength}{ l X }
-	\toprule
-	name				&	TaxiAllocation
-	\\ \midrule
-	actors				&	myTaxiService
-	\\ \midrule
-	entry conditions	&	request received
-	\\ \midrule
-	flow of events		&	\begin{enumerate}
-	
-		\item the system determines the pertinence area;
-	
-		\item a request is sent to the first taxi driver in the taxi queue;
-		
-		\item if accepted, the address is sent to the driver, and the customer is notified with the time of arrival; otherwise the system proceeds to allocate the next taxi in the queue.
-	
-	\end{enumerate} \\ \midrule
-	exit conditions		&	 driver has accepted the request
-	\\ \midrule
-	exceptions			&	\begin{itemize}
-		
-		\item if no taxis are available in the area, the system would recursively allocate the first taxi in the longest queue of the adjacent areas;
-		
-		\item if no taxis are available at all, the system notifies the customer of the situation and sends an estimated waiting time. The customer can cancel the request.
-	
-	\end{itemize} \\ \bottomrule
-\end{tabularx}
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}l X }\toprule%
+	name				&	TaxiAllocation%
+	\\ \midrule%
+	actors				&	myTaxiService%
+	\\ \midrule%
+	entry conditions	&	request received%
+	\\ \midrule%
+	flow of events		&	\begin{enumerate}%
+	%
+		\item the system determines the pertinence area;%
+	%
+		\item a request is sent to the first taxi driver in the taxi queue;%
+	%
+		\item if accepted, the address is sent to the driver, and the customer is notified with the time of arrival; otherwise the system proceeds to allocate the next taxi in the queue.%
+	%
+	\end{enumerate} \\ \midrule%
+	exit conditions		&	 driver has accepted the request%
+	\\ \midrule%
+	exceptions			&	\begin{itemize}%
+	%
+		\item if no taxis are available in the area, the system would recursively allocate the first taxi in the longest queue of the adjacent areas;%
+	%
+		\item if no taxis are available at all, the system notifies the customer of the situation and sends an estimated waiting time. The customer can cancel the request.%
+	%
+	\end{itemize} \\ \bottomrule%
+\end{tabularx}\end{figure*}
 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_TaxiAllocation}
-	\caption{Taxi allocation, from the point of view of myTaxiService.}
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_TaxiAllocation}%
+	\caption{Taxi allocation, from the point of view of myTaxiService.}%
+\end{figure}
+
+
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_DriverRequestEvaluation.pdf}%
+	\caption{Taxi allocation, from the point of view of the taxi driver: he can either accept or reject the request.}%
 \end{figure}
 
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{img/U_DriverRequestEvaluation.pdf}
-	\caption{Taxi allocation, from the point of view of the taxi driver: he can either accept or reject the request.}
-\end{figure}
-
-
-%\newpage %forces the next subsection to only follow and not wrap the figure.
-\begin{figure}[!h]
-	\includegraphics[width=\linewidth]{img/U_RequestAccepted}
-	\caption{Request accepted use case, initiated by the acceptance of the request by the taxi driver.}
+	\includegraphics[width=\textwidth]{img/U_RequestAccepted}%
+	\caption{Request accepted use case, initiated by the acceptance of the request by the taxi driver.}%
 \end{figure}	
 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_PhoneRequest}
-	\caption{A customer may make a phone request. This is the relating use case diagram.}
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_PhoneRequest}%
+	\caption{A customer may make a phone request. This is the relating use case diagram.}%
 \end{figure}	
 
-\subsection{Taxi reservation}\label{subsec:taxiReservation}
+\subsection{Taxi reservation}%\label{subsec:taxiReservation}
 
 \paragraph{Scenario}{\small\itshape Cookie has been in prison for a year, now. Her husband Lucious, notwithstanding the great weight of running a newly born entertainment company, growing three children all alone, and some sense of guilt for not being able to help her, wants their children to visit her. So tomorrow afternoon he is going to the jail by taxi with them. This morning, at about 9:30 AM, he tried to reserve a taxi, to guarantee a ride for themselves. However, his reservation was rejected, because he was making it more than \num{24} hours before the ride. But now, at 5:45PM, he tries again, and he is successful: his reservation is registered, and Lucious is notified that \num{10} minutes before the ride, he will receive a confirmation, with the number of the taxi too.}
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/U_TaxiReservationGLOBAL}
-	\caption{Comprehensive use case diagram for the taxi reservation. It will be further expanded in the following with more detailed diagrams.}
+\begin{figure*}%
+	\centering%
+	\includegraphics[width=\textwidth]{img/U_TaxiReservationGLOBAL}%
+	\caption{Comprehensive use case diagram for the taxi reservation. It will be further expanded in the following with more detailed diagrams.}%
 \end{figure*}
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/S_TaxiReservation}
-	\caption{Sequence diagram for the taxi reservation analysis.}
+\begin{figure*}%
+	\includegraphics[width=\textwidth]{img/S_TaxiReservation}%
+	\caption{Sequence diagram for the taxi reservation analysis.}%
 \end{figure*}	
 
 
-\begin{tabularx}{\fullwidthlength}{ l X }
-	\toprule
-	name				&	TaxiReservation
-	\\ \midrule
-	actors				&	RegisteredCustomer
-	\\ \midrule
-	entry conditions	&	RegisteredCustomer has successfully logged in
-	\\ \midrule
-	flow of events		&	\begin{enumerate}
-	
-		\item RegisteredCustomer inserts the origin address, select it from the favourite list or send his GPS position;
-		
-		\item RegisteredCustomer insert the destination address or select it from the favourite list;
-
-		\item RegisteredCustomer selects the time;
-		
-		\item The reservation is sent
-	
-	\end{enumerate} \\ \midrule
-	exit conditions		&	no exit condition
-	\\ \midrule
-	exceptions			&	\begin{itemize}
-		
-		\item invalid address: an error message is shown and a correct addressed is requested
-	
-	\end{itemize} \\ \bottomrule
-\end{tabularx}
-
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}l X }\toprule%
+	name				&	TaxiReservation%
+	\\ \midrule%
+	actors				&	RegisteredCustomer%
+	\\ \midrule%
+	entry conditions	&	RegisteredCustomer has successfully logged in%
+	\\ \midrule%
+	flow of events		&	\begin{enumerate}%
+	%
+		\item RegisteredCustomer inserts the origin address, select it from the favourite list or send his GPS position;%
+	%
+		\item RegisteredCustomer insert the destination address or select it from the favourite list;%
+	%
+		\item RegisteredCustomer selects the time;%
+	%
+		\item The reservation is sent%
+	%
+	\end{enumerate} \\ \midrule%
+	exit conditions		&	no exit condition%
+	\\ \midrule%
+	exceptions			&	\begin{itemize}%
+	%
+		\item invalid address: an error message is shown and a correct addressed is requested%
+	%
+	\end{itemize} \\ \bottomrule%
+\end{tabularx}\end{figure*}
 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_TaxiReservation}
-	\caption{Detailed use case for the taxi ride reservation, from the point of view of the customer.}
+
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_TaxiReservation}%
+	\caption{Detailed use case for the taxi ride reservation, from the point of view of the customer.}\label{fig:taxiReservation}%
 \end{figure}
 
 
-\begin{tabularx}{\fullwidthlength}{ l X }
-	\toprule
-	name				&	ReservationManagement
-	\\ \midrule
-	actors				&	myTaxiService
-	\\ \midrule
-	entry conditions	&	reservation received
-	\\ \midrule
-	flow of events		&	\begin{enumerate}
-	
-		\item the system evaluates the time: if it is more than 24 hours or less than 2 hours before it rejects the reservation;
-		\item the system registers the reservation;
-		\item \num{10} minutes before the due time, a taxi is allocated as in TaxiAllocation use case (see subsection \ref{subsec:taxiRequest}).
-	
-	\end{enumerate} \\ \midrule
-	exit conditions		&	taxi successfully allocated
-	\\ \midrule
-	exceptions			&	\begin{itemize}
-		
-		\item exceptions as in TaxiAllocation use case;
-		
-		\item if the reservation is out of the time limits, a notification is sent to the customer;
-	
-	\end{itemize} \\ \bottomrule
-\end{tabularx}
+
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}l X }\toprule%
+	name				&	ReservationManagement%
+	\\ \midrule%
+	actors				&	myTaxiService%
+	\\ \midrule%
+	entry conditions	&	reservation received%
+	\\ \midrule%
+	flow of events		&	\begin{enumerate}%
+		\item the system evaluates the time: if it is more than 24 hours or less than 2 hours before it rejects the reservation;%
+		\item the system registers the reservation;%
+		\item \num{10} minutes before the due time, a taxi is allocated as in TaxiAllocation use case (see \cref{subsec:taxiRequest}).%
+	\end{enumerate} \\ \midrule%
+	exit conditions		&	taxi successfully allocated%
+	\\ \midrule%
+	exceptions			&	\begin{itemize}%
+		\item exceptions as in TaxiAllocation use case;%
+		\item if the reservation is out of the time limits, a notification is sent to the customer;%
+	\end{itemize} \\ \bottomrule%
+\end{tabularx}\end{figure*}
 
 
 \subsection{Fault report}\paragraph{Scenario}{\small\itshape While on duty, a taxi breaks down. The taxi driver reports the fault via the app and an operator provides assistance to him and allocate a new taxi.}
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/U_FaultReportingGLOBAL}
+\begin{figure*}%
+	\includegraphics[width=\textwidth]{img/U_FaultReportingGLOBAL}%
 \end{figure*}
 
-
-\begin{tabularx}{\fullwidthlength}{ l X }
-	\toprule
-	name				&	TaxiBrokeDown
-	\\ \midrule
-	actors				&	Operator
-	\\ \midrule
-	entry conditions	&	TaxiDriver reported a fault
-	\\ \midrule
-	flow of events		&	\begin{enumerate}
-	
-		\item the operator gets the GPS position of the taxi;
-		
-		\item if a customer is on board, the operator provides a new taxi, like in TaxiAllocation use case; if the taxi breaks down while reaching customer position, a new taxi is allocated directly to the customer;
-		
-		\item the operator calls the breakdown service.
-	
-	\end{enumerate} \\ \midrule
-	exit conditions		&	another taxi is allocated
-		\\ \midrule
-	exceptions			&	\begin{itemize}
-		
-		\item no exception apply
-	
-	\end{itemize}\\ \bottomrule
-\end{tabularx}
+\begin{figure*}\begin{tabularx}{\textwidth}{ >{\bfseries}l X }\toprule%
+	name				&	TaxiBrokeDown%
+	\\ \midrule%
+	actors				&	Operator%
+	\\ \midrule%
+	entry conditions	&	TaxiDriver reported a fault%
+	\\ \midrule%
+	flow of events		&	\begin{enumerate}%
+		\item the operator gets the GPS position of the taxi;%
+		\item if a customer is on board, the operator provides a new taxi, like in TaxiAllocation use case; if the taxi breaks down while reaching customer position, a new taxi is allocated directly to the customer;%
+		\item the operator calls the breakdown service.%
+	\end{enumerate} \\ \midrule%
+	exit conditions		&	another taxi is allocated%
+		\\ \midrule%
+	exceptions			&	\begin{itemize}%
+		\item no exception apply%
+	\end{itemize}\\ \bottomrule%
+\end{tabularx}\end{figure*}
 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{img/U_TaxiBrokeDown}
+\begin{figure}%
+	\includegraphics[width=\textwidth]{img/U_TaxiBrokeDown}%
 \end{figure}
 	
 
@@ -291,11 +272,11 @@ It is also useful to sum up all the functional requirements. It is important to 
 \end{enumerate}
 
 
-To provide an overview on the structure of the system, we show here a class diagram of the whole system:
+To provide an overview on the structure of the system, we show here a class diagram of the whole system.
 
 
-\begin{figure*}
-	\includegraphics[width=\linewidth]{img/C_ClassDiagram.pdf}
+\begin{figure*}%
+	\includegraphics[width=\textwidth]{img/C_ClassDiagram.pdf}%
 \end{figure*}
 
 
@@ -306,8 +287,8 @@ The system has to support the simultaneous connection of all taxi drivers, who a
 During normal workload, between 9AM and 4PM, we expect that most requests are going to be for reservations, which will be distributed during the day, so we expect a response time of less than \num{1} second for \SI{99,9}{\percent} of all the incoming request.
 
 
-\section{Logical database requirements}
-We need the database to process at least \num{6000} transactions per second.
+\section{Logical database requirements}\label{sec:database}
+We need the database to process at least \num{500} transactions per second.
 
 As of the total number of registered users, there is no reasonable limit to state.
 
@@ -317,7 +298,7 @@ Actually, there is no major design constraint to take into account.
 
 
 \section{Software system attributes}There are a number of attributes of software that can serve as requirements, which we will explore in the following subsections.\subsection{Reliability}
-The system does not cover critical functions, so minor inconsistencies and faults in data integrity may be acceptable, however undesirable. The cloning method, already stated in Software interfaces subsection (\ref{subsec:systemInterfaces}), may be of help to reach this target. 
+The system does not cover critical functions, so minor inconsistencies and faults in data integrity may be acceptable, however undesirable. The cloning method, already stated in \cref{subsec:systemInterfaces}, may be of help to reach this target. 
 
 Anyway, the reliability of the system is related to the reliability of the server it runs on, so there is no point in stating strict reliability constraints.
 
@@ -343,4 +324,6 @@ As of the code, we want it to be well documented (namely, at least \SI{90}{\perc
 
 As best practice that should be followed in every object-oriented application (and that shall be followed for this project) is the adoption of the Model-View-Controller architectural pattern. 
 \subsection{Portability}
-myTaxiService has no need of portability, since it will not be a distributed system. As of myTaxiApp and myTaxiAssist, please refer to section \ref{sec:productPerspective} for every compatibility constraint.
+myTaxiService has no need of portability, since it will not be a distributed system. As of myTaxiApp and myTaxiAssist, please refer to \cref{sec:productPerspective} for every compatibility constraint.
+
+

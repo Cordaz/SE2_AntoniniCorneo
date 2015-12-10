@@ -1,9 +1,4 @@
-\chapter{Appendix}
-
-\section{Working time}
-
-Paolo Antonini: 32 hours.
-Andrea Corneo: 29 hours.
+\chapter{Appendix}\label{chap:appendix}
 
 \section{Alloy code}
 
@@ -13,11 +8,25 @@ To provide a validation of our model, we provide an Alloy code:
 
 This is the result of the final computation:
 
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small]
 5 commands were executed. The results are:
    #1: No counterexample found. noMultipleAllocations may be valid.
    #2: No counterexample found. oneActiveReservation may be valid.
    #3: Instance found. showNoReservation is consistent.
    #4: Instance found. showFaultReport is consistent.
    #5: Instance found. show is consistent.
-\end{verbatim} 
+\end{Verbatim} 
+
+\section{Working time}
+
+\begin{description}
+	\item [Paolo Antonini] 32 hours.
+	\item [Andrea Corneo] 29 hours.
+\end{description}
+
+
+\section{Version control}
+\begin{itemize}
+	\item \textbf{1.0}, \printdate{2015-11-06}: first release;
+	\item \textbf{1.1}, \printdate{2015-12-10}: graphical fixes, tuning in \cref{sec:database} on database requirements. %TODO Update.
+\end{itemize}

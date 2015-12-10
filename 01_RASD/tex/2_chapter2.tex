@@ -1,7 +1,7 @@
-\chapter{Overall description}
+\chapter{Overall description}\label{chap:overallDesc}
 
 \section{Product perspective}\label{sec:productPerspective}Before analysing in detail all the aspects of the system we are proposing, we find it appropriate to state its structure, and give mnemonic names to the different components. 
-The central system, on which the other components rely, is called myTaxiService; this is to be accessed by the office of the municipality in charge of the service, who will administer it (for example, by adding and removing taxi drivers). Customers can use a mobile application, myTaxiApp, or the website, myTaxiWeb, to exploit the system. As of the taxi drivers, their activity is supported by another mobile application, named myTaxiAssist. 
+The central system, on which the other components rely, is called \emph{myTaxiService}; this is to be accessed by the office of the municipality in charge of the service, who will administer it (for example, by adding and removing taxi drivers). Customers can use a mobile application, \emph{myTaxiApp}, or the website, \emph{myTaxiWeb}, to exploit the system. As of the taxi drivers, their activity is supported by another mobile application, named \emph{myTaxiAssist}. 
 When it is clear from the context, however, we will refer to the whole ecosystem as myTaxiService too, by extension of the name of the main system. 
 
 \subsection{System interfaces}\label{subsec:systemInterfaces}
@@ -36,7 +36,7 @@ In this subsection we specify the logical characteristics of each interface betw
 \end{description}
 
 
-\subsection{Hardware interfaces}\label{subsec:hardwareInterfaces}Location services are of central importance for the operation of the system. However, the GPS coordinates are provided to the applications or the website by the operating system, whenever possible. In particular:
+\subsection{Hardware interfaces}%\label{subsec:hardwareInterfaces}Location services are of central importance for the operation of the system. However, the GPS coordinates are provided to the applications or the website by the operating system, whenever possible. In particular:
 
 \begin{description}
 	
@@ -51,11 +51,11 @@ In this subsection we specify the logical characteristics of each interface betw
 Similarly, it is the operating system which provides an Internet connection both to the applications and to the web browser, so there is no need of direct integration with hardware components.
 
 \subsection{Software interfaces}
-Due to the great variety of operating systems and browsers, each of which bearing a potentially different configuration, the website myTaxiWeb shall not require either Java or Adobe Flash plugins; it will be developed using HTML 5 technology, so a suitable web browser is needed (as of Microsoft Internet Explorer, al least version 7 is needed; on the other browsers, compatibility is taken for granted). 
+Due to the great variety of operating systems and browsers, each of which bearing a potentially different configuration, the website myTaxiWeb shall not require either Java or Adobe Flash plugins; it will be developed using HTML~5 technology, so a suitable web browser is needed (as of Microsoft Internet Explorer, al least version 7 is needed; on the other browsers, compatibility is taken for granted). 
 
 The system itself has to communicate with a database, which contains both the personal details of the taxi drivers, along with the information about taxi cabs, and the record of all the reservations (pending, accomplished, cancelled). A relational database is the most suitable solution.
 
-On the other hand, the two applications, from this point of view, are rather self-contained, so no particular software interface is needed.
+On the other hand, the two applications, from this point of view, are rather \mbox{self-contained}, so no particular software interface is needed.
 
 \subsection{Communications interfaces}The myTaxiService server is HTTP-based and it contains also an SMTP component to send emails. Applications, obviously, send to and receive data from the system over the same HTTP protocol.
 Bluetooth is required by myTaxiAssist application, since this is the integration technology between taxi drivers' handsets and the devices on board of their taxi cabs. If the connection is lost, arguably because the taxi driver has left the cab, the system is notified, and the driver is considered ``off duty'' until the reconnection.
@@ -73,11 +73,11 @@ On the other hand, the two applications, from this point of view, are rather sel
 The taxi drivers will follow a mandatory two-hour course, to gain the necessary expertise to use the application myTaxiAssist. 
 The administrators' functionalities are limited, but they also need a two-hour course to gain the necessary knowledge.
 
-\section{Constraints}  The current Italian law that regulates the taxi service (see section \ref{sec:references} on page \pageref{sec:references} for a link to the document) allows the implementation of all the improvements to the service that we are proposing. 
+\section{Constraints}  The current Italian law that regulates the taxi service (see \cref{sec:references} on \cpageref{sec:references} for a link to the document) allows the implementation of all the improvements to the service that we are proposing. 
 
-However, since we process and store personal data such as names, phone numbers, and localisation data, we are subject to the Italian law concerning the protection of personal data (again, see section \ref{sec:references}).
+However, since we process and store personal data such as names, phone numbers, and localisation data, we are subject to the Italian law concerning the protection of personal data (again, see \cref{sec:references}).
 
-\section{Assumptions and dependencies}We have to make some assumptions, since the high level description of the project given by the city council (see section \ref{sec:references} for a link to the document) is ambiguous and incomplete:
+\section{Assumptions and dependencies}We have to make some assumptions, since the high level description of the project given by the city council (see \cref{sec:references} for a link to the document) is ambiguous and incomplete:
 
 \begin{itemize}
 	
@@ -95,10 +95,10 @@ However, since we process and store personal data such as names, phone numbers, 
 	
 	\item we have only taxi cabs for four people (plus the driver); if the group is more numerous, then a proper number of cabs is allocated (one every four people);
 	
-	
 	\item a pending request is automatically forwarded to the next taxi driver after one minute;
 
 \end{itemize}
 
 \section{Apportioning of requirements}The system, as it is outlined in this document, can be expanded in many ways. The city council explicitly mentions a taxi sharing functionality, which means that a user can share a taxi ride with others if possible, thus splitting the cost of the ride too.
 We also suggest that the system, through myTaxiAssist application, can record payments. A relatively easy integration may be with PayPal payment system, which allows fast and seamless online money transactions without disclosing bank account details. PayPal registered users can be charged directly and can pay by using their own handset. 
+
