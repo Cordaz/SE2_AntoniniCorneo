@@ -1,8 +1,98 @@
 \chapter{Problems}
 
-List of issues found by applying the checklist: <report the classes/code fragments that do not fulfill some points in the check list. Explain which point is not fulfilled and why>.
+%List of issues found by applying the checklist: <report the classes/code fragments that do not fulfill some points in the check list. Explain which point is not fulfilled and why>.
 
-Any other problem you have highlighted: <list here all the parts of code that you think create or may create a bug and explain why>.
+%Any other problem you have highlighted: <list here all the parts of code that you think create or may create a bug and explain why>.
 
 
-\lipsum[1-4]
+\section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
+\inputminted{java}{"./java/evaluate_client_conformance_ascontext.java"}
+
+\begin{description}
+	\item [\labelcref{item:5}]
+		in \lmref{l:108} maybe to highlight pattern? 
+			OR: \texttt{evaluate\_client\_conformance\_ascontext}
+			SS: \texttt{evaluateClientConformanceAscontext}
+	\item [\labelcref{item:6}]
+		in \lmref{l:114} 
+			OR: \texttt{client\_authenticated}
+			SS: \texttt{clientAuthenticated}; 
+		in \lmref{l:156} 
+			OR: \texttt{client\_tgtname}
+			SS: \texttt{clientTgtname}.
+	\item [\labelcref{item:10}]
+		adopting K\&R style, only \lmref{l:112} does not comply
+	\item [\labelcref{item:11}] \lmrange{l:144}{l:147}, \lmref{l:161}
+
+\end{description}
+
+
+
+
+
+
+\clearpage
+\section{\normalfont\texttt{evaluate\_client\_conformance\_sascontext}}
+\inputminted{java}{"./java/evaluate_client_conformance_sascontext.java"}
+
+
+\begin{description}
+	\item [\labelcref{item:5}] 
+		in \lmref{l:209} maybe to highlight pattern? 
+			OR: \texttt{evaluate\_client\_conformance\_sascontext}
+			SS: \texttt{evaluateClientConformanceSascontext}.
+	\item [\labelcref{item:6}] 
+		in \lmref{l:214} 
+			OR: \texttt{caller\_propagated}
+			SS: \texttt{callerPropagated}.
+	\item [\labelcref{item:10}]
+		adopting K\&R style, only \lmref{l:212} does not comply
+	\item [\labelcref{item:11}] \lmrange{l:226}{l:229}, \lmrange{l:232}{l:233}
+\end{description}
+
+
+
+
+
+
+
+
+\clearpage
+\section{\normalfont\texttt{evaluate\_client\_conformance}}
+\inputminted{java}{"./java/evaluate_client_conformance.java"}
+
+
+\begin{description}
+	\item [\labelcref{item:5}] 
+		in \lmref{l:319} maybe to highlight pattern? 
+			OR: \texttt{evaluate\_client\_conformance}
+			SS: \texttt{evaluateClientConformance}
+	\item [\labelcref{item:6}] 
+		in \lmref{l:320} 
+			OR: \texttt{object\_id}
+			SS: \texttt{objectId}; 
+		in \lmref{l:321} 
+			OR: \texttt{ssl\_used}
+			SS: \texttt{sslUsed}
+	\item [\labelcref{item:9}]
+		throughout the method, highlighted by $-\rangle|$ symbol. %TODO Sostituire!
+	\item [\labelcref{item:10}]
+		adopting K\&R style, only \lmref{l:323} does not comply
+	\item [\labelcref{item:11}] \lmrange{l:330}{l:331}, \lmrange{l:333}{l:334}, \lmrange{l:339}{l:340}, \lmrange{l:363}{l:364}, \lmrange{l:3116}{l:3117}
+
+\end{description}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

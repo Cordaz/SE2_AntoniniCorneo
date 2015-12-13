@@ -19,30 +19,26 @@
 \definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
 
 % Definition of mockup width
-\newcommand{\MuW}{0.42} % Mockup width
+%\newcommand{\MuW}{0.42} % Mockup width
 
 % Tabular
-\usepackage{booktabs}
-\usepackage{tabularx}
-%\makeatletter
-%\newlength{\fullwidthlength}
-%\AtBeginDocument{\setlength{\fullwidthlength}{\@tufte@fullwidth}}
-%\makeatother
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\usepackage{booktabs}
+%\usepackage{tabularx}
+%\usepackage{array}
+%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 % Fixes to tufte-book document class
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 
 % Pseudocode
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
-\algnewcommand\aNull{\textsc{null}} %typeset NULL as textsc (EWWW)
-\algnewcommand\aOr{\textbf{or}} %typeset OR (EWWWW)
-\algnewcommand\aAnd{\textbf{and}} %typeset AND (EWWWW)
+%\usepackage{algorithm}
+%\usepackage[noend]{algpseudocode}
+%\algnewcommand\aNull{\textsc{null}} %typeset NULL as textsc (EWWW)
+%\algnewcommand\aOr{\textbf{or}} %typeset OR (EWWWW)
+%\algnewcommand\aAnd{\textbf{and}} %typeset AND (EWWWW)
 
 % Prevent hyphenation of the following
 \hyphenation{myTaxiService}
@@ -50,47 +46,66 @@
 \hyphenation{myTaxiAssist}
 \hyphenation{myTaxiWeb}
 \hyphenation{mock-up} \hyphenation{mock-ups}
-\hyphenation{Non-functional} \hyphenation{non-functional}
-
-% Inline lists
-%\usepackage[inline]{enumitem}
+\hyphenation{non-functional}
 
 % Misc
 \usepackage{url}
+\usepackage{enumitem}
+
+% Code
+\usepackage[cache=true,outputdir=.texpadtmp]{minted}
+\newcommand{\leftmarg}{12pt}
+\renewcommand{\theFancyVerbLine}{\normalfont{\scriptsize{\arabic{FancyVerbLine}:}}}
+\setminted[java]{
+%	breaklines=true,
+	fontsize=\small,
+%	frame=lines,
+	linenos=true,
+	obeytabs=true, tabsize=4, showtabs=true,
+	style=pastie,
+%	xleftmargin=\parindent,
+	escapeinside=\#\%,
+}
+
+
+
+
+%\usepackage{listings}
+%\lstset{ %
+%	basicstyle=\ttfamily\small,  % the size of the fonts that are used for the code
+%	commentstyle=\color{grey},  % comment style
+%	escapeinside={\#\%},  % if you want to add LaTeX within your code
+%%	frame=lines,  % adds a frame around the code
+%	keywordstyle=\bfseries\color{red},  % keyword style
+%	language=Java,  % the language of the code
+%	numbers=left,  % where to put the line-numbers; possible values are (none, left, right)
+%	numberstyle=\tiny\color{grey},  % the style that is used for the line-numbers
+%	showspaces=false,  % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%	showstringspaces=false,  % underline spaces within strings only
+%	showtabs=true,  % show tabs within strings adding particular underscores
+%	stepnumber=1,  % the step between two line-numbers. If it's 1, each line will be numbered
+%	tabsize=4,  % sets default tabsize to 2 spaces
+%	tab=\rightarrowfill
+%}
+
+
+
+
+
+
 
 % Cross referencing (it MUST be loaded AFTER every other package)
 \usepackage{xspace}
-\newcommand{\rasd}{\hyperlink{subsec:references}{RASD}\xspace}
 \usepackage[noabbrev]{cleveref}
 \crefname{sidenote}{sidenote}{sidenotes}
+\newcommand{\lmref}[1]{line~\ref{#1}\xspace}
+\newcommand{\lmrange}[2]{lines~\ref{#1} to~\ref{#2}\xspace}
 
-\usepackage{listings}
-\lstset{ %
-  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\ttfamily\small,        % the size of the fonts that are used for the code
-  %breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  %breaklines=true,                 % sets automatic line breaking
-  %captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{grey},    % comment style
-  %deletekeywords={...},            % if you want to delete keywords from the given language
-  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
-  %keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{red},       % keyword style
-  language=Java,                 % the language of the code
-  %otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  %numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{grey}, % the style that is used for the line-numbers
-  %rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  %stringstyle=\color{mymauve},     % string literal style
-  tabsize=4,	                   % sets default tabsize to 2 spaces
-  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
+
+
+
+
+
+
 
 \usepackage{lipsum} %TODO Rimuovere!
