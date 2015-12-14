@@ -53,8 +53,8 @@
 \usepackage{enumitem}
 
 % Code
-\usepackage[cache=true,outputdir=.texpadtmp]{minted}
-\newcommand{\leftmarg}{12pt}
+\usepackage[cache=false,outputdir=.texpadtmp]{minted}
+%\newcommand{\leftmarg}{12pt}
 \renewcommand{\theFancyVerbLine}{\normalfont{\scriptsize{\arabic{FancyVerbLine}:}}}
 \setminted[java]{
 %	breaklines=true,
@@ -87,6 +87,14 @@
 %	tabsize=4,  % sets default tabsize to 2 spaces
 %	tab=\rightarrowfill
 %}
+
+
+
+\newcommand{\partmint}[4][]{%
+\immediate\write18{sed -n '/l:#2/,/l:#3/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag#4.txt}%
+\inputminted[#1]{java}{./.texpadtmp/frag#4.txt}%
+\write18{rm ./.texpadtmp/frag#4.txt}% 
+}
 
 
 
