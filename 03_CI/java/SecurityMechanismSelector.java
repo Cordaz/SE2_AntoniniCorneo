@@ -1205,27 +1205,27 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
     * at the client authentication layer.
     *
     * returns true if conformant ; else returns false
-    */
-#\label{l:108}%    private boolean evaluate_client_conformance_ascontext(
+    */#\label{l:11208}%
+#\label{l:11209}%    private boolean evaluate_client_conformance_ascontext(
                         SecurityContext ctx,
                         EjbIORConfigurationDescriptor iordesc,
                         String realmName)
-    {#\label{l:112}%
+    {#\label{l:11213}%
 
-        boolean client_authenticated = false;#\label{l:114}%
+        boolean client_authenticated = false;#\label{l:11215}%
 
-        // get requirements and supports at the client authentication layer
-        AS_ContextSec ascontext = null;
+#\label{l:11217}%        // get requirements and supports at the client authentication layer
+#\label{l:11218}%        AS_ContextSec ascontext = null;
         try {
             ascontext = this.getCtc().createASContextSec(iordesc, realmName);
         } catch (Exception e) {
             _logger.log(Level.SEVERE, "iiop.createcontextsec_exception",e);
 
             return false;
-        }
+        }#\label{l:11225}%
    
 
-        /*************************************************************************
+#\label{l:11228}%        /*************************************************************************
          * Conformance Matrix:
          *
          * |------------|---------------------|---------------------|------------|
@@ -1240,35 +1240,35 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
          *
          * Abbreviations: ETIC - EstablishTrusInClient
          * 
-         *************************************************************************/
+         *************************************************************************/#\label{l:11243}%
 
-#\label{l:144}%        if  ( (ctx != null) && (ctx.authcls != null) &&  (ctx.subject != null))
+#\label{l:11245}%        if  ( (ctx != null) && (ctx.authcls != null) &&  (ctx.subject != null))
             client_authenticated = true;
         else
-            client_authenticated = false;#\label{l:147}%
+            client_authenticated = false;#\label{l:11248}%
 
         if (client_authenticated) {
-            if ( ! ( isSet(ascontext.target_requires, EstablishTrustInClient.value)
-                     || isSet(ascontext.target_supports, EstablishTrustInClient.value))){
+            if ( ! ( isSet(ascontext.target_requires, EstablishTrustInClient.value)#\label{l:11251}%
+                     || isSet(ascontext.target_supports, EstablishTrustInClient.value))){ #\label{l:11252}%
             return false; // non conforming client
             }
             // match the target_name from client with the target_name in policy 
 
-            byte [] client_tgtname = getTargetName(ctx.subject);#\label{l:156}%
+            byte [] client_tgtname = getTargetName(ctx.subject);#\label{l:11257}%
 
             if (ascontext.target_name.length != client_tgtname.length){
                 return false; // mechanism did not match.
             }            
-#\label{l:161}%            for (int i=0; i < ascontext.target_name.length ; i ++)
+#\label{l:11262}%            for (int i=0; i < ascontext.target_name.length ; i ++)
                 if (ascontext.target_name[i] != client_tgtname[i]){
                     return false; // mechanism did not match
-                }#\label{l:164}%
+                }#\label{l:11265}%
         } else { 
             if ( isSet(ascontext.target_requires, EstablishTrustInClient.value)){
                 return false;  // no mechanism match.
             }
-        }
-        return true;
+        }#\label{l:11270}%
+#\label{l:11271}%        return true;
     } #\label{l:endASC}%
 
 #\label{l:startSAS}%   /* Evaluates a client's conformance to a security policy

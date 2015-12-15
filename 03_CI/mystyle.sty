@@ -18,9 +18,6 @@
 \definecolor{black}{rgb}{0,0,0} % black
 \definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
 
-% Definition of mockup width
-%\newcommand{\MuW}{0.42} % Mockup width
-
 % Tabular
 %\usepackage{booktabs}
 %\usepackage{tabularx}
@@ -51,55 +48,28 @@
 % Misc
 \usepackage{url}
 \usepackage{enumitem}
+\usepackage{refcount}% convert reference to number
 
-% Code
-\usepackage[cache=false,outputdir=.texpadtmp]{minted}
-%\newcommand{\leftmarg}{12pt}
-\renewcommand{\theFancyVerbLine}{\normalfont{\scriptsize{\arabic{FancyVerbLine}:}}}
+% Listings
+\usepackage[cache=true,outputdir=.texpadtmp]{minted}
+%\renewcommand{\theFancyVerbLine}{\normalfont{\scriptsize{\arabic{FancyVerbLine}:}}}
 \setminted[java]{
 %	breaklines=true,
 	fontsize=\small,
-%	frame=lines,
+	frame=lines,
 	linenos=true,
 	obeytabs=true, tabsize=4, showtabs=true,
 	style=pastie,
 %	xleftmargin=\parindent,
 	escapeinside=\#\%,
 }
-
-
-
-
-%\usepackage{listings}
-%\lstset{ %
-%	basicstyle=\ttfamily\small,  % the size of the fonts that are used for the code
-%	commentstyle=\color{grey},  % comment style
-%	escapeinside={\#\%},  % if you want to add LaTeX within your code
-%%	frame=lines,  % adds a frame around the code
-%	keywordstyle=\bfseries\color{red},  % keyword style
-%	language=Java,  % the language of the code
-%	numbers=left,  % where to put the line-numbers; possible values are (none, left, right)
-%	numberstyle=\tiny\color{grey},  % the style that is used for the line-numbers
-%	showspaces=false,  % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-%	showstringspaces=false,  % underline spaces within strings only
-%	showtabs=true,  % show tabs within strings adding particular underscores
-%	stepnumber=1,  % the step between two line-numbers. If it's 1, each line will be numbered
-%	tabsize=4,  % sets default tabsize to 2 spaces
-%	tab=\rightarrowfill
-%}
-
-
-
 \newcommand{\partmint}[4][]{%
 \immediate\write18{sed -n '/l:#2/,/l:#3/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag#4.txt}%
 \inputminted[#1]{java}{./.texpadtmp/frag#4.txt}%
 \write18{rm ./.texpadtmp/frag#4.txt}% 
 }
 
-
-
-
-
+\usepackage{caption}\newenvironment{longlisting}{\captionsetup{type=listing}}{}
 
 
 % Cross referencing (it MUST be loaded AFTER every other package)

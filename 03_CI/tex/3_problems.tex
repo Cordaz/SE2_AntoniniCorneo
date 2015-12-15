@@ -6,34 +6,63 @@
 
 
 \section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
-\partmint{startASC}{endASC}{100}
+
+\partmint[firstnumber=\getrefnumber{l:startASC}]{startASC}{11208}{100}
+
+\lipsum[3]
+
+\partmint[firstnumber=\getrefnumber{l:11209}]{11209}{11215}{100}
 
 \begin{description}
 	\item [\labelcref{item:5}]
-		in \lmref{l:108} maybe to highlight pattern? 
+		in \lmref{l:11209} maybe to highlight pattern? 
 			OR: \texttt{evaluate\_client\_conformance\_ascontext}
 			SS: \texttt{evaluateClientConformanceAscontext}
 	\item [\labelcref{item:6}]
-		in \lmref{l:114} 
+		in \lmref{l:11215} 
 			OR: \texttt{client\_authenticated}
 			SS: \texttt{clientAuthenticated}; 
-		in \lmref{l:156} 
-			OR: \texttt{client\_tgtname}
-			SS: \texttt{clientTgtname}.
-	\item [\labelcref{item:10}]
-		adopting K\&R style, only \lmref{l:112} does not comply
-	\item [\labelcref{item:11}] \lmrange{l:144}{l:147}, \lmrange{l:161}{l:164}
-
+			\item [\labelcref{item:10}]
+		adopting K\&R style, only \lmref{l:11213} does not comply
 \end{description}
 
 
 
 
+\partmint[firstnumber=\getrefnumber{l:11217}]{11217}{11225}{101}
+
+\lipsum[1]
+
+
+\partmint[firstnumber=\getrefnumber{l:11228}]{11228}{11243}{103}
+
+\lipsum[2]
+
+
+\partmint[firstnumber=\getrefnumber{l:11245}]{11245}{11270}{102}
+
+
+
+\begin{description}
+	\item [\labelcref{item:6}]
+		in \lmref{l:11257} 
+			OR: \texttt{client\_tgtname}
+			SS: \texttt{clientTgtname}.
+	\item [\labelcref{item:11}] 
+		\lmrange{l:11245}{l:11248}, \lmrange{l:11262}{l:11265}
+	\item [\labelcref{item:13}]
+		highly improbable to respect 80 chars (e.g., \lmref{l:11252})
+	\item [\labelcref{item:15}]
+		if statement breaks BEFORE $||$ operator in \lmrange{l:11251}{l:11252}
+\end{description}
+
+
+\subsection{General errors}
+
 
 
 \clearpage
 \section{\normalfont\texttt{evaluate\_client\_conformance\_sascontext}}
-%\inputminted{java}{"./java/evaluate_client_conformance_sascontext.java"}
 \partmint{startSAS}{endSAS}{200}
 
 \begin{description}
@@ -59,7 +88,6 @@
 
 \clearpage
 \section{\normalfont\texttt{evaluate\_client\_conformance}}
-%\inputminted{java}{"./java/evaluate_client_conformance.java"}
 \partmint{startECC}{endECC}{300}
 
 \begin{description}
