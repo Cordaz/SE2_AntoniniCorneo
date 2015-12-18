@@ -1,4 +1,4 @@
-\chapter{Appendix}\label{chap:appendix}
+\chapter{Appendix}\label[rule]{chap:appendix}
 
 \section{Hours of work}
 The writing of this document took the following amount of time:
@@ -10,36 +10,36 @@ The writing of this document took the following amount of time:
 
 
 
-\chapter{Reference - Java checklist}
+\chapter{Reference - Java checklist}\label[rule]{chap:reference}
 
 \section{Naming Conventions}\begin{enumerate}
-\item \label{item:1}All class names, interface names, method names, class variables, method variables, and constants used should have meaningful names and do what the name suggests.
-\item \label{item:2}If one-character variables are used, they are used only for temporary ``throwaway'' variables, such as those used in for loops.
-\item \label{item:3}Class names are nouns, in mixed case, with the first letter of each word in capitalized. Examples: \texttt{class Raster}; \texttt{class ImageSprite};
-\item \label{item:4}Interface names should be capitalized like classes.
-\item \label{item:5}Method names should be verbs, with the first letter of each addition word capitalized. Examples: \texttt{getBackground()}; \texttt{computeTemperature()}. 
-\item \label{item:6}Class variables, also called attributes, are mixed case, but might begin with an underscore (`\texttt{\_}') followed by a lowercase first letter. All the remaining words in the variable name have their first letter capitalized. Examples: \texttt{\_windowHeight}, \texttt{timeSeriesData}.
-\item \label{item:7}Constants are declared using all uppercase with words separated by an underscore. Examples: \texttt{MIN\_WIDTH}; \texttt{MAX\_HEIGHT}.
+\item \label[rule]{item:1}All class names, interface names, method names, class variables, method variables, and constants used should have meaningful names and do what the name suggests.
+\item \label[rule]{item:2}If one-character variables are used, they are used only for temporary ``throwaway'' variables, such as those used in for loops.
+\item \label[rule]{item:3}Class names are nouns, in mixed case, with the first letter of each word in capitalized. Examples: \texttt{class Raster}; \texttt{class ImageSprite};
+\item \label[rule]{item:4}Interface names should be capitalized like classes.
+\item \label[rule]{item:5}Method names should be verbs, with the first letter of each addition word capitalized. Examples: \texttt{getBackground()}; \texttt{computeTemperature()}. 
+\item \label[rule]{item:6}Class variables, also called attributes, are mixed case, but might begin with an underscore (`\texttt{\_}') followed by a lowercase first letter. All the remaining words in the variable name have their first letter capitalized. Examples: \texttt{\_windowHeight}, \texttt{timeSeriesData}.
+\item \label[rule]{item:7}Constants are declared using all uppercase with words separated by an underscore. Examples: \texttt{MIN\_WIDTH}; \texttt{MAX\_HEIGHT}.
 \end{enumerate}
 
 \section{Indention}\begin{enumerate}[resume]
-\item \label{item:8}Three or four spaces are used for indentation and done so consistently.
-\item \label{item:9}No tabs are used to indent.
+\item \label[rule]{item:8}Three or four spaces are used for indentation and done so consistently.
+\item \label[rule]{item:9}No tabs are used to indent.
 \end{enumerate}
 
 \section{Braces}\begin{enumerate}[resume]
-\item \label{item:10}Consistent bracing style is used, either the preferred ``Allman'' style (first brace goes underneath the opening block) or the ``Kernighan and Ritchie'' style (first brace is on the same line of the instruction that opens the new block).
-\item \label{item:11}All \texttt{if}, \texttt{while}, \texttt{do-while}, \texttt{try-catch}, and \texttt{for} statements that have only one statement to execute are surrounded by curly braces. Example:
+\item \label[rule]{item:10}Consistent bracing style is used, either the preferred ``Allman'' style (first brace goes underneath the opening block) or the ``Kernighan and Ritchie'' style (first brace is on the same line of the instruction that opens the new block).
+\item \label[rule]{item:11}All \texttt{if}, \texttt{while}, \texttt{do-while}, \texttt{try-catch}, and \texttt{for} statements that have only one statement to execute are surrounded by curly braces. Example:
 avoid this:
 
-\begin{minted}[showtabs=false, linenos=false]{java}
+\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
 	if ( condition )
 		doThis();
 \end{minted}
 
 instead do this:
 
-\begin{minted}[showtabs=false, linenos=false]{java}
+\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
 	if ( condition ) 
 	{
 		doThis(); 
@@ -49,119 +49,121 @@ instead do this:
 \end{enumerate}
 
 \section{File Organization}\begin{enumerate}[resume]
-\item \label{item:12}Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).
-\item \label{item:13}Where practical, line length does not exceed 80 characters.
-\item \label{item:14}When line length must exceed 80 characters, it does NOT exceed 120 characters.
+\item \label[rule]{item:12}Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).
+\item \label[rule]{item:13}Where practical, line length does not exceed 80 characters.
+\item \label[rule]{item:14}When line length must exceed 80 characters, it does NOT exceed 120 characters.
 \end{enumerate}
 
 \section{Wrapping Lines}\begin{enumerate}[resume]
-\item \label{item:15}Line break occurs after a comma or an operator.
-\item \label{item:16}Higher-level breaks are used.
-\item \label{item:17}A new statement is aligned with the beginning of the expression at the same level as the previous line.
+\item \label[rule]{item:15}Line break occurs after a comma or an operator.
+\item \label[rule]{item:16}Higher-level breaks are used.
+\item \label[rule]{item:17}A new statement is aligned with the beginning of the expression at the same level as the previous line.
 \end{enumerate}
 
 \section{Comments}\begin{enumerate}[resume]
-\item \label{item:18}Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.
-\item \label{item:19}Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.
+\item \label[rule]{item:18}Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.
+\item \label[rule]{item:19}Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.
 \end{enumerate}
 
 \section{Java Source Files}\begin{enumerate}[resume]
-\item \label{item:20}Each Java source file contains a single public class or interface.
-\item \label{item:21}The public class is the first class or interface in the file.
-\item \label{item:22}Check that the external program interfaces are implemented consistently with what is described in the javadoc.
-\item \label{item:23}Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).
+\item \label[rule]{item:20}Each Java source file contains a single public class or interface.
+\item \label[rule]{item:21}The public class is the first class or interface in the file.
+\item \label[rule]{item:22}Check that the external program interfaces are implemented consistently with what is described in the javadoc.
+\item \label[rule]{item:23}Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).
 \end{enumerate}
 
 \section{Package and Import Statements}\begin{enumerate}[resume]
-\item \label{item:24}If any package statements are needed, they should be the first non-comment statements. Import statements follow.
+\item \label[rule]{item:24}If any package statements are needed, they should be the first non-comment statements. Import statements follow.
 \end{enumerate}
 
 \section{Class and Interface Declarations}\begin{enumerate}[resume]
-\item \label{item:X}The class or interface declarations shall be in the following order:
+\item \label[rule]{item:25}The class or interface declarations shall be in the following order:
 	\begin{enumerate}
-		\item \label{item:X}class/interface documentation comment;
-		\item \label{item:X}class or interface statement;
-		\item \label{item:X}class/interface implementation comment, if necessary;
-		\item \label{item:X}class (static) variables;
+		\item \label[rule]{item:25a}class/interface documentation comment;
+		\item \label[rule]{item:25b}class or interface statement;
+		\item \label[rule]{item:25c}class/interface implementation comment, if necessary;
+		\item \label[rule]{item:25d}class (static) variables;
 		\begin{enumerate}
-			\item \label{item:25di}first public class variables;
-			\item \label{item:X}next protected class variables;
-			\item \label{item:X}next package level (no access modifier);
-			\item \label{item:X}last private class variables.
+			\item \label[rule]{item:25di}first public class variables;
+			\item \label[rule]{item:25dii}next protected class variables;
+			\item \label[rule]{item:25diii}next package level (no access modifier);
+			\item \label[rule]{item:25div}last private class variables.
 		\end{enumerate}
-		\item \label{item:X}instance variables;
+		\item \label[rule]{item:25e}instance variables;
 		\begin{enumerate}
-			\item \label{item:X}first public instance variables;
-			\item \label{item:X}next protected instance variables;
-			\item \label{item:X}next package level (no access modifier);
-			\item \label{item:X}last private instance variables.
+			\item \label[rule]{item:25ei}first public instance variables;
+			\item \label[rule]{item:25eii}next protected instance variables;
+			\item \label[rule]{item:25eiii}next package level (no access modifier);
+			\item \label[rule]{item:25eiv}last private instance variables.
 		\end{enumerate}
-		\item \label{item:X}constructors;
-		\item \label{item:X}methods.
+		\item \label[rule]{item:25f}constructors;
+		\item \label[rule]{item:25g}methods.
 	\end{enumerate}
-	\item \label{item:X}Methods are grouped by functionality rather than by scope or accessibility.
-	\item \label{item:X}Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.
+	\item \label[rule]{item:26}Methods are grouped by functionality rather than by scope or accessibility.
+	\item \label[rule]{item:27}Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.
 \end{enumerate}
 
 \section{Initialization and Declarations}\begin{enumerate}[resume]
-\item \label{item:X}Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).
-\item \label{item:X}Check that variables are declared in the proper scope.
-\item \label{item:X}Check that constructors are called when a new object is desired.
-\item \label{item:X}Check that all object references are initialized before use.
-\item \label{item:X}Variables are initialized where they are declared, unless dependent upon a computation.
-\item \label{item:X}Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces `\texttt{\{}' and `\texttt{\}}'). The exception is a variable can be declared in a \texttt{for} loop.
+\item \label[rule]{item:28}Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).
+\item \label[rule]{item:29}Check that variables are declared in the proper scope.
+\item \label[rule]{item:30}Check that constructors are called when a new object is desired.
+\item \label[rule]{item:31}Check that all object references are initialized before use.
+\item \label[rule]{item:32}Variables are initialized where they are declared, unless dependent upon a computation.
+\item \label[rule]{item:33}Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces `\texttt{\{}' and `\texttt{\}}'). The exception is a variable can be declared in a \texttt{for} loop.
 \end{enumerate}
 
 \section{Method Calls}\begin{enumerate}[resume]
-\item \label{item:X}Check that parameters are presented in the correct order.
-\item \label{item:X}Check that the correct method is being called, or should it be a different method with a similar name.
-\item \label{item:X}Check that method returned values are used properly.
+\item \label[rule]{item:34}Check that parameters are presented in the correct order.
+\item \label[rule]{item:35}Check that the correct method is being called, or should it be a different method with a similar name.
+\item \label[rule]{item:36}Check that method returned values are used properly.
 \end{enumerate}
 
 \section{Arrays}\begin{enumerate}[resume]
-\item \label{item:X}Check that there are no off-by-one errors in array indexing (that is, all required array elements are correctly accessed through the index).
-\item \label{item:X}Check that all array (or other collection) indexes have been prevented from going out-of-bounds.
-\item \label{item:X}Check that constructors are called when a new array item is desired.
+\item \label[rule]{item:37}Check that there are no off-by-one errors in array indexing (that is, all required array elements are correctly accessed through the index).
+\item \label[rule]{item:38}Check that all array (or other collection) indexes have been prevented from going out-of-bounds.
+\item \label[rule]{item:39}Check that constructors are called when a new array item is desired.
 \end{enumerate}
 
 \section{Object Comparison}\begin{enumerate}[resume]
-\item \label{item:X}Check that all objects (including Strings) are compared with \texttt{equals} and not with \texttt{==}.
+\item \label[rule]{item:40}Check that all objects (including Strings) are compared with \texttt{equals} and not with \texttt{==}.
 \end{enumerate}
 
 \section{Output Format}\begin{enumerate}[resume]
-\item \label{item:X}Check that displayed output is free of spelling and grammatical errors.
-\item \label{item:X}Check that error messages are comprehensive and provide guidance as to how to correct the problem.
-\item \label{item:X}Check that the output is formatted correctly in terms of line stepping and spacing.
+\item \label[rule]{item:41}Check that displayed output is free of spelling and grammatical errors.
+\item \label[rule]{item:42}Check that error messages are comprehensive and provide guidance as to how to correct the problem.
+\item \label[rule]{item:43}Check that the output is formatted correctly in terms of line stepping and spacing.
 \end{enumerate}
 
 \section{Computation, Comparisons and Assignments}\begin{enumerate}[resume]
-\item \label{item:X}Check that the implementation avoids ``brutish programming'': (see \url{http://users.csc.calpoly.edu/~jdalbey/SWE/CodeSmells/bonehead.html}). 
-\item \label{item:X}Check order of computation/evaluation, operator precedence and parenthesizing.
-\item \label{item:X}Check the liberal use of parenthesis is used to avoid operator precedence problems.
-\item \label{item:X}Check that all denominators of a division are prevented from being zero.
-\item \label{item:X}Check that integer arithmetic, especially division, are used appropriately to avoid causing unexpected truncation/rounding.
-\item \label{item:X}Check that the comparison and Boolean operators are correct.
-\item \label{item:X}Check throw-catch expressions, and check that the error condition is actually legitimate.
-\item \label{item:X}Check that the code is free of any implicit type conversions.
+\item \label[rule]{item:44}Check that the implementation avoids ``brutish programming'': (see \url{http://users.csc.calpoly.edu/~jdalbey/SWE/CodeSmells/bonehead.html}). 
+\item \label[rule]{item:45}Check order of computation/evaluation, operator precedence and parenthesizing.
+\item \label[rule]{item:46}Check the liberal use of parenthesis is used to avoid operator precedence problems.
+\item \label[rule]{item:47}Check that all denominators of a division are prevented from being zero.
+\item \label[rule]{item:48}Check that integer arithmetic, especially division, are used appropriately to avoid causing unexpected truncation/rounding.
+\item \label[rule]{item:49}Check that the comparison and Boolean operators are correct.
+\item \label[rule]{item:50}Check throw-catch expressions, and check that the error condition is actually legitimate.
+\item \label[rule]{item:51}Check that the code is free of any implicit type conversions.
 \end{enumerate}
 
 \section{Exceptions}\begin{enumerate}[resume]
-\item \label{item:X}Check that the relevant exceptions are caught.
-\item \label{item:X}Check that the appropriate action are taken for each catch block.
+\item \label[rule]{item:52}Check that the relevant exceptions are caught.
+\item \label[rule]{item:53}Check that the appropriate action are taken for each catch block.
 \end{enumerate}
 
 \section{Flow of Control}\begin{enumerate}[resume]
-\item \label{item:X}In a \texttt{switch} statement, check that all cases are addressed by break or return.
-\item \label{item:X}Check that all switch statements have a default branch.
-\item \label{item:X}Check that all loops are correctly formed, with the appropriate initialization, increment and termination expressions.
+\item \label[rule]{item:54}In a \texttt{switch} statement, check that all cases are addressed by break or return.
+\item \label[rule]{item:55}Check that all switch statements have a default branch.
+\item \label[rule]{item:56}Check that all loops are correctly formed, with the appropriate initialization, increment and termination expressions.
 \end{enumerate}
 
 \section{Files}\begin{enumerate}[resume]
-\item \label{item:X}Check that all files are properly declared and opened.
-\item \label{item:X}Check that all files are closed properly, even in the case of an error.
-\item \label{item:X}Check that EOF conditions are detected and handled correctly.
-\item \label{item:X}Check that all file exceptions are caught and dealt with accordingly.
+\item \label[rule]{item:57}Check that all files are properly declared and opened.
+\item \label[rule]{item:58}Check that all files are closed properly, even in the case of an error.
+\item \label[rule]{item:59}Check that EOF conditions are detected and handled correctly.
+\item \label[rule]{item:60}Check that all file exceptions are caught and dealt with accordingly.
 \end{enumerate}
+ 
+ 
 
 
 
@@ -172,14 +174,14 @@ instead do this:
 
 
 
+\chapter{Structure of the class TOCHECK}
 
-
-\chapter{Whole class}
-
-\inputminted{java}{"./java/SecurityMechanismSelector.java"}
+\inputminted[showtabs=false, linenos=false,frame=leftline]{java}{"./java/structure.java"}
 
 
 
+\chapter{TOREMOVE}
+	\inputminted{java}{"./java/SecurityMechanismSelector.java"}
 
 
 

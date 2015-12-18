@@ -105,7 +105,7 @@ import javax.inject.Singleton;
 
 import javax.inject.Inject;
 
-/** 
+#\label{l:00108}%/** 
  * This class is responsible for making various decisions for selecting
  * security information to be sent in the IIOP message based on target
  * configuration and client policies.
@@ -119,7 +119,7 @@ import javax.inject.Inject;
 
 @Service
 @Singleton
-public final class SecurityMechanismSelector implements PostConstruct {
+public final class SecurityMechanismSelector implements PostConstruct {#\label{l:00122}%
 
     private static final java.util.logging.Logger _logger =
        LogDomains.getLogger(SecurityMechanismSelector.class, LogDomains.SECURITY_LOGGER);
@@ -1216,7 +1216,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
 
 #\label{l:11217}%        // get requirements and supports at the client authentication layer
 #\label{l:11218}%        AS_ContextSec ascontext = null;
-        try {
+#\label{l:11219}%         try {
             ascontext = this.getCtc().createASContextSec(iordesc, realmName);
         } catch (Exception e) {
             _logger.log(Level.SEVERE, "iiop.createcontextsec_exception",e);
@@ -1247,7 +1247,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
         else
             client_authenticated = false;#\label{l:11248}%
 
-        if (client_authenticated) {
+#\label{l:11250}%        if (client_authenticated) {
             if ( ! ( isSet(ascontext.target_requires, EstablishTrustInClient.value)#\label{l:11251}%
                      || isSet(ascontext.target_supports, EstablishTrustInClient.value))){ #\label{l:11252}%
             return false; // non conforming client
@@ -1256,11 +1256,11 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
 
             byte [] client_tgtname = getTargetName(ctx.subject);#\label{l:11257}%
 
-            if (ascontext.target_name.length != client_tgtname.length){
+            if (ascontext.target_name.length != client_tgtname.length){#\label{l:11259}%
                 return false; // mechanism did not match.
             }            
 #\label{l:11262}%            for (int i=0; i < ascontext.target_name.length ; i ++)
-                if (ascontext.target_name[i] != client_tgtname[i]){
+                if (ascontext.target_name[i] != client_tgtname[i]){#\label{l:11263}%
                     return false; // mechanism did not match
                 }#\label{l:11265}%
         } else { 
@@ -1277,31 +1277,31 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
     *
     * returns true if conformant ; else returns false
     */
-#\label{l:209}%    private boolean evaluate_client_conformance_sascontext(
+#\label{l:21280}%    private boolean evaluate_client_conformance_sascontext(
                         SecurityContext ctx,
                         EjbIORConfigurationDescriptor iordesc)
-    {#\label{l:212}%
+    {#\label{l:21283}%
 
-        boolean caller_propagated = false;#\label{l:214}%
+       boolean caller_propagated = false;#\label{l:21285}% 
 
-        // get requirements and supports at the sas context layer
+#\label{l:21287}%         // get requirements and supports at the sas context layer
         SAS_ContextSec sascontext = null;
         try {
             sascontext = this.getCtc().createSASContextSec(iordesc);
         } catch (Exception e) {
             _logger.log(Level.SEVERE,"iiop.createcontextsec_exception",e);
             return false;
-        }
+        }#\label{l:21294}% 
 
             
-#\label{l:226}%        if  ( (ctx != null) && (ctx.identcls != null) &&  (ctx.subject != null))
+#\label{l:21297}%        if  ( (ctx != null) && (ctx.identcls != null) &&  (ctx.subject != null))
             caller_propagated = true;
         else
-            caller_propagated = false;#\label{l:229}%
+            caller_propagated = false;#\label{l:21300}%
 
-        if (caller_propagated) {
-            if ( ! isSet(sascontext.target_supports, IdentityAssertion.value))#\label{l:232}%
-                return false;#\label{l:233}% // target does not support IdentityAssertion
+#\label{l:21302}%        if (caller_propagated) {
+            if ( ! isSet(sascontext.target_supports, IdentityAssertion.value))#\label{l:21303}%
+                return false;#\label{l:21304}% // target does not support IdentityAssertion
 
             /* There is no need further checking here since SecServerRequestInterceptor
              * code filters out the following:

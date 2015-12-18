@@ -56,29 +56,26 @@
 \setminted[java]{
 %	breaklines=true,
 	fontsize=\small,
-	frame=lines,
+	frame=leftline,
 	linenos=true,
 	obeytabs=true, tabsize=4, showtabs=true,
 	style=pastie,
 %	xleftmargin=\parindent,
 	escapeinside=\#\%,
 }
-\newcommand{\partmint}[4][]{%
-\immediate\write18{sed -n '/l:#2/,/l:#3/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag#4.txt}%
-\inputminted[#1]{java}{./.texpadtmp/frag#4.txt}%
-\write18{rm ./.texpadtmp/frag#4.txt}% 
+\newcommand{\inputpartmint}[2]{%
+\immediate\write18{sed -n '/l:#1/,/l:#2/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag.txt}%
+\inputminted[firstnumber=\getrefnumber{l:#1}]{java}{./.texpadtmp/frag.txt}%
+\immediate\write18{rm ./.texpadtmp/frag.txt}%  
 }
-
-\usepackage{caption}\newenvironment{longlisting}{\captionsetup{type=listing}}{}
-
 
 % Cross referencing (it MUST be loaded AFTER every other package)
 \usepackage{xspace}
 \usepackage[noabbrev]{cleveref}
 \crefname{sidenote}{sidenote}{sidenotes}
+\crefname{rule}{rule}{rules}
 \newcommand{\lmref}[1]{line~\ref{#1}\xspace}
 \newcommand{\lmrange}[2]{lines~\ref{#1} to~\ref{#2}\xspace}
-
 
 
 

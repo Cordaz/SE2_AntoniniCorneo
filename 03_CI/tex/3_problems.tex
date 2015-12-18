@@ -7,76 +7,63 @@
 
 \section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
 
-\partmint[firstnumber=\getrefnumber{l:startASC}]{startASC}{11208}{100}
+The objective of the method is described by the preceding comment. The code of the method has been split into sections, in order to improve readability. Following each section, a brief report of the violated rules (a complete reference is in \cref{chap:reference}).
 
-\lipsum[3]
-
-\partmint[firstnumber=\getrefnumber{l:11209}]{11209}{11215}{100}
+\inputpartmint{startASC}{11215}
 
 \begin{description}
+	
 	\item [\labelcref{item:5}]
-		in \lmref{l:11209} maybe to highlight pattern? 
-			OR: \texttt{evaluate\_client\_conformance\_ascontext}
-			SS: \texttt{evaluateClientConformanceAscontext}
+		the name of the method \verb|evaluate_client_conformance_ascontext| (\lmref{l:11209}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformanceAscontext}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
+	
 	\item [\labelcref{item:6}]
-		in \lmref{l:11215} 
-			OR: \texttt{client\_authenticated}
-			SS: \texttt{clientAuthenticated}; 
-			\item [\labelcref{item:10}]
-		adopting K\&R style, only \lmref{l:11213} does not comply
-\end{description}
-
-
-
-
-\partmint[firstnumber=\getrefnumber{l:11217}]{11217}{11225}{101}
-
-\lipsum[1]
-
-
-\partmint[firstnumber=\getrefnumber{l:11228}]{11228}{11243}{103}
-
-\lipsum[2]
-
-
-\partmint[firstnumber=\getrefnumber{l:11245}]{11245}{11270}{102}
-
-
-
-\begin{description}
-	\item [\labelcref{item:6}]
-		in \lmref{l:11257} 
-			OR: \texttt{client\_tgtname}
-			SS: \texttt{clientTgtname}.
-	\item [\labelcref{item:11}] 
-		\lmrange{l:11245}{l:11248}, \lmrange{l:11262}{l:11265}
-	\item [\labelcref{item:13}]
-		highly improbable to respect 80 chars (e.g., \lmref{l:11252})
-	\item [\labelcref{item:15}]
-		if statement breaks BEFORE $||$ operator in \lmrange{l:11251}{l:11252}
-\end{description}
-
-
-\subsection{General errors}
-
-
-
-\clearpage
-\section{\normalfont\texttt{evaluate\_client\_conformance\_sascontext}}
-\partmint{startSAS}{endSAS}{200}
-
-\begin{description}
-	\item [\labelcref{item:5}] 
-		in \lmref{l:209} maybe to highlight pattern? 
-			OR: \texttt{evaluate\_client\_conformance\_sascontext}
-			SS: \texttt{evaluateClientConformanceSascontext}.
-	\item [\labelcref{item:6}] 
-		in \lmref{l:214} 
-			OR: \texttt{caller\_propagated}
-			SS: \texttt{callerPropagated}.
+		the variable name \verb|client_authenticated| (\lmref{l:11215}) does not comply with the rule; a compliant solution would be \verb|clientAuthenticated|. 
+	
 	\item [\labelcref{item:10}]
-		adopting K\&R style, only \lmref{l:212} does not comply
-	\item [\labelcref{item:11}] \lmrange{l:226}{l:229}, \lmrange{l:232}{l:233}
+		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:11213} does not comply (the opening brace should be placed at the end of the method declaration).
+		
+\end{description}
+
+\inputpartmint{11217}{11225}
+
+\begin{description}
+	
+	\item [\labelcref{item:52}]
+		the \verb|try-catch| group in \lmrange{l:11219}{l:11225} is roughly managed: catching, generically, \verb|(Exception e)| does not allow to provide a detailed log of the error.
+\end{description}
+
+
+\inputpartmint{11228}{11248}
+
+\begin{description}
+	
+	\item [\labelcref{item:11}] 
+		both \verb|if| and \verb|else| clauses in \lmrange{l:11245}{l:11248} do not surround their statement with braces, which is to be avoided.
+	
+	\item [\labelcref{item:44}]
+		to avoid an example of ``brutish programming'', \lmrange{l:11245}{l:11248}, together with \lmref{l:11215}, can be collapsed to the following statement: 
+		\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
+		boolean client_authenticated = (ctx != null) && (ctx.authcls != null) && (ctx.subject != null);
+		\end{minted}
+		however this line is too long (it exceeds the 80 character limit stated in \cref{item:13}) and may be less readable; moreover, future changes to the method may take more time, should the truth condition be expanded, or the \verb|if| clause used again.
+\end{description}
+
+\inputpartmint{11250}{endASC}
+
+\begin{description}
+	
+	\item [\labelcref{item:6}]
+		the \verb|client\_tgtname| variable, declared in \lmref{l:11257}, does not comply with standard naming rules; a compliant name for the variable would be: \verb|clientTgtname|.
+	
+	\item [\labelcref{item:11}] 
+		the \verb|for| group in \lmrange{l:11262}{l:11265} does not surround its statement with braces, which is to be avoided.
+	
+	\item [\labelcref{item:13}]
+		sometimes it is highly improbable to respect the 80 characters limit, when it comes to nested if clauses which require the execution of other methods; however, in this fragment only a very limited number of lines exceeds significantly that limit (e.g., \lmref{l:11252}).
+	
+	\item [\labelcref{item:15}]
+		the condition of the \verb|if| statement in \lmrange{l:11251}{l:11252} breaks before \verb|||| operator, instead of after, which is preferable.
+	
 \end{description}
 
 
@@ -86,9 +73,106 @@
 
 
 
-\clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\normalfont\texttt{evaluate\_client\_conformance\_sascontext}}
+
+\inputpartmint{startSAS}{21285}
+
+\begin{description}
+	
+	\item [\labelcref{item:5}]
+		the name of the method \verb|evaluate_client_conformance_sascontext| (\lmref{l:21280}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformanceSascontext}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
+	
+	\item [\labelcref{item:6}]
+		the variable name \verb|caller_propagated| (\lmref{l:21285}) does not comply with the rule; a compliant solution would be \verb|callerPropagated|. 
+	
+	\item [\labelcref{item:10}]
+		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:21283} does not comply (the opening brace should be placed at the end of the method declaration).
+		
+\end{description}
+
+
+\inputpartmint{21287}{21294}
+
+\inputpartmint{21297}{21300}
+
+\begin{description}
+	
+	\item [\labelcref{item:11}] 
+		both \verb|if| and \verb|else| clauses in \lmrange{l:11245}{l:11248} do not surround their statement with braces, which is to be avoided.
+
+\end{description}
+
+\inputpartmint{21302}{endSAS}
+
+\begin{description}
+		
+	\item [\labelcref{item:11}] 
+		the \verb|if| group in \lmrange{l:21303}{l:21304} does not surround its statement with braces, which is to be avoided. 
+
+\end{description}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\normalfont\texttt{evaluate\_client\_conformance}}
-\partmint{startECC}{endECC}{300}
+\inputpartmint{startECC}{endECC}
 
 \begin{description}
 	\item [\labelcref{item:5}] 
@@ -103,7 +187,7 @@
 			OR: \texttt{ssl\_used}
 			SS: \texttt{sslUsed}
 	\item [\labelcref{item:9}]
-		throughout the method, highlighted by $-\rangle|$ symbol. %TODO Sostituire!
+		throughout the method, highlighted by $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol. %TODO Sostituire!
 	\item [\labelcref{item:10}]
 		adopting K\&R style, only \lmref{l:323} does not comply
 	\item [\labelcref{item:11}] \lmrange{l:330}{l:331}, \lmrange{l:333}{l:334}, \lmrange{l:339}{l:340}, \lmrange{l:363}{l:364}, \lmrange{l:3116}{l:3117}
