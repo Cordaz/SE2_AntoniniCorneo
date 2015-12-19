@@ -1286,7 +1286,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
 
 #\label{l:21287}%         // get requirements and supports at the sas context layer
         SAS_ContextSec sascontext = null;
-        try {
+        try {#\label{l:21289}%
             sascontext = this.getCtc().createSASContextSec(iordesc);
         } catch (Exception e) {
             _logger.log(Level.SEVERE,"iiop.createcontextsec_exception",e);
@@ -1335,30 +1335,30 @@ as_context_mech
      * and sas_context_mech must all be consistent.
      * 
      */
-    private boolean evaluate_client_conformance(SecurityContext   ctx,#\label{l:319}%
-                                                byte[]            object_id,#\label{l:320}%
-                                                boolean           ssl_used,#\label{l:321}%
+    private boolean evaluate_client_conformance(SecurityContext   ctx,#\label{l:31338}%
+                                                byte[]            object_id,#\label{l:31339}%
+                                                boolean           ssl_used,#\label{l:31340}%
                                                 X509Certificate[] certchain)
-    {#\label{l:323}%
-        // Obtain the IOR configuration descriptors for the Ejb using
+    {#\label{l:31342}%
+#\label{l:31343}%        // Obtain the IOR configuration descriptors for the Ejb using
         // the object_id within the SecurityContext field.
 
         // if object_id is null then nothing to evaluate. This is a sanity
         // check - for the object_id should never be null.
         
-        if (object_id == null)#\label{l:330}%
-            return true;#\label{l:331}%
+        if (object_id == null)#\label{l:31349}%
+            return true;#\label{l:31350}%
 
-        if (protocolMgr == null)#\label{l:333}%
-            protocolMgr = orbHelper.getProtocolManager();#\label{l:334}%
+        if (protocolMgr == null)#\label{l:31352}%
+            protocolMgr = orbHelper.getProtocolManager();#\label{l:31353}%
 
         // Check to make sure protocolMgr is not null. 
         // This could happen during server initialization or if this call
         // is on a callback object in the client VM. 
-        if (protocolMgr == null)#\label{l:339}%
-            return true;#\label{l:340}%
+        if (protocolMgr == null)#\label{l:31358}%
+            return true;#\label{l:31359}%
 
-        EjbDescriptor ejbDesc = protocolMgr.getEjbDescriptor(object_id);
+#\label{l:31361}%        EjbDescriptor ejbDesc = protocolMgr.getEjbDescriptor(object_id);
 
         Set iorDescSet = null;
         if (ejbDesc != null) {
@@ -1373,14 +1373,14 @@ as_context_mech
 	if(_logger.isLoggable(Level.FINE)) {
 	    _logger.log(Level.FINE,
 			"SecurityMechanismSelector.evaluate_client_conformance: iorDescSet: " + iorDescSet);
-	}
+	}#\label{l:31376}%
 
-        /* if there are no IORConfigurationDescriptors configured, then
+#\label{l:31378}%        /* if there are no IORConfigurationDescriptors configured, then
          * no security policy is configured. So consider the client 
          * to be conformant.
          */
-        if (iorDescSet.isEmpty())#\label{l:363}%
-            return true;#\label{l:364}%
+        if (iorDescSet.isEmpty())#\label{l:31382}%
+            return true;#\label{l:31383}%
 
         // go through each EjbIORConfigurationDescriptor trying to find
         // a find a CompoundSecMechanism that matches client's actions.
@@ -1432,8 +1432,8 @@ as_context_mech
             }
             return true;  // security policy matched.
         }
-        if(checkSkipped)#\label{l:3116}%
-            return true;#\label{l:3117}%
+        if(checkSkipped)#\label{l:31435}%
+            return true;#\label{l:31436}%
         return false; // No matching security policy found
     }     #\label{l:endECC}%
      

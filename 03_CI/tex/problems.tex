@@ -5,6 +5,9 @@
 %Any other problem you have highlighted: <list here all the parts of code that you think create or may create a bug and explain why>.
 
 
+\lipsum[1]
+
+
 \section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
 
 The objective of the method is described by the preceding comment. The code of the method has been split into sections, in order to improve readability. Following each section, a brief report of the violated rules (a complete reference is in \cref{chap:reference}).
@@ -30,6 +33,7 @@ The objective of the method is described by the preceding comment. The code of t
 	
 	\item [\labelcref{item:52}]
 		the \verb|try-catch| group in \lmrange{l:11219}{l:11225} is roughly managed: catching, generically, \verb|(Exception e)| does not allow to provide a detailed log of the error.
+
 \end{description}
 
 
@@ -53,7 +57,7 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 	
 	\item [\labelcref{item:6}]
-		the \verb|client\_tgtname| variable, declared in \lmref{l:11257}, does not comply with standard naming rules; a compliant name for the variable would be: \verb|clientTgtname|.
+		the \verb|client_tgtname| variable, declared in \lmref{l:11257}, does not comply with standard naming rules; a compliant name for the variable would be: \verb|clientTgtname|.
 	
 	\item [\labelcref{item:11}] 
 		the \verb|for| group in \lmrange{l:11262}{l:11265} does not surround its statement with braces, which is to be avoided.
@@ -106,12 +110,28 @@ The objective of the method is described by the preceding comment. The code of t
 
 \inputpartmint{21287}{21294}
 
+
+\begin{description}
+	
+	\item [\labelcref{item:52}]
+		the \verb|try-catch| group in \lmrange{l:21289}{l:21294} is roughly managed: catching, generically, \verb|(Exception e)| does not allow to provide a detailed log of the error.
+
+\end{description}
+
+
 \inputpartmint{21297}{21300}
 
 \begin{description}
 	
 	\item [\labelcref{item:11}] 
 		both \verb|if| and \verb|else| clauses in \lmrange{l:11245}{l:11248} do not surround their statement with braces, which is to be avoided.
+		
+	\item [\labelcref{item:44}]
+		to avoid an example of ``brutish programming'', \lmrange{l:21297}{l:21300}, together with \lmref{l:21285}, can be collapsed to the following statement: 
+		\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
+		boolean caller_propagated = (ctx != null) && (ctx.identcls != null) && (ctx.subject != null);
+		\end{minted}
+		however this line is too long (it exceeds the 80 character limit stated in \cref{item:13}) and may be less readable; moreover, future changes to the method may take more time, should the truth condition be expanded, or the \verb|if| clause used again.
 
 \end{description}
 
@@ -169,28 +189,45 @@ The objective of the method is described by the preceding comment. The code of t
 
 
 
-
-\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\normalfont\texttt{evaluate\_client\_conformance}}
-\inputpartmint{startECC}{endECC}
-
+\inputpartmint{startECC}{31342}
 \begin{description}
+	
 	\item [\labelcref{item:5}] 
-		in \lmref{l:319} maybe to highlight pattern? 
+		in \lmref{l:31338} maybe to highlight pattern? 
 			OR: \texttt{evaluate\_client\_conformance}
 			SS: \texttt{evaluateClientConformance}
+	
 	\item [\labelcref{item:6}] 
-		in \lmref{l:320} 
+		in \lmref{l:31339} 
 			OR: \texttt{object\_id}
 			SS: \texttt{objectId}; 
-		in \lmref{l:321} 
+		in \lmref{l:31340} 
 			OR: \texttt{ssl\_used}
 			SS: \texttt{sslUsed}
-	\item [\labelcref{item:9}]
-		throughout the method, highlighted by $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol. %TODO Sostituire!
+	
+		
 	\item [\labelcref{item:10}]
-		adopting K\&R style, only \lmref{l:323} does not comply
-	\item [\labelcref{item:11}] \lmrange{l:330}{l:331}, \lmrange{l:333}{l:334}, \lmrange{l:339}{l:340}, \lmrange{l:363}{l:364}, \lmrange{l:3116}{l:3117}
+		adopting K\&R style, only \lmref{l:31342} does not comply
+	
+\end{description}
+
+
+\inputpartmint{31343}{31376}
+
+\begin{description}
+	
+	\item [\labelcref{item:11}] \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, \lmrange{l:31358}{l:31359}
+
+\end{description}
+
+\inputpartmint{31378}{endECC}
+
+
+\begin{description}
+		
+	\item [\labelcref{item:11}] \lmrange{l:31382}{l:31383}, \lmrange{l:31435}{l:31436}
 
 \end{description}
 
@@ -201,7 +238,13 @@ The objective of the method is described by the preceding comment. The code of t
 
 
 
+\subsection{General}
 
+\begin{description}
+	\item [\labelcref{item:9}]
+		throughout the method, highlighted by $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol. %TODO Sostituire! 
+
+\end{description}
 
 
 

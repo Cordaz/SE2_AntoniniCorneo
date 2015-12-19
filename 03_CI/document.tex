@@ -9,21 +9,29 @@
 
 %TODO Remove lipsum.
 
-\include{tex/0_titlePage}
+\frontmatter
+
+\input{./tex/titlePage}
 
 \tableofcontents
 
-\include{./tex/1_introduction}
+\mainmatter
 
-\include{./tex/2_classes}
+\input{./tex/introduction}
 
-\include{./tex/3_problems}
+\input{./tex/classes}
 
-%\include{./tex/4_userinterface}
+\input{./tex/problems}
 
-%\include{./tex/5_traceability} 
+\appendix
 
-\appendix\include{./tex/6_appendix} 
+\input{./tex/checklist} 
+
+\input{./tex/javacode} %TODO Remove codice completo
+
+\backmatter
+
+\input{./tex/hours}
 
 \end{document}
 
