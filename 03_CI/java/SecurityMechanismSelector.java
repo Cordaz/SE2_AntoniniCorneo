@@ -1372,7 +1372,7 @@ as_context_mech
 
 	if(_logger.isLoggable(Level.FINE)) {
 	    _logger.log(Level.FINE,
-			"SecurityMechanismSelector.evaluate_client_conformance: iorDescSet: " + iorDescSet);
+			"SecurityMechanismSelector.evaluate_client_conformance: iorDescSet: " + iorDescSet);#\label{l:31375}%
 	}#\label{l:31376}%
 
 #\label{l:31378}%        /* if there are no IORConfigurationDescriptors configured, then
@@ -1391,7 +1391,7 @@ as_context_mech
             if(skip_client_conformance(iorDesc)){
 		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
-				"SecurityMechanismSelector.evaluate_client_conformance: skip_client_conformance");
+				"SecurityMechanismSelector.evaluate_client_conformance: skip_client_conformance");#\label{l:31394}%
 		}
                 checkSkipped = true;
                 continue;
@@ -1399,7 +1399,7 @@ as_context_mech
             if (! evaluate_client_conformance_ssl(iorDesc, ssl_used, certchain)){
 		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
-				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ssl");
+				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ssl");#\label{l:31402}%
 		}
                 checkSkipped = false;
                 continue;
@@ -1417,7 +1417,7 @@ as_context_mech
             if ( ! evaluate_client_conformance_ascontext(ctx, iorDesc ,realmName)){
 		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
-				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ascontext");
+				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ascontext");#\label{l:31420}%
 		}
                 checkSkipped = false;
                 continue;
@@ -1425,7 +1425,7 @@ as_context_mech
             if  ( ! evaluate_client_conformance_sascontext(ctx, iorDesc)){
 		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
-				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_sascontext");
+				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_sascontext");#\label{l:31428}%
 		}
                checkSkipped = false;
                continue;

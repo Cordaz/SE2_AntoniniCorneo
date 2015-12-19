@@ -193,23 +193,15 @@ The objective of the method is described by the preceding comment. The code of t
 \section{\normalfont\texttt{evaluate\_client\_conformance}}
 \inputpartmint{startECC}{31342}
 \begin{description}
+
+	\item [\labelcref{item:5}]
+		the name of the method \verb|evaluate_client_conformance| (\lmref{l:31338}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformance}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
 	
-	\item [\labelcref{item:5}] 
-		in \lmref{l:31338} maybe to highlight pattern? 
-			OR: \texttt{evaluate\_client\_conformance}
-			SS: \texttt{evaluateClientConformance}
+	\item [\labelcref{item:6}]
+		the names of the two parameters \verb|object_id| (\lmref{l:31339}) and \verb|ssl_used| (\lmref{l:31340}) do not comply with the rule. 
 	
-	\item [\labelcref{item:6}] 
-		in \lmref{l:31339} 
-			OR: \texttt{object\_id}
-			SS: \texttt{objectId}; 
-		in \lmref{l:31340} 
-			OR: \texttt{ssl\_used}
-			SS: \texttt{sslUsed}
-	
-		
 	\item [\labelcref{item:10}]
-		adopting K\&R style, only \lmref{l:31342} does not comply
+		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:31342} does not comply (the opening brace should be placed at the end of the method declaration).
 	
 \end{description}
 
@@ -217,17 +209,22 @@ The objective of the method is described by the preceding comment. The code of t
 \inputpartmint{31343}{31376}
 
 \begin{description}
-	
-	\item [\labelcref{item:11}] \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, \lmrange{l:31358}{l:31359}
+
+	\item [\labelcref{item:11}] 
+		the \verb|if| groups in \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, and \lmrange{l:31358}{l:31359} do not surround their statements with braces, which is to be avoided. 
+		
+	\item [\labelcref{item:13}] \lmref{l:31375}	do not comply with the 80 characters limit. However, it would be impossible to do so, unless the string is divided; this line is still acceptable, though, since it is less than 120 characters long.  
 
 \end{description}
 
 \inputpartmint{31378}{endECC}
 
-
 \begin{description}
 		
 	\item [\labelcref{item:11}] \lmrange{l:31382}{l:31383}, \lmrange{l:31435}{l:31436}
+	
+	\item [\labelcref{item:13}] \lmref{l:31394}, \lmref{l:31402}	, \lmref{l:31420}, \lmref{l:31428}
+
 
 \end{description}
 
@@ -242,7 +239,7 @@ The objective of the method is described by the preceding comment. The code of t
 
 \begin{description}
 	\item [\labelcref{item:9}]
-		throughout the method, highlighted by $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol. %TODO Sostituire! 
+		throughout the method, highlighted by {$-\hspace{-0.4em}\rangle\hspace{-0.2em}|$} symbol. %TODO Sostituire! 
 
 \end{description}
 
