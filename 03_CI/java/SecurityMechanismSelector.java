@@ -1362,15 +1362,15 @@ as_context_mech
 
         Set iorDescSet = null;
         if (ejbDesc != null) {
-	    iorDescSet = ejbDesc.getIORConfigurationDescriptors();
+#\label{l:31365}%	    iorDescSet = ejbDesc.getIORConfigurationDescriptors();
 	}
 	else {
 	    // Probably a non-EJB CORBA object.
 	    // Create a temporary EjbIORConfigurationDescriptor.
 	    iorDescSet = getCorbaIORDescSet();
-	}
+	}#\label{l:31371}%
 
-	if(_logger.isLoggable(Level.FINE)) {
+#\label{l:31373}%	if(_logger.isLoggable(Level.FINE)) {
 	    _logger.log(Level.FINE,
 			"SecurityMechanismSelector.evaluate_client_conformance: iorDescSet: " + iorDescSet);#\label{l:31375}%
 	}#\label{l:31376}%
@@ -1389,23 +1389,23 @@ as_context_mech
             EjbIORConfigurationDescriptor iorDesc = 
                 (EjbIORConfigurationDescriptor) itr.next();
             if(skip_client_conformance(iorDesc)){
-		if(_logger.isLoggable(Level.FINE)) {
+#\label{l:31392}%		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
 				"SecurityMechanismSelector.evaluate_client_conformance: skip_client_conformance");#\label{l:31394}%
-		}
+		}#\label{l:31395}%
                 checkSkipped = true;
                 continue;
             }
             if (! evaluate_client_conformance_ssl(iorDesc, ssl_used, certchain)){
-		if(_logger.isLoggable(Level.FINE)) {
+#\label{l:31400}%		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
 				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ssl");#\label{l:31402}%
-		}
+		}#\label{l:31403}%
                 checkSkipped = false;
                 continue;
             }
-            String realmName = "default";
-            if(ejbDesc != null && ejbDesc.getApplication() != null) {
+            String realmName = "default";#\label{l:31407}%
+#\label{l:31408}%            if(ejbDesc != null && ejbDesc.getApplication() != null) {
                 realmName = ejbDesc.getApplication().getRealm();
             }
             if(realmName == null) {
@@ -1413,20 +1413,20 @@ as_context_mech
             }
             if (realmName == null) {
                 realmName = "default";
-            }
+            }#\label{l:31416}%
             if ( ! evaluate_client_conformance_ascontext(ctx, iorDesc ,realmName)){
-		if(_logger.isLoggable(Level.FINE)) {
+#\label{l:31418}%		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
 				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_ascontext");#\label{l:31420}%
-		}
+		}#\label{l:31421}%
                 checkSkipped = false;
                 continue;
             }
             if  ( ! evaluate_client_conformance_sascontext(ctx, iorDesc)){
-		if(_logger.isLoggable(Level.FINE)) {
+#\label{l:31426}%		if(_logger.isLoggable(Level.FINE)) {
 		    _logger.log(Level.FINE,
 				"SecurityMechanismSelector.evaluate_client_conformance: evaluate_client_conformance_sascontext");#\label{l:31428}%
-		}
+		}#\label{l:31429}%
                checkSkipped = false;
                continue;
             }

@@ -8,6 +8,8 @@
 \lipsum[1]
 
 
+\textbf{Tabs are shown, highlighted by a $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol.} %TODO Sostituire!
+
 \section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
 
 The objective of the method is described by the preceding comment. The code of the method has been split into sections, in order to improve readability. Following each section, a brief report of the violated rules (a complete reference is in \cref{chap:reference}).
@@ -210,36 +212,48 @@ The objective of the method is described by the preceding comment. The code of t
 
 \begin{description}
 
+	\item [\labelcref{item:9}] 
+		in \lmrange{l:31365}{l:31371} and \lmrange{l:31373}{l:31376} tabs are used to indent, which is to be avoided. Moreover, indentation is savagely done in these fragments of code: we suggest the use of an auto-formatting tool to fix this issue.
+
 	\item [\labelcref{item:11}] 
 		the \verb|if| groups in \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, and \lmrange{l:31358}{l:31359} do not surround their statements with braces, which is to be avoided. 
 		
-	\item [\labelcref{item:13}] \lmref{l:31375}	do not comply with the 80 characters limit. However, it would be impossible to do so, unless the string is divided; this line is still acceptable, though, since it is less than 120 characters long.  
+	\item [\labelcref{item:13}]
+		\lmref{l:31375}	does not comply with the 80 characters limit. However, it would be impossible to do so, unless the string is divided; this line is still acceptable, though, since it is less than 120 characters long.  
 
 \end{description}
 
 \inputpartmint{31378}{endECC}
 
 \begin{description}
+
+	\item [\labelcref{item:9}] 
+		in \lmrange{l:31392}{l:31395}, \lmrange{l:31400}{l:31403}, \lmrange{l:31418}{l:31421}, and \lmrange{l:31426}{l:31429}  tabs are used to indent, which is to be avoided. Moreover, indentation is savagely done in these fragments of code: we suggest the use of an auto-formatting tool to fix this issue.
 		
-	\item [\labelcref{item:11}] \lmrange{l:31382}{l:31383}, \lmrange{l:31435}{l:31436}
+	\item [\labelcref{item:11}] the \verb|if| groups in \lmrange{l:31382}{l:31383} and \lmrange{l:31435}{l:31436} do not surround their statements with braces, which is to be avoided.
 	
-	\item [\labelcref{item:13}] \lmref{l:31394}, \lmref{l:31402}	, \lmref{l:31420}, \lmref{l:31428}
+	\item [\labelcref{item:13}] \lmref{l:31394}, \lmref{l:31402}	, \lmref{l:31420}, and \lmref{l:31428} do not comply with the 80 characters limit.
+
+	\item [\labelcref{item:32}] variable declared in \lmref{l:31407} is initialized in vain, since the following block \lmref{l:31408}{l:31416} changes its value for sure
+	
+
 
 
 \end{description}
 
 
-
-
-
-
-
-
 \subsection{General}
 
 \begin{description}
-	\item [\labelcref{item:9}]
-		throughout the method, highlighted by {$-\hspace{-0.4em}\rangle\hspace{-0.2em}|$} symbol. %TODO Sostituire! 
+		 
+		
+	\item [suggestion] we suggest to substitute  the block \begin{minted}[linenos=false, showtabs=false]{java}
+		if(_logger.isLoggable(Level.FINE)) {
+		    _logger.log(Level.FINE,
+				"SecurityMechanismSelector.evaluate_client_conformance: XXX");#\label{l:31420}%
+		}
+	\end{minted}
+	with a call to a private method (pass XXX), in order to save some lines of code, reduce complexity and improve readability.
 
 \end{description}
 
