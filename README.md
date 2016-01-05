@@ -1,5 +1,5 @@
 # Software Engineering 2 project
-*Politecnico di Milano*. Antonini Paolo, 858242; Corneo Andrea, 849793.
+Politecnico di Milano. Antonini Paolo, 858242; Corneo Andrea, 849793.
 
 ## myTaxiService
 >The government of a large city aims at optimizing its taxi service. In particular, it  wants  to:  (1)  simplify  the  access  of  passengers  to  the  service,  and  (2)  guarantee  a  fair management of taxi queues. 
@@ -9,15 +9,15 @@ When  a  request  arrives  from  a  certain  zone,  the  system  forwards  it  t
 Besides  the  specific  user  interfaces  for  passengers  and  taxi  drivers,  the  system  offers  also  programmatic  interfaces  to  enable  the  development  of  additional  services (e.g., taxi sharing) on top of the basic one. 
 A user can reserve a taxi by specifying the origin and the destination of the ride.  The reservation has to occur at least two hours before the ride. In this case, the  system confirms the reservation to the user and allocates a taxi to the request 10  minutes before the meeting time with the user. 
 
-+ **Requirements Analysis and Specification Document** submission deadline 6/11/2015 - [link](./Deliveries/1_RASD.pdf)
-+ **Design Document** submission deadline 4/12/2015 - [link](./Deliveries/2_DD.pdf)
++ **Requirements Analysis and Specification Document** submission deadline 06/11/2015 - [link](./Deliveries/1_RASD.pdf)
++ **Design Document** submission deadline 04/12/2015 - [link](./Deliveries/2_DD.pdf)
 
 
 ## GlassFish 4.1.1
->Code inspection (e.g., code analysis, visual inspection, reverse engineering, etc.) is systematic examination (often known as peer review) of computer source code. It is intended to find mistakes overlooked in the initial development phase, improving both the overall quality of software and the developers' skills. Reviews are done in various forms such as pair programming, informal walkthroughs, and formal inspections. You are to apply Code Inspection techniques (supported by the review checklist at the end of this document) for the purpose of evaluating the general quality of selected code extracts from a release of the Glassfish 4.1 application server (see the information at the end of the document).
+>Code inspection (e.g., code analysis, visual inspection, reverse engineering, etc.) is systematic examination (often known as peer review) of computer source code. It is intended to find mistakes overlooked in the initial development phase, improving both the overall quality of software and the developers' skills. Reviews are done in various forms such as pair programming, informal walkthroughs, and formal inspections. You are to apply Code Inspection techniques (supported by the review checklist) for the purpose of evaluating the general quality of selected code extracts from a release of the Glassfish 4.1 application server.   
 In the scope of this assignment, you will be given a selected number of classes extracted from said software release. Said selection is done systematically, and will assign different sets of classes to different groups. The systematic selection makes sure that the difficulty of the assignment is homogeneous per every group and takes into account the fact that we have groups of different sizes. We have allocated about 80 lines of code per person.
 
-+ **Inspection document** submission deadline 05/01/2016 - WORK IN PROGRESS
++ **Inspection document** submission deadline 05/01/2016 - [link](./Deliveries/3_CI.pdf)
 
 
 ## Future assignments
