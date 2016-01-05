@@ -1,31 +1,41 @@
-\chapter{Problems}
+\chapter{Analysis of the methods}\label{chap:problems}
 
-%List of issues found by applying the checklist: <report the classes/code fragments that do not fulfill some points in the check list. Explain which point is not fulfilled and why>.
+%List of issues found by applying the checklist: <report the classes/code fragments that do not fulfil some points in the check list. Explain which point is not fulfilled and why>.
 
 %Any other problem you have highlighted: <list here all the parts of code that you think create or may create a bug and explain why>.
 
 
-\lipsum[1]
+In this chapter we are going to check the compliance to the checklist (see \cref{chap:checklist} for reference) of the three methods we are assigned. 
+
+Each section of the chapter goes through a specific method, whose code we show entirely, for the sake of completeness. In order to improve readability, the code of the method has been split into fragments, which are followed by a report of the issues we spotted.
+
+Tabs are shown, highlighted by a \FancyVerbTab\xspace symbol. 
 
 
-\textbf{Tabs are shown, highlighted by a $-\hspace{-0.4em}\rangle\hspace{-0.2em}|$ symbol.} %TODO Sostituire!
 
-\section{\normalfont\texttt{evaluate\_client\_conformance\_ascontext}}
 
-The objective of the method is described by the preceding comment. The code of the method has been split into sections, in order to improve readability. Following each section, a brief report of the violated rules (a complete reference is in \cref{chap:reference}).
 
-\inputpartmint{startASC}{11215}
+
+\section{\normalfont\mintinline{java}|evaluate_client_conformance_ascontext|}
+
+\inputpartmint{startASC}{11208}
+
+
+
+\subsection{Issues}
+
+\inputpartmint{11209}{11215}
 
 \begin{description}
 	
 	\item [\labelcref{item:5}]
-		the name of the method \verb|evaluate_client_conformance_ascontext| (\lmref{l:11209}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformanceAscontext}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
+		the method name \mintinline{java}|evaluate_client_conformance_ascontext| (\lmref{l:11209}) does not comply with the rule, since it contains underscore characters; given that other methods in the class follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability.
 	
 	\item [\labelcref{item:6}]
-		the variable name \verb|client_authenticated| (\lmref{l:11215}) does not comply with the rule; a compliant solution would be \verb|clientAuthenticated|. 
+		the variable name \mintinline{java}|client_authenticated| (\lmref{l:11215}) does not comply with the rule, as it contains an underscore. 
 	
 	\item [\labelcref{item:10}]
-		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:11213} does not comply (the opening brace should be placed at the end of the method declaration).
+		the only inconsistency in the bracing style is in \lmref{l:11213}, since elsewhere in the method K\&R\footnote{K\&R is the \mbox{well-known} shorthand for ``Kernighan and Ritchie''.} style is consistently adopted (the opening brace should be placed at the end of the method declaration).
 		
 \end{description}
 
@@ -34,7 +44,7 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 	
 	\item [\labelcref{item:52}]
-		the \verb|try-catch| group in \lmrange{l:11219}{l:11225} is roughly managed: catching, generically, \verb|(Exception e)| does not allow to provide a detailed log of the error.
+		the \mintinline{java}|try-catch| group in \lmrange{l:11219}{l:11225} is roughly managed: catching a generic \mintinline{java}|Exception| does not allow a detailed log of the error.
 
 \end{description}
 
@@ -42,16 +52,19 @@ The objective of the method is described by the preceding comment. The code of t
 \inputpartmint{11228}{11248}
 
 \begin{description}
-	
+
 	\item [\labelcref{item:11}] 
-		both \verb|if| and \verb|else| clauses in \lmrange{l:11245}{l:11248} do not surround their statement with braces, which is to be avoided.
+		single line statements in the \mintinline{java}|if-else| block (\lmrange{l:11245}{l:11248}) should be surrounded by curly braces.
 	
 	\item [\labelcref{item:44}]
 		to avoid an example of ``brutish programming'', \lmrange{l:11245}{l:11248}, together with \lmref{l:11215}, can be collapsed to the following statement: 
-		\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
-		boolean client_authenticated = (ctx != null) && (ctx.authcls != null) && (ctx.subject != null);
+		
+		\begin{minted}[showtabs=false, linenos=false, frame=leftline, autogobble=true]{java}
+	boolean client_authenticated = (ctx != null) && (ctx.authcls != null) && (ctx.subject != null);
 		\end{minted}
-		however this line is too long (it exceeds the 80 character limit stated in \cref{item:13}) and may be less readable; moreover, future changes to the method may take more time, should the truth condition be expanded, or the \verb|if| clause used again.
+		
+		However, this solution is not trouble-free (e.g., it exceeds the 80 character limit stated in \cref{item:13}).
+		
 \end{description}
 
 \inputpartmint{11250}{endASC}
@@ -59,53 +72,47 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 	
 	\item [\labelcref{item:6}]
-		the \verb|client_tgtname| variable, declared in \lmref{l:11257}, does not comply with standard naming rules; a compliant name for the variable would be: \verb|clientTgtname|.
+		the \mintinline{java}|client_tgtname| variable (\lmref{l:11257}) does not comply with standard naming rules, because it contains an underscore.
 	
 	\item [\labelcref{item:11}] 
-		the \verb|for| group in \lmrange{l:11262}{l:11265} does not surround its statement with braces, which is to be avoided.
+		the \mintinline{java}|if| statement in the \mintinline{java}|for| group (\lmrange{l:11262}{l:11265}) should be surrounded with braces.
 	
 	\item [\labelcref{item:13}]
-		sometimes it is highly improbable to respect the 80 characters limit, when it comes to nested if clauses which require the execution of other methods; however, in this fragment only a very limited number of lines exceeds significantly that limit (e.g., \lmref{l:11252}).
+		a limited number of lines in this fragment exceeds significantly the 80 character per line limit (most notably, \lmref{l:11252}); however, when it comes to nested \mintinline{java}|if| clauses and to method calls inside the \mintinline{java}|if| conditions, it may be difficult to comply with this limit.
 	
 	\item [\labelcref{item:15}]
-		the condition of the \verb|if| statement in \lmrange{l:11251}{l:11252} breaks before \verb|||| operator, instead of after, which is preferable.
+		the condition of the \mintinline{java}|if| statement in \lmrange{l:11251}{l:11252} breaks before \mintinline{java}|||| operator, instead of after the operator itself, which is preferable.
 	
 \end{description}
 
 
+\subsection{Suggestions}
+
+To improve readability, we suggest to include the \mintinline{java}{for} block in \lmrange{l:11262}{l:11265} within an \mintinline{java}{else} clause (obviously, thanks to the use of  \mintinline{java}{return} statement in \lmref{l:11264}, the behaviour of the method does not change). 
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{\normalfont\mintinline{java}|evaluate_client_conformance_sascontext|}
 
+\inputpartmint{startSAS}{21279}
 
+\subsection{Issues}
 
-
-
-
-
-
-
-
-
-
-
-
-%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\normalfont\texttt{evaluate\_client\_conformance\_sascontext}}
-
-\inputpartmint{startSAS}{21285}
+\inputpartmint{21280}{21285}
+ 
 
 \begin{description}
 	
 	\item [\labelcref{item:5}]
-		the name of the method \verb|evaluate_client_conformance_sascontext| (\lmref{l:21280}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformanceSascontext}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
+		the method name \mintinline{java}|evaluate_client_conformance_sascontext| (\lmref{l:21280}) does not comply with the rule, due to the underscore characters inside.
 	
 	\item [\labelcref{item:6}]
-		the variable name \verb|caller_propagated| (\lmref{l:21285}) does not comply with the rule; a compliant solution would be \verb|callerPropagated|. 
+		the variable name \mintinline{java}|caller_propagated| (\lmref{l:21285}) does not comply with the rule, because it contains an underscore as separator. 
 	
 	\item [\labelcref{item:10}]
-		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:21283} does not comply (the opening brace should be placed at the end of the method declaration).
+		the only inconsistency in the bracing style is in \lmref{l:21283}, since elsewhere in the method K\&R style is consistently adopted.
 		
 \end{description}
 
@@ -116,7 +123,7 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 	
 	\item [\labelcref{item:52}]
-		the \verb|try-catch| group in \lmrange{l:21289}{l:21294} is roughly managed: catching, generically, \verb|(Exception e)| does not allow to provide a detailed log of the error.
+		the \mintinline{java}|try-catch| group in \lmrange{l:21289}{l:21294} is roughly managed: catching a generic \mintinline{java}|Exception| does not allow a detailed log of the error.
 
 \end{description}
 
@@ -126,14 +133,14 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 	
 	\item [\labelcref{item:11}] 
-		both \verb|if| and \verb|else| clauses in \lmrange{l:11245}{l:11248} do not surround their statement with braces, which is to be avoided.
+		single line statements in the \mintinline{java}|if-else| block (\lmrange{l:21297}{l:21300}) should be surrounded by curly braces.
 		
 	\item [\labelcref{item:44}]
 		to avoid an example of ``brutish programming'', \lmrange{l:21297}{l:21300}, together with \lmref{l:21285}, can be collapsed to the following statement: 
-		\begin{minted}[showtabs=false, linenos=false,frame=leftline]{java}
-		boolean caller_propagated = (ctx != null) && (ctx.identcls != null) && (ctx.subject != null);
+		\begin{minted}[showtabs=false, linenos=false,frame=leftline, autogobble=true]{java}
+	boolean caller_propagated = (ctx != null) && (ctx.identcls != null) && (ctx.subject != null);
 		\end{minted}
-		however this line is too long (it exceeds the 80 character limit stated in \cref{item:13}) and may be less readable; moreover, future changes to the method may take more time, should the truth condition be expanded, or the \verb|if| clause used again.
+		However this line is too long (it exceeds the 80 character limit stated in \cref{item:13}).
 
 \end{description}
 
@@ -142,7 +149,7 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 		
 	\item [\labelcref{item:11}] 
-		the \verb|if| group in \lmrange{l:21303}{l:21304} does not surround its statement with braces, which is to be avoided. 
+		single line statement in the \mintinline{java}|if| block (\lmrange{l:21303}{l:21304}) should be surrounded by curly braces.
 
 \end{description}
 
@@ -152,74 +159,46 @@ The objective of the method is described by the preceding comment. The code of t
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{\normalfont\mintinline{java}|evaluate_client_conformance|}
 
+\inputpartmint{startECC}{31337}
 
+\subsection{Issues}
 
+\inputpartmint{31338}{31342}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%\clearpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\normalfont\texttt{evaluate\_client\_conformance}}
-\inputpartmint{startECC}{31342}
 \begin{description}
 
 	\item [\labelcref{item:5}]
-		the name of the method \verb|evaluate_client_conformance| (\lmref{l:31338}) does not comply with rule, that is it does not match the regular expression \verb|^[a-z][a-zA-Z0-9]*$|; since other methods in the class do follow the same pattern (lowercase words, separated by underscores), maybe this is done intentionally to improve readability; a compliant solution would be: \texttt{evaluateClientConformance}. %TODO Check acapo. Maybe spiegare per forzare linea successiva?
+		the method name \mintinline{java}|evaluate_client_conformance| (\lmref{l:31338}) does not comply with the rule, owing to the underscore characters within.
 	
 	\item [\labelcref{item:6}]
-		the names of the two parameters \verb|object_id| (\lmref{l:31339}) and \verb|ssl_used| (\lmref{l:31340}) do not comply with the rule. 
+		the names of the two parameters \mintinline{java}|object_id| (\lmref{l:31339}) and \mintinline{java}|ssl_used| (\lmref{l:31340}) contain underscores, so they do not comply with the rule. 
 	
 	\item [\labelcref{item:10}]
-		since we choose to adopt K\&R style, since it is compact yet tidy, only \lmref{l:31342} does not comply (the opening brace should be placed at the end of the method declaration).
+		the only inconsistency in the bracing style is in \lmref{l:31342}, since elsewhere in the method K\&R style is consistently adopted.
+
 	
 \end{description}
-
 
 \inputpartmint{31343}{31376}
 
 \begin{description}
 
 	\item [\labelcref{item:9}] 
-		in \lmrange{l:31365}{l:31371} and \lmrange{l:31373}{l:31376} tabs are used to indent, which is to be avoided. Moreover, indentation is savagely done in these fragments of code: we suggest the use of an auto-formatting tool to fix this issue.
+		in \lmrange{l:31365}{l:31371} and \lmrange{l:31373}{l:31376} tabs are used to indent, which is to be avoided. Moreover, we suggest the use of an auto-formatting tool to fix the wild indentation in this fragment of code.
 
 	\item [\labelcref{item:11}] 
-		the \verb|if| groups in \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, and \lmrange{l:31358}{l:31359} do not surround their statements with braces, which is to be avoided. 
+		
+		the \mintinline{java}|if| groups in \lmrange{l:31349}{l:31350}, \lmrange{l:31352}{l:31353}, and \lmrange{l:31358}{l:31359} should surround their single line statements with braces. 
 		
 	\item [\labelcref{item:13}]
-		\lmref{l:31375}	does not comply with the 80 characters limit. However, it would be impossible to do so, unless the string is divided; this line is still acceptable, though, since it is less than 120 characters long.  
+		\lmref{l:31375}	does not comply with the 80 characters limit; however, it would be impossible to do so, unless the string is divided; this line is still acceptable, though, since it is less than 120 characters long (\cref{item:14}).
+		
+	\item [\labelcref{item:44}]
+		the initialisation of \mintinline{java}|iorDescSet| to \mintinline{java}|null| (\lmref{l:31363}) is useless, since the immediately following \mintinline{java}|if-else| group changes its value for sure.
 
 \end{description}
 
@@ -228,36 +207,58 @@ The objective of the method is described by the preceding comment. The code of t
 \begin{description}
 
 	\item [\labelcref{item:9}] 
-		in \lmrange{l:31392}{l:31395}, \lmrange{l:31400}{l:31403}, \lmrange{l:31418}{l:31421}, and \lmrange{l:31426}{l:31429}  tabs are used to indent, which is to be avoided. Moreover, indentation is savagely done in these fragments of code: we suggest the use of an auto-formatting tool to fix this issue.
+		in \lmrange{l:31392}{l:31395}, \lmrange{l:31400}{l:31403}, \lmrange{l:31418}{l:31421}, and \lmrange{l:31426}{l:31429}  tabs are used to indent, which is to be avoided. Moreover, indentation is wildly done in this fragment of code: we suggest the use of an auto-formatting tool to fix this issue.
 		
-	\item [\labelcref{item:11}] the \verb|if| groups in \lmrange{l:31382}{l:31383} and \lmrange{l:31435}{l:31436} do not surround their statements with braces, which is to be avoided.
+	\item [\labelcref{item:11}] 
+		the \mintinline{java}|if| groups in \lmrange{l:31382}{l:31383} and \lmrange{l:31435}{l:31436} should surround their single line statements with braces.
 	
-	\item [\labelcref{item:13}] \lmref{l:31394}, \lmref{l:31402}	, \lmref{l:31420}, and \lmref{l:31428} do not comply with the 80 characters limit.
+	\item [\labelcref{item:13}]
+		\lmref{l:31394}, \lmref{l:31402}	, \lmref{l:31420}, and \lmref{l:31428} do not comply with the 80 characters limit; these lines are still acceptable, though, in compliance with \cref{item:14}.
 
-	\item [\labelcref{item:32}] variable declared in \lmref{l:31407} is initialized in vain, since the following block \lmref{l:31408}{l:31416} changes its value for sure
-	
+	\item [\labelcref{item:32}] 
+		since the initialisation of \mintinline{java}|realmName| string is potentially useless, we suggest a refactoring of the block \lmrange{l:31407}{l:31416} to improve readability and reduce complexity:\begin{minted}[linenos=false, showtabs=false, autogobble=true]{java}
+	String realmName;
 
-
-
-\end{description}
-
-
-\subsection{General}
-
-\begin{description}
-		 
+	if(ejbDesc != null && ejbDesc.getApplication() != null) {
+		realmName = ejbDesc.getApplication().getRealm();
 		
-	\item [suggestion] we suggest to substitute  the block \begin{minted}[linenos=false, showtabs=false]{java}
-		if(_logger.isLoggable(Level.FINE)) {
-		    _logger.log(Level.FINE,
-				"SecurityMechanismSelector.evaluate_client_conformance: XXX");#\label{l:31420}%
+		if(realmName == null) {
+			realmName = iorDesc.getRealmName();
+			
+			if (realmName == null) {
+				realmName = "default";
+			}
 		}
+	} else {
+		realmName = "default";
+	}
 	\end{minted}
-	with a call to a private method (pass XXX), in order to save some lines of code, reduce complexity and improve readability.
 
 \end{description}
 
+% FOR ritorna TRUE se almeno uno è conformante
 
+\subsection{Suggestions}
+
+We suggest to nest the \mintinline{java}{if} block in \lmrange{l:31358}{l:31359} inside the previous one (\lmrange{l:31352}{l:31353}), in order to avoid a double check in case \mintinline{java}{protocolMgr} is not \mintinline{java}{null}.
+
+Moreover, the following fragment is repeated several times in this method  (\lmrange{l:31373}{l:31376}, \lmrange{l:31392}{l:31395}, \lmrange{l:31400}{l:31403}, \lmrange{l:31418}{l:31421}, and \lmrange{l:31426}{l:31429}), with slight differences each time. In particular, the only varying part is the portion of string \mintinline{java}|"XYZ"|:
+
+\begin{minted}[linenos=false, showtabs=false, autogobble=true]{java}
+	if(_logger.isLoggable(Level.FINE)) {
+		_logger.log(Level.FINE,
+				"SecurityMechanismSelector.evaluate_client_conformance: " + "XYZ");
+	}
+\end{minted}
+	
+We suggest to substitute all occurrences of this fragment with a call to a private method, to which \mintinline{java}|"XYZ"| is passed as a parameter, in order to save lines of code, reduce complexity and improve readability.
+
+
+
+\section{Final considerations}
+In general the portion of class we were assigned suffers from minor stylistic issues. Most of them will be easily corrected automatically by any of the major IDEs (among them, NetBeans and Eclipse). There are also minor redundancy issues, which can be spotted and corrected with little effort.
+
+However, please note that security mechanisms are a complex matter, and the functional analysis and bug spotting are far beyond the objectives of this document. Deep and thorough testing is needed to guarantee the quality of code.
 
 
 

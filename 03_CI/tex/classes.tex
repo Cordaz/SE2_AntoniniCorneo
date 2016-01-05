@@ -1,12 +1,36 @@
-\chapter{Classes and functional analysis}
+\chapter{Class presentation and functional analysis}\label{chap:class}
+
+%Classes that were assigned to the group: <state the namespace pattern and name of the classes that were assigned to you>
+%Functional role of assigned set of classes: <elaborate on the functional role you have identified for the class cluster that was assigned to you, also, elaborate on how you managed to understand this role and provide the necessary evidence, e.g., javadoc, diagrams, etc.>
 
 
+\verb|SecurityMechanismSelector| class is part of the security module on the server side of GlassFish. In particular, the class belongs to \verb|com.sun.enterprise.iiop.security| package, which provides security infrastructure and technology integration to Enterprise JavaBeans\footnote{We recall that an enterprise bean is a \mbox{server-side} component that encapsulates the business logic of an application. The business logic is the code that fulfils the purpose of the application.}. 
 
+We understand that the objective of the class is to select the appropriate security information to be sent in the IIOP message to the client. IIOP stands for Internet \mbox{Inter-ORB} Protocol, which is what makes it possible for distributed programs written in different programming languages to communicate over the Internet. 
+
+Our understanding of the document is confirmed by the Javadoc description of the class, quoted below:
 
 \inputpartmint{00108}{00122}
 
+In particular, we are assigned the following methods from the class to analyse:
 
-Classes that were assigned to the group: <state the namespace pattern and name of the classes that were assigned to you>
-Functional role of assigned set of classes: <elaborate on the functional role you have identified for the class cluster that was assigned to you, also, elaborate on how you managed to understand this role and provide the necessary evidence, e.g., javadoc, diagrams, etc.>
+\begin{enumerate}
+	\item \mintinline{java}|evaluate_client_conformance_ascontext|;
+	\item \mintinline{java}|evaluate_client_conformance_sascontext|;
+	\item \mintinline{java}|evaluate_client_conformance|.
+\end{enumerate}
 
-\lipsum[1-4]
+We are going to describe them in detail later (\cref{chap:problems}), but for now it is useful to present the call hierarchy of the first one, generated through NetBeans IDE. The call hierarchy tree for the second method is exactly the same as the one presented, save for the root, obviously; as of the third method, it is the only caller of the first two). So, here follows the call hierarchy tree for \mintinline{java}|evaluate_client_conformance_ascontext|:
+
+\noindent\begin{fullwidth}\begin{minipage}{\textwidth}%
+\vspace{1em}%
+\begin{forest} dir tree
+[\mintinline{java}|private boolean evaluate_client_conformance_ascontext| in \mintinline{java}|class SecurityMechanismSelector|[\mintinline{java}|private boolean evaluate_client_conformance| in \mintinline{java}|class SecurityMechanismSelector|[\mintinline{java}|public SecurityContext evaluateTrust| in \mintinline{java}|class SecurityMechanismSelector|[\mintinline{java}|public int setSecurityContext| in \mintinline{java}|class SecurityContextUtil|[\mintinline{java}|private void handle_null_service_context| in \mintinline{java}|class SecServerRequestInterceptor|[\mintinline{java}|public void receive_request| in \mintinline{java}|class SecServerRequestInterceptor|]][\mintinline{java}|public void receive_request| in \mintinline{java}|class SecServerRequestInterceptor|]]]]]
+\end{forest}%
+\vspace{1em}%
+\end{minipage}\end{fullwidth}
+
+
+By reading the documentation of the methods in the tree we understand that the class under analysis offers some methods to select the appropriate security context for the server, based on target configuration and client policies, and returns them to \mintinline{java}|setSecurityContext|, which authenticates the client. The result of the authentication process is passed to the \mbox{server-side} request interceptor, and in particular to \mintinline{java}|receive_request| method. A request interceptor is, roughly, a software element designed to transfer context information between clients and servers. 
+
+

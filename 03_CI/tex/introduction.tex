@@ -1,15 +1,17 @@
 \chapter{Introduction} \label{chap:introduction}
 
 
-\section{Purpose}\lipsum[1]
+\section{Purpose and scope}Code inspection is the systematic examination of computer source code, in order to improve the overall quality of software. We are to apply code inspection techniques to evaluate the general quality of selected code extracts from a release of the GlassFish 4.1 application server.
 
-\section{Scope}\lipsum[2]
-%\section{Definitions, acronyms, and abbreviations}
-%\lipsum[3]
+We are going to analyse a portion of \verb|SecurityMechanismSelector| class, from \verb|com.sun.enterprise.iiop.security| package. 
 
 
 \section{References}
-\lipsum[4]
+We are reviewing GlassFish source code, version 4.1.1, revision 64219\footnote{This is the link to checkout the whole code: \url{https://svn.java.net/svn/glassfish~svn/tags/4.1.1@64219}}. The code under analysis is typeset right in the document.
 
-\section{Overview of the document}	
-\lipsum[5]
+As a reference, we quote the code inspection checklist in \cref{chap:checklist}.
+
+\section{Overview of the document}
+This document develops as follows. In \cref{chap:class} we provide some general information about the class we are assigned and its functional role, to better understand the context we are moving in. \Cref{chap:problems} represents the core of the document, because the thorough analysis of the methods is detailed there. 
+
+\Cref{chap:checklist} contains the whole code inspection checklist, as a support.

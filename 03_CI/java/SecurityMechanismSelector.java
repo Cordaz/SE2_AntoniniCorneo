@@ -1216,7 +1216,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
 
 #\label{l:11217}%        // get requirements and supports at the client authentication layer
 #\label{l:11218}%        AS_ContextSec ascontext = null;
-#\label{l:11219}%         try {
+#\label{l:11219}%        try {
             ascontext = this.getCtc().createASContextSec(iordesc, realmName);
         } catch (Exception e) {
             _logger.log(Level.SEVERE, "iiop.createcontextsec_exception",e);
@@ -1261,7 +1261,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
             }            
 #\label{l:11262}%            for (int i=0; i < ascontext.target_name.length ; i ++)
                 if (ascontext.target_name[i] != client_tgtname[i]){#\label{l:11263}%
-                    return false; // mechanism did not match
+#\label{l:11264}%                    return false; // mechanism did not match
                 }#\label{l:11265}%
         } else { 
             if ( isSet(ascontext.target_requires, EstablishTrustInClient.value)){
@@ -1276,7 +1276,7 @@ localStrings.getLocalString("securitymechansimselector.runas_cannot_propagate_us
     * is derived from the EjbIORConfigurationDescriptor.
     *
     * returns true if conformant ; else returns false
-    */
+    */#\label{l:21279}%
 #\label{l:21280}%    private boolean evaluate_client_conformance_sascontext(
                         SecurityContext ctx,
                         EjbIORConfigurationDescriptor iordesc)
@@ -1334,7 +1334,7 @@ CompoundSecMechanism
 as_context_mech
      * and sas_context_mech must all be consistent.
      * 
-     */
+     */#\label{l:31337}%
     private boolean evaluate_client_conformance(SecurityContext   ctx,#\label{l:31338}%
                                                 byte[]            object_id,#\label{l:31339}%
                                                 boolean           ssl_used,#\label{l:31340}%
@@ -1360,8 +1360,8 @@ as_context_mech
 
 #\label{l:31361}%        EjbDescriptor ejbDesc = protocolMgr.getEjbDescriptor(object_id);
 
-        Set iorDescSet = null;
-        if (ejbDesc != null) {
+        Set iorDescSet = null;#\label{l:31363}%
+#\label{l:31364}%        if (ejbDesc != null) {
 #\label{l:31365}%	    iorDescSet = ejbDesc.getIORConfigurationDescriptors();
 	}
 	else {

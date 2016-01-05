@@ -1,3 +1,4 @@
+package com.sun.enterprise.iiop.security;
 
 /**
  * This class is responsible for making various decisions for selecting
@@ -74,12 +75,13 @@ public final class SecurityMechanismSelector implements PostConstruct {
     /*
     public String[] getServerTrustedHosts() {
 		//...
-}
+	}
     
     public void setServerTrustedHosts(String[] val) {
 		//...
-}
-     */
+	}
+	*/
+	
     public ORB getOrb() {
         //...
     }
@@ -189,12 +191,12 @@ public final class SecurityMechanismSelector implements PostConstruct {
      * information.
      *
      * @return true if the server is trusted.
-     */
-    /*
+     */  /*
     private boolean isServerTrusted() {
 		//...
-}
-     */
+	}
+	*/
+
     /**
      * Checks if a given domain is trusted. e.g. domain = 123.203.1.1 is an IP
      * address trusted list = *.com, *.eng should say that the given domain is
@@ -203,15 +205,15 @@ public final class SecurityMechanismSelector implements PostConstruct {
      * @param the InetAddress of the domain to be checked for
      * @param the array of trusted domains
      * @return true - if the given domain is trusted
-     */
-    /*
+     */  /*
     private boolean isDomainInTrustedList (InetAddress inetAddress,
                                            String[] trusted)
         throws SecurityException 
     {
 		//...
-}
-     */
+	}
+	*/
+	
     /**
      * Get the username and password either from the JAAS subject or from thread
      * local storage. For appclients if login has'nt happened this method would
@@ -249,8 +251,8 @@ public final class SecurityMechanismSelector implements PostConstruct {
      * Select the security mechanism from the list of compound security
      * mechanisms.
      */
-    private CompoundSecMech selectSecurityMechanism(
-            CompoundSecMech[] mechList) throws SecurityMechanismException {
+    private CompoundSecMech selectSecurityMechanism(CompoundSecMech[] mechList) 
+            throws SecurityMechanismException {
         //...
     }
 
@@ -353,8 +355,7 @@ public final class SecurityMechanismSelector implements PostConstruct {
         //...
     }
 
-    private static final String traceIORsProperty
-            = "com.sun.enterprise.iiop.security.traceIORS";
+    private static final String traceIORsProperty = "com.sun.enterprise.iiop.security.traceIORS";
 
     private static final boolean _traceIORs = Boolean.getBoolean(traceIORsProperty);
 
@@ -374,8 +375,7 @@ public final class SecurityMechanismSelector implements PostConstruct {
         //...
     }
 
-    public String getSecurityMechanismString(CSIV2TaggedComponentInfo tCI,
-            IOR ior) {
+    public String getSecurityMechanismString(CSIV2TaggedComponentInfo tCI, IOR ior) {
         //...
     }
 

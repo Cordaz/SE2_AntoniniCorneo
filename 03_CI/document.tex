@@ -7,15 +7,13 @@
 
 \begin{document}
 
-%TODO Remove lipsum.
-
-\frontmatter
+\frontmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{./tex/titlePage}
 
 \tableofcontents
 
-\mainmatter
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{./tex/introduction}
 
@@ -23,15 +21,18 @@
 
 \input{./tex/problems}
 
-\appendix
+\appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{./tex/checklist} 
 
-\input{./tex/javacode} %TODO Remove codice completo
+%\input{./tex/javacode} 
 
-\backmatter
+\backmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{./tex/hours}
+
+%TODO Remove codice completo
+%\clearpage\inputminted{java}{"./java/SecurityMechanismSelector.java"}
 
 \end{document}
 
