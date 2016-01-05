@@ -59,25 +59,28 @@
 % Tree hierarchy 
 \usepackage{forest}
 \forestset{
+dir node/.style={
+    parent anchor=south west,
+    child anchor=west,
+    anchor=west,
+    inner ysep=0pt,
+    align=left,
+  },
   dir tree/.style={
     for tree={
-      parent anchor=south west,
-      child anchor=west,
-      anchor=mid west,
-      inner ysep=0pt,
       grow'=0,
-      align=left,
+      dir node,
       edge path={
         \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) ++(1em,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
       },
       if n children=0{}{
         delay={
-          prepend={[,phantom, calign with current]}
+          prepend={[text 1, dir node, phantom, calign with current]}
         }
       },
       fit=band,
       before computing xy={
-        l=2em
+        l=2em,
       }
     },
   }
