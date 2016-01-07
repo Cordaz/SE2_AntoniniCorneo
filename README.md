@@ -11,6 +11,7 @@ A user can reserve a taxi by specifying the origin and the destination of the ri
 
 + **Requirements Analysis and Specification Document** submission deadline 06/11/2015 - [link](./Deliveries/1_RASD.pdf)
 + **Design Document** submission deadline 04/12/2015 - [link](./Deliveries/2_DD.pdf)
++ **Integration Test Plan Document** submission deadline 21/01/2016 - WORK IN PROGRESS
 
 
 ## GlassFish 4.1.1
@@ -21,5 +22,4 @@ In the scope of this assignment, you will be given a selected number of classes 
 
 
 ## Future assignments
-+ **Testing document** submission deadline 21/01/2016
 + **Function points document** submission deadline 30/01/2016

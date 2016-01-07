@@ -1,0 +1,101 @@
+\ProvidesPackage{mystyle}
+
+% Font selection
+\usepackage[extralight,semibold]{raleway}
+\usepackage{microtype}
+
+% Language and conventions
+\usepackage[UKenglish]{babel}
+\usepackage[british, nocleanlook]{isodate}
+\usepackage[binary-units = true]{siunitx}
+
+% Title page and colours
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{red}{rgb}{0.95,0.20,0.20} % red 
+\definecolor{black}{rgb}{0,0,0} % black
+\definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
+
+% Fixes to tufte-book document class
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Prevent hyphenation of the following
+\hyphenation{myTaxiService}
+\hyphenation{myTaxiApp}
+\hyphenation{myTaxiAssist}
+\hyphenation{myTaxiWeb}
+\hyphenation{mock-up} \hyphenation{mock-ups}
+\hyphenation{non-functional}
+
+% Listings
+\usepackage[cache=true,outputdir=.texpadtmp]{minted}
+\setminted[java]{
+	fontsize=\small,
+	frame=leftline,
+	linenos=true,
+	obeytabs=true, tabsize=4, showtabs=true,
+	style=pastie,
+	escapeinside=\#\%,
+}
+\setmintedinline[java]{
+	fontsize=\normalsize,
+	linenos=false,
+	showtabs=false,
+	escapeinside=\#\%,
+}
+\newcommand{\inputpartmint}[2]{%
+% OLD BRUTAL SOLUTION
+%\immediate\write18{sed -n '/l:#1/,/l:#2/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag.txt}%
+%\inputminted[firstnumber=\getrefnumber{l:#1}]{java}{./.texpadtmp/frag.txt}%
+%\immediate\write18{rm ./.texpadtmp/frag.txt}%  
+%
+% NEW, LESS BRUTAL, EQUALLY FRAGILE SOLUTION
+\inputminted[firstline=\getrefnumber{l:#1}, lastline=\getrefnumber{l:#2}]{java}{"./java/SecurityMechanismSelector.java"}%
+}
+
+% Tree hierarchy 
+\usepackage{forest}
+\forestset{
+dir node/.style={
+    parent anchor=south west,
+    child anchor=west,
+    anchor=west,
+    inner ysep=0pt,
+    align=left,
+  },
+  dir tree/.style={
+    for tree={
+      grow'=0,
+      dir node,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) ++(1em,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+      },
+      if n children=0{}{
+        delay={
+          prepend={[text 1, dir node, phantom, calign with current]}
+        }
+      },
+      fit=band,
+      before computing xy={
+        l=2em,
+      }
+    },
+  }
+}
+
+% Misc
+\usepackage{url}
+\usepackage{enumitem} % allows [resume] option
+\usepackage{refcount} % convert reference to number
+
+% Cross referencing (it MUST be loaded AFTER every other package)
+\usepackage{xspace}
+\usepackage[noabbrev]{cleveref}
+\crefname{sidenote}{sidenote}{sidenotes}
+\crefname{rule}{rule}{rules}
+\newcommand{\lmref}[1]{line~\ref{#1}\xspace}
+\newcommand{\lmrange}[2]{lines~\ref{#1} to~\ref{#2}\xspace}
+
