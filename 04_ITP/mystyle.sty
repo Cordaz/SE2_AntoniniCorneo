@@ -30,72 +30,21 @@
 \hyphenation{mock-up} \hyphenation{mock-ups}
 \hyphenation{non-functional}
 
-% Listings
-\usepackage[cache=true,outputdir=.texpadtmp]{minted}
-\setminted[java]{
-	fontsize=\small,
-	frame=leftline,
-	linenos=true,
-	obeytabs=true, tabsize=4, showtabs=true,
-	style=pastie,
-	escapeinside=\#\%,
-}
-\setmintedinline[java]{
-	fontsize=\normalsize,
-	linenos=false,
-	showtabs=false,
-	escapeinside=\#\%,
-}
-\newcommand{\inputpartmint}[2]{%
-% OLD BRUTAL SOLUTION
-%\immediate\write18{sed -n '/l:#1/,/l:#2/p' "./java/SecurityMechanismSelector.java" > ./.texpadtmp/frag.txt}%
-%\inputminted[firstnumber=\getrefnumber{l:#1}]{java}{./.texpadtmp/frag.txt}%
-%\immediate\write18{rm ./.texpadtmp/frag.txt}%  
-%
-% NEW, LESS BRUTAL, EQUALLY FRAGILE SOLUTION
-\inputminted[firstline=\getrefnumber{l:#1}, lastline=\getrefnumber{l:#2}]{java}{"./java/SecurityMechanismSelector.java"}%
-}
-
-% Tree hierarchy 
-\usepackage{forest}
-\forestset{
-dir node/.style={
-    parent anchor=south west,
-    child anchor=west,
-    anchor=west,
-    inner ysep=0pt,
-    align=left,
-  },
-  dir tree/.style={
-    for tree={
-      grow'=0,
-      dir node,
-      edge path={
-        \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) ++(1em,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
-      },
-      if n children=0{}{
-        delay={
-          prepend={[text 1, dir node, phantom, calign with current]}
-        }
-      },
-      fit=band,
-      before computing xy={
-        l=2em,
-      }
-    },
-  }
-}
+% Tabular
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 % Misc
 \usepackage{url}
-\usepackage{enumitem} % allows [resume] option
-\usepackage{refcount} % convert reference to number
 
 % Cross referencing (it MUST be loaded AFTER every other package)
 \usepackage{xspace}
 \usepackage[noabbrev]{cleveref}
-\crefname{sidenote}{sidenote}{sidenotes}
-\crefname{rule}{rule}{rules}
-\newcommand{\lmref}[1]{line~\ref{#1}\xspace}
-\newcommand{\lmrange}[2]{lines~\ref{#1} to~\ref{#2}\xspace}
+
+
+
 

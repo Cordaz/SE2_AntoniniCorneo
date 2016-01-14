@@ -2,18 +2,49 @@
 
 
 
+\section{Purpose and scope}% State the purpose and scope of the document.
+This document describes the plans for testing the integration between the components of myTaxiService system, which were presented in the \emph{Design document}.
+
+As such, a good familiarity of the past documents\footnote{See \cref{sec:references} for references to these documents.}, namely the \emph{Requirement analysis and specification document} (RASD) and the already mentioned \emph{Design document} (DD), is needed. As a consequence, here we are going through the scope of myTaxiService project very rapidly.
+
+Milan city council has recently committed to improving public transport services, and taxi service in particular. myTaxiService is a comprehensive system which allows a simplification of the service, as well as the possibility for customers of requesting and reserving taxi rides, even through mobile applications. Taxi drivers will be obviously supported in their activity with a mobile application as well, letting them receive the requests for taxi rides.
+
+
+
+\section{Definitions, acronyms, and abbreviations}
+Please refer to the corresponding section in the RASD for the definitions of words used in the document. Some technical expressions and abbreviations are used in the following, but definitions are given when necessary. 
+
+
+
+\section{References}\label{sec:references}
+% List all reference documents, for instance:% • The project description% • The RASD% • The Design document% • The documentation of any tool you plan to use for testing
+In order to get information about the functionalities of the system, its architecture and design, please refer to the following documents:
+
+\begin{itemize}
+	\item \emph{Assignments 1 and 2}, section~2, parts~I and~II; \printdate{2015-10-13}. This is to be regarded as the high level description of the problem. Available at: \url{https://beep.metid.polimi.it/documents/3343933/d5865f65-6d37-484e-b0fa-04fcfe42216d}.
+	
+	\item \emph{Requirement analysis and specification document}; \printdate{2015-11-6}. Available at: \url{https://github.com/Cordaz/SE2_AntoniniCorneo/raw/master/Deliveries/1_RASD.pdf}.
+	
+	\item \emph{Design document}; \printdate{2015-12-4}. Available at: \url{https://github.com/Cordaz/SE2_AntoniniCorneo/raw/master/Deliveries/2_DD.pdf}.
+\end{itemize}
+
+
+
+
+\section{Overview of the document}
+This document is structured as follows. 
+
+The strategies to be used and the components to be tested are identified in \cref{chap:strategy}, whereas the integration tests are actually described in \cref{chap:steps}. In \cref{chap:tools} we present all tools and test equipment needed to accomplish the integration. Finally, any program stubs and test data required for each integration step is presented in \cref{chap:stubs}.
+
+
+
 \section{Revision history}
 % Record all revisions to the document.
+\begin{itemize}
+	\item \printdate{2016-1-13} creation of the document;
+	\item \printdate{2016-1-21} first complete release (v. 1).
+\end{itemize}
 
 
 
-\section{Purpose and scope}% State the purpose and scope of the document.
-
-
-
-\section{List of Definitions and Abbreviations}
-
-\section{References}
-% List all reference documents, for instance:% • The project description% • The RASD% • The Design document% • The documentation of any tool you plan to use for testing
-
-\section{Overview of the document}
+
