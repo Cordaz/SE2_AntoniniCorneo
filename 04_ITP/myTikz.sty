@@ -1,0 +1,33 @@
+\ProvidesPackage{myTikz}
+
+\usepackage{tikz}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc}
+
+
+\tikzset{
+%	
+	font = \ttfamily,
+%	
+	>=Straight Barb[round],
+%	
+	between/.style args={#1 and #2}{
+         at = ($(#1)!0.5!(#2)$)
+    },
+	between base/.style args={#1 and #2}{
+        between=#1.base and #2.base
+    },
+%	
+	block/.style = {
+		draw, 
+		shape=rectangle, 
+		rounded corners=1mm, 
+		align=center, 
+		minimum width=2.8cm,
+		minimum height=1.2cm
+	},
+%
+	node distance=.6cm and -1cm
+%
+}
+

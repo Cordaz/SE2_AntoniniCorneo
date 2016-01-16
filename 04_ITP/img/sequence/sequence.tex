@@ -1,0 +1,53 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{../../myTikz}
+
+\usepackage[scaled]{beramono}
+\usepackage[T1]{fontenc}
+
+\begin{document}\begin{tikzpicture}
+
+	\node	(reqmanag)	[block]
+		{Request\\Management};
+	
+	\node	(aremanag)	[block, above right = of reqmanag]
+		{Area\\Management};
+	
+	\node	(reqcreat)	[block, above left = of reqmanag]
+		{Request\\Creation};
+	
+	\node	(resmanag)	[block, above = of reqcreat]	
+		{Reservation\\Management};
+	
+	\node	(rescreat)	[block, above =  of resmanag]
+		{Reservation\\Creation};
+
+	\node	(addmanag)	[block, below = of reqmanag]
+		{Address\\Management};
+	
+	\node	(notifeng)	[block, below right =  of addmanag]
+		{Notification\\Engine};
+	
+	\node	(datmanag)	[block, below left =  of addmanag]
+		{PersonalData\\Management};
+	
+	\node	(notifrea)	[block, below =  of notifeng]
+		{Notification\\Reader};
+	
+	\node	(ridmanag)	[block, below =  of datmanag]
+		{Ride\\Management};
+
+	\draw [->]	(rescreat)			--	(resmanag) node[midway,left] {\scriptsize{I1}};
+	\draw [->]	(resmanag)			--	(reqcreat) node[midway,left] {\scriptsize{I2}};
+	\draw [->]	(reqcreat.south)		|-	(reqmanag.west) node[near start,left] {\scriptsize{I3}};
+	\draw [->]	(aremanag.south)		|-	(reqmanag.east) node[near start,right] {\scriptsize{I4}};
+	\draw [->]	(reqmanag)			--	(addmanag) node[midway,left] {\scriptsize{I5}};
+	\draw [->]	(addmanag.west)		-|	(datmanag.north) node[near end,left] {\scriptsize{I6}};
+	\draw [->]	(addmanag.east)		-|	(notifeng.north) node[near end,right] {\scriptsize{I7}};
+	\draw [->]	(datmanag)			--	(ridmanag) node[midway,left] {\scriptsize{I8}};
+	\draw [->]	(notifeng)			--	(notifrea) node[midway,right] {\scriptsize{I9}};
+
+\end{tikzpicture}\end{document}
+
+
+%http://tex.stackexchange.com/questions/149602/drawing-flow-diagram-in-latex-using-tikz
