@@ -1,3 +1,32 @@
-\chapter{Tools and Test Equipment Required}\label{chap:tools}
+\chapter{Supporting information}\label{chap:support}
 
-\textbf{Identify all tools and test equipment needed to accomplish the integration. Refer to the tools presented during the lectures. Explain why and how you are going to use them. Note that you may also use manual testing for some part. Consider manual testing as one of the possible tools you have available.}
+\section{Program stubs and test data}\label{chap:stubs}
+%Based on the testing strategy and test design, identify any program stubs or special test data required for each integration step.
+There are no particular requirements about mock data to perform the tests. According to the \mbox{top-down} strategy we adopted, every integration shall be performed on the basis of the thoroughly tested previous one. As a consequence, the data created to perform each integration may be exploited by the following one. 
+
+We only suggest to perform tests with Milan map being already loaded, in order to identify possible issues with the mapping of areas. 
+
+As of stubs, as it was already mentioned, they are crucial in the planned process. They can be easily identified by analysing the procedure outlined starting from \cref{sec:strategy}. As of their creation and (software-based) management, refer to the following \cref{chap:tools}.
+
+
+
+
+
+\section{Test equipment and tools}\label{chap:tools}
+%Identify all tools and test equipment needed to accomplish the integration. Refer to the tools presented during the lectures. Explain why and how you are going to use them. Note that you may also use manual testing for some part. Consider manual testing as one of the possible tools you have available.
+
+In order to support the integration phase and perform an effective integration testing, we suggest the following software tools. The documentation of the tools is referenced in \cref{sec:references}.
+
+
+\begin{description}
+	
+	\item[JUnit] even though JUnit is designed mostly to perform unit testing, nevertheless it is valid also to support integration testing, along with the following tools.
+	
+	\item[Mockito] thanks to Mockito, developers and testers will be able to generate stubs, which are a crucial part of the process we planned.
+
+	\item[Arquillian] this tool being specifically designed to manage the test of Java Beans and the integration between components and module, we suggest developers to use it.
+
+\end{description}
+
+
+That said, this section is not mandatory, nor comprehensive. We believe that manual testing may sometimes be the fastest, smartest and easiest way to test software. However, automated and supporting tools exist, and developers had better make use of them, bearing in mind that this project can grow far beyond what was stated in the previous \emph{Requirement analysis} and \emph{Design} documents.  

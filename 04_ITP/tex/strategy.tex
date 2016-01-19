@@ -22,7 +22,7 @@ Integration testing deals with components. That is why in \cref{fig:component} w
 This testing plan covers most of the system, but some components are excluded. For instance, \texttt{User\-Login} and \texttt{User\-Registration} are left out, as they cope with security protocols and integration mechanisms, which would need a comprehensive document on their own. \texttt{Java\-Server\-Faces} and \texttt{Java Persistence API} are left out of this document, for similar reasons.
 
 
-\section{Integration testing strategy}
+\section{Integration testing strategy}\label{sec:strategy}
 % Describe the integration testing approach (top down, bottom up, functional groupings, etc.) and the rationale for the choosing that approach.
 As of the strategy to adopt in order to complete the integration test, we select the \mbox{top-down} approach, which requires the \mbox{highest-level} modules (in terms of required functionalities and inclusions) be test and integrated first. This way a verified input is going to be provided to the following component or subsystem to be integrated.
 
