@@ -4,10 +4,9 @@
 
 \section{Entry criteria}
 % Specify the criteria that must be met before integration testing of specific elements may begin (e.g., functions must have been unit tested).
-The first obvious condition which has to be satisfied before starting the integration test process is that the modules to be integrated are fully developed. Moreover, in order to provide a reliable background, most of the functions shall have already been unit tested. In detail, we require that at least \SI{75}{\percent} of each component to be integrated has been unit tested.\footnote{\color{red}ANDREA \`E RAGIONEVOLE?} 
+The first obvious condition which has to be satisfied before starting the integration test process is that the modules to be integrated are fully developed. Moreover, in order to provide a reliable background, most of the functions shall have already been unit tested. In detail, we require that at least \SI{75}{\percent} of each component to be integrated has been unit tested. 
 
-It is also important that some mock data are created, in order to let the components work. Please, refer to \cref{chap:stubs} for further details.\footnote{\color{red}DEVO AGGIUNGERE ALTRO?}
-
+It is also important that some mock data are created, in order to let the components work. Please, refer to \cref{chap:stubs} for further details.
 
 
 \section{Elements to be integrated}% Identify the components to be integrated, refer to your design document to identify such components in a way that is consistent with your design.
@@ -54,33 +53,32 @@ In the following \cref{fig:intsequence} we present the actual sequence of integr
 
 
 
+% TODO Correggi!
+
 \begin{table*}%
 \centering%
-\begin{tabularx}{.8\textwidth}{ >{\ttfamily\bfseries}c >{\ttfamily}X c }%
+\begin{tabularx}{.9\textwidth}{ >{\ttfamily\bfseries}c >{\ttfamily}X c }%
 \toprule%
 \normalfont\textsc{ID} & \normalfont\textsc{Integration test} & \normalfont\textsc{Reference} \\%
 \toprule%
-I1 & ReservationCreation $\to$ ReservationManagement & 3ref \\%
+I1 & ReservationCreation $\to$ ReservationManagement & \cref{subsec:t1} \\%
 \midrule%
-I2 & ReservationManagement $\to$ RequestCreation & 3ref \\%
+I2 & ReservationManagement $\to$ RequestCreation & \cref{subsec:t2} \\%
 \midrule%
-I3 & RequestCreation{\normalfont{, }}AreaManagement $\to$ RequestManagement & 3ref \\%
+I3 & RequestCreation{\normalfont{, }}AddressManagement $\to$ RequestManagement & \cref{subsec:t3} \\%
 \midrule%
-I4 & RequestManagement $\to$ AddressManagement & 3ref \\%
+I4 & RequestManagement $\to$ AreaManagement & \cref{subsec:t4} \\%
 \midrule%
-I5 & AddressManagement $\to$ PersonalDataManagement & 3ref \\%
+I5 & AreaManagement $\to$ NotificationEngine & \cref{subsec:t5} \\%
 \midrule%
-I6 & AddressManagement $\to$ NotificationEngine & 3ref \\%
+I6 & AreaManagement $\to$ RideManagement & \cref{subsec:t6} \\%
 \midrule%
-I7 & PersonalDataManagement $\to$ RideManagement & 3ref \\%
-\midrule%
-I8 & Notification Engine $\to$ NotificationReader & 3ref \\%
+I7 & Notification Engine $\to$ NotificationReader & \cref{subsec:t7} \\%
 \bottomrule%
-\end{tabularx}%
-\caption[][2em]{Integration sequence reference details.}%
-\label{tab:intseq}%
+\end{tabularx}
+\caption[][2em]{Integration sequence reference details.}
+\label{tab:intseq}
 \end{table*}
-
 
 
 

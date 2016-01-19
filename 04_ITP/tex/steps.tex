@@ -1,3 +1,234 @@
-\chapter{Individual Steps and Test Description}\label{chap:steps}
+\chapter{Test description}\label{chap:steps}
 
-\textbf{For each step of the integration process identified above, describe the type of tests that will be used to verify that the elements integrated in this step perform as expected. Describe in general the expected results of the test set. You may refer to Chapter 3 and Chapter 4 of the test plan example [1] as an example of what we expect.(NOTE: This is not a detailed description of test protocols. Think of this as the test design phase. Specific protocols will be written to fulfill the goals of the tests identified in this section.)}
+%For each step of the integration process identified above, describe the type of tests that will be used to verify that the elements integrated in this step perform as expected. Describe in general the expected results of the test set. You may refer to Chapter 3 and Chapter 4 of the test plan example [1] as an example of what we expect. (NOTE: This is not a detailed description of test protocols. Think of this as the test design phase. Specific protocols will be written to fulfill the goals of the tests identified in this section.)
+
+\section{Test case specification}
+
+\subsection*{Integration test case \normalfont\texttt{I1}}\label{subsec:t1}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I1T1}	\\\midrule
+Test item(s)		&	\texttt{ReservationCreation $\to$ ReservationManagement}	\\\midrule
+Input specification	&	Typical reservation data	\\\midrule
+Output specification	&	Check if the reservation is properly created and data are valid	\\\midrule
+Environmental needs	&	Client devices: smartphone (myTaxiApp) and PC (myTaxiWeb)	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I2}}\label{subsec:t2}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I2T1}	\\\midrule
+Test item(s)		&	\texttt{ReservationManagement $\to$ RequestCreation}	\\\midrule
+Input specification	&	Typical reservation data	\\\midrule
+Output specification	&	Check if the request is properly created with reservation output	\\\midrule
+Environmental needs	&	\texttt{I1} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I3}}\label{subsec:t3}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I3T1}	\\\midrule
+Test item(s)		&	\texttt{RequestCreation $\to$ RequestManagement}	\\\midrule
+Input specification	&	Typical request data	\\\midrule
+Output specification	&	Check if the request is correctly handled by \texttt{RequestManagement}	\\\midrule
+Environmental needs	&	\texttt{I2} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+\clearpage
+
+
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I3T2}	\\\midrule
+Test item(s)		&	\texttt{AddressManagement $\to$ RequestManagement}	\\\midrule
+Input specification	&	Typical request data	\\\midrule
+Output specification	&	Check if addresses are correctly mapped	\\\midrule
+Environmental needs	&	\texttt{I3T1} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I4}}\label{subsec:t4}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I4T1}	\\\midrule
+Test item(s)		&	\texttt{RequestManagement $\to$ AreaManagement}	\\\midrule
+Input specification	&	Typical request data	\\\midrule
+Output specification	&	Check the taxi allocation (correct area, taxi dequeuing, ...)	\\\midrule
+Environmental needs	&	\texttt{I3} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I5}}\label{subsec:t5}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I5T1}	\\\midrule
+Test item(s)		&	\texttt{AreaManagement $\to$ NotificationEngine}	\\\midrule
+Input specification	&	Typical request data	\\\midrule
+Output specification	&	Check if notification are correctly created (proper data, ...)	\\\midrule
+Environmental needs	&	\texttt{I4} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I6}}\label{subsec:t6}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I6T1}	\\\midrule
+Test item(s)		&	\texttt{AreaManagement $\to$ RideManagement}	\\\midrule
+Input specification	&	Typical customer's withdrawal address data	\\\midrule
+Output specification	&	Check if the data are in the correct format for the driver (myTaxiAssist)	\\\midrule
+Environmental needs	&	\texttt{I5} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+\clearpage
+
+
+
+\subsection*{Integration test case \normalfont\texttt{I7}}\label{subsec:t7}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I7T1}	\\\midrule
+Test item(s)		&	\texttt{NotificationEngine $\to$ NotificationReader}	\\\midrule
+Input specification	&	Create notification message	\\\midrule
+Output specification	&	Check if the communication protocol works properly and the correct format of the notification	\\\midrule
+Environmental needs	&	\texttt{I6} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test case identifier	&	\texttt{I7T2}	\\\midrule
+Test item(s)		&	\texttt{NotificationEngine $\to$ NotificationReader}	\\\midrule
+Input specification	&	Create notification message	\\\midrule
+Output specification	&	Check if the SMS is sent	\\\midrule
+Environmental needs	&	\texttt{I6} succeeded	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Test procedures}
+
+
+
+
+
+
+
+\subsection*{Integration test procedure \normalfont\texttt{TP1}}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Test procedure identifier	&	\texttt{TP1}	\\\midrule
+Purpose				&	This procedure verifies the correct creation of a request	\\\midrule
+Procedure steps			&	Execute \texttt{I3}		\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+\subsection*{Integration test procedure \normalfont\texttt{TP2}}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test procedure identifier	&	\texttt{TP2}	\\\midrule
+Purpose				&	This procedure verifies the correct creation of a request, starting from a reservation	\\\midrule
+Procedure steps			&	Execute \texttt{I3} after \texttt{I1-I2}	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+\subsection*{Integration test procedure \normalfont\texttt{TP3}}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
+Test procedure identifier	&	\texttt{TP3}	\\\midrule
+Purpose				&	This procedure verifies the correct allocation of a taxi	\\\midrule
+Procedure steps			&	Execute \texttt{I6} after \texttt{I3-I4}	\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+\subsection*{Integration test procedure \normalfont\texttt{TP4}}
+
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Test procedure identifier	&	\texttt{TP4}	\\\midrule
+Purpose				&	This procedure verifies the correct notification of the ride start	\\\midrule
+Procedure steps			&	Execute \texttt{I7} after \texttt{I3-I6}		\\
+\bottomrule\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
