@@ -1,0 +1,126 @@
+\chapter{Cost and effort estimation}\label{chap:estimation}
+
+
+\section{Function points}
+
+
+\begin{equation}
+  \sum \text{\#functions\_by\_type} * \text{weight}
+\end{equation}
+
+
+
+\newcommand{\myW}{1.8cm}
+
+\begin{table}\begin{tabularx}{\textwidth}{ X C{\myW} C{\myW} C{\myW} }
+
+\toprule
+	
+	\multirow{2}{*}{Function type} & \multicolumn{3}{c}{Complexity weight}\\
+
+\cmidrule{2-4}%
+	
+	 & Simple & Medium & Complex \\
+		
+
+\toprule
+
+	External Input			& 3 	& 4 & 6 \\
+\midrule
+	External Output			& 4 & 5 & 7 \\
+\midrule
+	Internal Logical File	& 7 & 10 & 15 \\
+\midrule
+	External Interface File	& 5 & 7 & 10 \\
+\midrule
+	External Inquiry		& 3 	& 4 & 6 \\
+
+\bottomrule
+
+
+\end{tabularx}\end{table}
+
+
+
+
+%http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{COCOMO}
+
+% \mathbf VS \boldsymbol
+
+\subsection{Source Lines of Code (SLOC)}
+
+
+\subsection{Scale Drivers}
+
+
+\subsection{Cost Drivers}
+
+
+\subsection{The Effort Equation}
+
+\begin{equation}
+\mathbf{e} = 2.94 * \text{EAF} * {\left(\text{KSLOC}\right)}^E
+\end{equation}
+
+
+\subsection{The Effort Adjustment Factor}
+
+
+
+\subsection{The Schedule Equation}
+
+\begin{equation}
+\mathbf{d} = 3.67 * {\left(\mathbf{e}\right)}^E
+\end{equation}
+
+
+Number of people:
+
+\begin{equation}
+\mathbf{n} = \frac{\mathbf{e}}{\mathbf{d}}
+\end{equation}
+
+
+\subsection{The SCED (Schedule Constraints) Cost Driver}
+
+
+
+
+
+
+
+
+
