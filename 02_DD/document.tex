@@ -7,21 +7,29 @@
 
 \begin{document}
 
-\include{tex/0_titlePage}
+\frontmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{tex/0_titlePage}
 
 \tableofcontents
 
-\include{./tex/1_introduction}
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{./tex/2_architectural}
+\input{./tex/1_introduction}
 
-\include{./tex/3_algorithm}
+\input{./tex/2_architectural}
 
-\include{./tex/4_userinterface}
+\input{./tex/3_algorithm}
 
-\include{./tex/5_traceability} 
+\input{./tex/4_userinterface}
 
-\appendix\include{./tex/6_appendix} 
+\input{./tex/5_traceability} 
+
+\backmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./tex/6_appendix} 
 
 \end{document}
 
