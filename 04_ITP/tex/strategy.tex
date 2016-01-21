@@ -4,22 +4,21 @@
 
 \section{Entry criteria}
 % Specify the criteria that must be met before integration testing of specific elements may begin (e.g., functions must have been unit tested).
-The first obvious condition which has to be satisfied before starting the integration test process is that the modules to be integrated are fully developed. Moreover, in order to provide a reliable background, most of the functions shall have already been unit tested. In detail, we require that at least \SI{75}{\percent} of each component to be integrated has been unit tested. 
+The first obvious condition which has to be satisfied before starting the integration test process is that the modules to be integrated are fully developed. Moreover, in order to provide a reliable background, most of the functions shall have already been unit tested. In detail, we state that at least \SI{75}{\percent} of each component to be integrated should have been unit tested\footnote{By this \mbox{non-mandatory} figure we are requesting that all the \mbox{non-trivial} methods are tested (i.e., we find it useless and frustrating to impose the testing of, for example, basic getters and setters methods).}. 
 
 It is also important that some mock data are created, in order to let the components work. Please, refer to \cref{chap:stubs} for further details.
 
 
 \section{Elements to be integrated}% Identify the components to be integrated, refer to your design document to identify such components in a way that is consistent with your design.
-Integration testing deals with components. That is why in \cref{fig:component} we are showing the component diagram of myTaxiService system, already presented in section~2.3 of the \emph{Design document}.
+Integration testing deals with components. That is why in \cref{fig:component} we are showing the component diagram of myTaxiService system, already presented in section~2.3 of the \emph{Design document}, to which the reader should refer for a detailed explanation.
 
 \begin{figure*}%
-	\centering% 
 	\includegraphics[width=\textwidth]{img/ComponentView__ComponentDiagram_1}%
 	\caption{Component diagram.}%
 	\label{fig:component}%
 \end{figure*}
 
-This testing plan covers most of the system, but some components are excluded. For instance, \texttt{User\-Login} and \texttt{User\-Registration} are left out, as they cope with security protocols and integration mechanisms, which would need a comprehensive document on their own. \texttt{Java\-Server\-Faces} and \texttt{Java Persistence API} are left out of this document, for similar reasons.
+This testing plan covers most of the system, but some components are excluded. For instance, \texttt{User\-Login} and \texttt{User\-Registration} are left out, as they cope with security protocols and integration mechanisms, which would need a comprehensive document on their own. \texttt{Java\-Server\-Faces} and \texttt{Java Persistence API} are left out as well, for similar reasons.
 
 
 \section{Integration testing strategy}\label{sec:strategy}
@@ -28,14 +27,13 @@ As of the strategy to adopt in order to complete the integration test, we select
 
 This incremental approach, focused on the architecture of the system, may require some additional work, since stubs need to be created extensively, but nevertheless should be easy to understand and extend, and should arguably guarantee the quality of the software, \mbox{high-level} logic and data flow being tested early in the process.
 
-At the end of the integration testing process, the system can be assumed as fully functional. As such, after undergoing a thorough system testing\footnote{Please notice that the planning of this process is outside the scope of this document.}, which shall include also careful performance assessments, can be released to users.
-%TODO Is it, actually?
+At the end of the integration testing process, the system can be assumed as fully functional. As such, after undergoing a thorough system testing\footnote{Please notice that the planning of this kind of process is outside the scope of this document.}, which shall include also careful performance assessments, can be released to users.
 
 
 
 
 
-\section{Integration sequence}%NOTE: The structure of this section may vary depending on the integration strategy you select in Section 2.3. Use the structure proposed below as a non mandatory guide.
+\section{Integration sequence}\label{sec:intsequence}%NOTE: The structure of this section may vary depending on the integration strategy you select in Section 2.3. Use the structure proposed below as a non mandatory guide.
 %\subsection{Software Integration Sequence} For each subsystem: Identify the sequence in which the software components will be integrated within the subsystem. Relate this sequence to any product features/functions that are being built up.
 %\subsection{Subsystem Integration Sequence} Identify the order in which subsystems will be integrated.
 %If you have a single subsystem, 2.4.1 and 2.4.2 are to be merged in a single section. You can refer to Section 2.2 of the test plan example [1] as an example of what we expect.
@@ -53,12 +51,8 @@ In the following \cref{fig:intsequence} we present the actual sequence of integr
 
 
 
-% TODO Correggi!
 
-\begin{table*}%
-\centering%
-\begin{tabularx}{.9\textwidth}{ >{\ttfamily\bfseries}c >{\ttfamily}X c }%
-\toprule%
+\begin{table*}\centering\begin{tabularx}{.9\textwidth}{ >{\ttfamily\bfseries}c >{\ttfamily}X c }\toprule%
 \normalfont\textsc{ID} & \normalfont\textsc{Integration test} & \normalfont\textsc{Reference} \\%
 \toprule%
 I1 & ReservationCreation $\to$ ReservationManagement & \cref{subsec:t1} \\%

@@ -4,7 +4,9 @@
 
 \section{Test case specification}
 
-\subsection*{Integration test case \normalfont\texttt{I1}}\label{subsec:t1}
+In this section we are going to detail each step of the integration process identified in \cref{sec:intsequence}. We identify in particular the requested input and the expected output.
+
+\subsection{Integration test case \normalfont\texttt{I1}}\label{subsec:t1}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I1T1}	\\\midrule
@@ -19,7 +21,7 @@ Environmental needs	&	Client devices: smartphone (myTaxiApp) and PC (myTaxiWeb)	
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I2}}\label{subsec:t2}
+\subsection{Integration test case \normalfont\texttt{I2}}\label{subsec:t2}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I2T1}	\\\midrule
@@ -36,7 +38,7 @@ Environmental needs	&	\texttt{I1} succeeded	\\
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I3}}\label{subsec:t3}
+\subsection{Integration test case \normalfont\texttt{I3}}\label{subsec:t3}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I3T1}	\\\midrule
@@ -71,7 +73,7 @@ Environmental needs	&	\texttt{I3T1} succeeded	\\
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I4}}\label{subsec:t4}
+\subsection{Integration test case \normalfont\texttt{I4}}\label{subsec:t4}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I4T1}	\\\midrule
@@ -89,7 +91,10 @@ Environmental needs	&	\texttt{I3} succeeded	\\
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I5}}\label{subsec:t5}
+\subsection{Integration test case \normalfont\texttt{I5}}\label{subsec:t5}
+
+
+
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I5T1}	\\\midrule
@@ -108,7 +113,7 @@ Environmental needs	&	\texttt{I4} succeeded	\\
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I6}}\label{subsec:t6}
+\subsection{Integration test case \normalfont\texttt{I6}}\label{subsec:t6}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I6T1}	\\\midrule
@@ -126,7 +131,7 @@ Environmental needs	&	\texttt{I5} succeeded	\\
 
 
 
-\subsection*{Integration test case \normalfont\texttt{I7}}\label{subsec:t7}
+\subsection{Integration test case \normalfont\texttt{I7}}\label{subsec:t7}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
 Test case identifier	&	\texttt{I7T1}	\\\midrule
@@ -166,14 +171,15 @@ Environmental needs	&	\texttt{I6} succeeded	\\
 \section{Test procedures}
 
 
+During the integration and testing process, particular attention should be paid on the following procedures, because they are specifically aimed at checking that the system provides the functionalities it is written to accomplish.
 
 
 
 
 
-\subsection*{Integration test procedure \normalfont\texttt{TP1}}
+\subsection{Integration test procedure \normalfont\texttt{TP1}}
 
-\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Test procedure identifier	&	\texttt{TP1}	\\\midrule
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Procedure identifier	&	\texttt{TP1}	\\\midrule
 Purpose				&	This procedure verifies the correct creation of a request	\\\midrule
 Procedure steps			&	Execute \texttt{I3}		\\
 \bottomrule\end{tabularx}\end{table*}
@@ -182,22 +188,23 @@ Procedure steps			&	Execute \texttt{I3}		\\
 
 
 
-\subsection*{Integration test procedure \normalfont\texttt{TP2}}
+\subsection{Integration test procedure \normalfont\texttt{TP2}}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
-Test procedure identifier	&	\texttt{TP2}	\\\midrule
+Procedure identifier	&	\texttt{TP2}	\\\midrule
 Purpose				&	This procedure verifies the correct creation of a request, starting from a reservation	\\\midrule
 Procedure steps			&	Execute \texttt{I3} after \texttt{I1-I2}	\\
 \bottomrule\end{tabularx}\end{table*}
 
 
 
+\clearpage
 
 
-\subsection*{Integration test procedure \normalfont\texttt{TP3}}
+\subsection{Integration test procedure \normalfont\texttt{TP3}}
 
 \begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%
-Test procedure identifier	&	\texttt{TP3}	\\\midrule
+Procedure identifier	&	\texttt{TP3}	\\\midrule
 Purpose				&	This procedure verifies the correct allocation of a taxi	\\\midrule
 Procedure steps			&	Execute \texttt{I6} after \texttt{I3-I4}	\\
 \bottomrule\end{tabularx}\end{table*}
@@ -208,10 +215,9 @@ Procedure steps			&	Execute \texttt{I6} after \texttt{I3-I4}	\\
 
 
 
+\subsection{Integration test procedure \normalfont\texttt{TP4}}
 
-\subsection*{Integration test procedure \normalfont\texttt{TP4}}
-
-\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Test procedure identifier	&	\texttt{TP4}	\\\midrule
+\begin{table*}[!h]\centering\begin{tabularx}{.9\textwidth}{ >{\bfseries}l X }\toprule%Procedure identifier	&	\texttt{TP4}	\\\midrule
 Purpose				&	This procedure verifies the correct notification of the ride start	\\\midrule
 Procedure steps			&	Execute \texttt{I7} after \texttt{I3-I6}		\\
 \bottomrule\end{tabularx}\end{table*}

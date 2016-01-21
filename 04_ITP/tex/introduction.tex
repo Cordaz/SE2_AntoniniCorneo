@@ -3,7 +3,7 @@
 
 
 \section{Purpose and scope}% State the purpose and scope of the document.
-This document describes the plans for testing the integration between the components of myTaxiService system, which were presented in the \emph{Design document}.
+This document describes the plans for testing the integration between the components of myTaxiService system, which were presented in the previous \emph{Design document}.
 
 As such, a good familiarity of the past documents\footnote{See \cref{sec:references} for references to these documents.}, namely the \emph{Requirement analysis and specification document} (RASD) and the already mentioned \emph{Design document} (DD), is needed. As a consequence, here we are going through the scope of myTaxiService project very rapidly.
 
@@ -12,7 +12,7 @@ Milan city council has recently committed to improving public transport services
 
 
 \section{Definitions, acronyms, and abbreviations}
-Please refer to the corresponding section in the RASD for the definitions of words used in the document. Some technical expressions and abbreviations are used in the following, but definitions are given when necessary. 
+Please refer to the corresponding section in the RASD for the definitions of words used in the document. Some technical expressions and abbreviations may be used in the following, but definitions are given when necessary. 
 
 
 
@@ -21,7 +21,7 @@ Please refer to the corresponding section in the RASD for the definitions of wor
 In order to get information about the functionalities of the system, its architecture and design, please refer to the following documents:
 
 \begin{itemize}
-	\item \emph{Assignments 1 and 2}, section~2, parts~I and~II; \printdate{2015-10-13}. This is to be regarded as the high level description of the problem. Available at: \url{https://beep.metid.polimi.it/documents/3343933/d5865f65-6d37-484e-b0fa-04fcfe42216d}.
+	\item \emph{Assignments 1 and 2}, section~2, parts~I and~II; \printdate{2015-10-13}. This is to be regarded as the high level project description. Available at: \url{https://beep.metid.polimi.it/documents/3343933/d5865f65-6d37-484e-b0fa-04fcfe42216d}.
 	
 	\item \emph{Requirement analysis and specification document}; \printdate{2015-11-6}. Available at: \url{https://github.com/Cordaz/SE2_AntoniniCorneo/raw/master/Deliveries/1_RASD.pdf}.
 	
@@ -29,21 +29,13 @@ In order to get information about the functionalities of the system, its archite
 \end{itemize}
 
 
-As of the tools suggested to perform the integration testing (further information are available in \cref{chap:tools}), documentation is available at the following links:
-
-\begin{itemize}
-	\item \emph{JUnit}. \url{http://junit.org/}.
-	\item \emph{Mockito}. \url{http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html}.
-	\item \emph{Arquillian}. \url{http://arquillian.org/guides/}.
-\end{itemize}
 
 
 
-% TODO Check!
 \section{Overview of the document} 
 This document is structured as follows. 
 
-The strategies to be used and the components to be tested are identified in \cref{chap:strategy}, whereas the integration tests are actually described in \cref{chap:steps}. Finally, in \cref{chap:support} we provide some additional useful information to support testers' work: in particular in \cref{chap:tools} we present all tools and test equipment needed to accomplish the integration, whereas program stubs and test data required for each integration step is presented in \cref{chap:stubs}.
+The strategies to be used and the components to be tested are identified in \cref{chap:strategy}, whereas the detailed description of the tests to be performed is provided in \cref{chap:steps}. Finally, in \cref{chap:support} we provide some additional information to support testers' work: in particular program stubs and test data required for each integration step is presented in \cref{chap:stubs}, whereas in \cref{chap:tools} we present all tools and test equipment needed to accomplish the integration.
 
 
 

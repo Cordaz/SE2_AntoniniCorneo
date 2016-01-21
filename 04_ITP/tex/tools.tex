@@ -6,7 +6,7 @@ There are no particular requirements about mock data to perform the tests. Accor
 
 We only suggest to perform tests with Milan map being already loaded, in order to identify possible issues with the mapping of areas. 
 
-As of stubs, as it was already mentioned, they are crucial in the planned process. They can be easily identified by analysing the procedure outlined starting from \cref{sec:strategy}. As of their creation and (software-based) management, refer to the following \cref{chap:tools}.
+As of stubs, as it was already mentioned, they are crucial in the planned process. They can be easily identified by analysing the procedure outlined in \cref{sec:strategy} and detailed in the following chapter. As of their creation and (software-based) management, refer to the following \cref{chap:tools}.
 
 
 
@@ -20,13 +20,39 @@ In order to support the integration phase and perform an effective integration t
 
 \begin{description}
 	
-	\item[JUnit] even though JUnit is designed mostly to perform unit testing, nevertheless it is valid also to support integration testing, along with the following tools.
+	\item[Mockito] thanks to Mockito, developers and testers will be able to generate stubs, which are a crucial part of the process we planned. \\Reference: \url{http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html}.
+
+	\item[Arquillian] this tool being specifically designed to manage the test of Java Beans and the integration between components and module, we suggest developers to use it. \\Reference: \url{http://arquillian.org/guides/}.
+		
+	\item[JUnit] even though JUnit is designed mostly to perform unit testing, nevertheless it is a valid framework to support integration testing, along with the other tools. \\Reference: \url{http://junit.org/}.
 	
-	\item[Mockito] thanks to Mockito, developers and testers will be able to generate stubs, which are a crucial part of the process we planned.
-
-	\item[Arquillian] this tool being specifically designed to manage the test of Java Beans and the integration between components and module, we suggest developers to use it.
-
 \end{description}
 
 
-That said, this section is not mandatory, nor comprehensive. We believe that manual testing may sometimes be the fastest, smartest and easiest way to test software. However, automated and supporting tools exist, and developers had better make use of them, bearing in mind that this project can grow far beyond what was stated in the previous \emph{Requirement analysis} and \emph{Design} documents.  
+That said, this section is not mandatory, nor comprehensive. We believe that manual testing may sometimes be the fastest, smartest and easiest way to test software. However, automated and supporting tools do exist, and developers had better make use of them, bearing in mind that this project can grow far beyond what was stated in the previous specification and design documents.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
