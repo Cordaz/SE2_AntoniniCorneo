@@ -7,19 +7,23 @@
 
 \begin{document}
 
-\include{tex/0_titlePage}
+\frontmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setcounter{tocdepth}{2}
+\input{tex/0_titlePage}
+
 \tableofcontents
 
-\include{./tex/1_chapter1}
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{./tex/2_chapter2}
+\input{./tex/1_chapter1}
 
-\include{./tex/3_chapter3}
+\input{./tex/2_chapter2}
 
-\appendix
-\include{./tex/4_appendix}
+\input{./tex/3_chapter3}
+
+\appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./tex/4_appendix}
 
 \end{document}
 
