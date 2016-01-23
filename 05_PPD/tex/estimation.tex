@@ -1,17 +1,23 @@
 \chapter{Cost and effort estimation}\label{chap:estimation}
 
 
+\newcommand{\mSize}{\mathbf{s}}
+\newcommand{\mFP}{\text{UFP}}
+\newcommand{\mEffort}{\mathbf{e}}
+\newcommand{\eaf}{\text{EAF}}  % Effort Adjustment Factor
+
+
 \section{Function points}
 
 
 \begin{equation}
-  \sum \text{\#functions\_by\_type} * \text{weight}
+\mFP = \sum \text{\#functions\_by\_type} * \text{weight}
 \end{equation}
 
 
 
-\newcommand{\myW}{1.8cm}
-
+\newcommand{\myW}{1.5cm}
+% TODO Format!
 \begin{table}\begin{tabularx}{\textwidth}{ X C{\myW} C{\myW} C{\myW} }
 
 \toprule
@@ -20,20 +26,20 @@
 
 \cmidrule{2-4}%
 	
-	 & Simple & Medium & Complex \\
+	 & Simple & Average & Complex \\
 		
 
 \toprule
 
-	External Input			& 3 	& 4 & 6 \\
+	External Input (EI)				& 3 	& 4 & 6 \\
 \midrule
-	External Output			& 4 & 5 & 7 \\
+	External Output (EO)				& 4 & 5 & 7 \\
 \midrule
-	Internal Logical File	& 7 & 10 & 15 \\
+	Internal Logical File (ILF)		& 7 & 10 & 15 \\
 \midrule
-	External Interface File	& 5 & 7 & 10 \\
+	External Interface Files (EIF)	& 5 & 7 & 10 \\
 \midrule
-	External Inquiry		& 3 	& 4 & 6 \\
+	External Inquiry (EQ)			& 3 	& 4 & 6 \\
 
 \bottomrule
 
@@ -43,16 +49,40 @@
 
 
 
-%http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+% http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+% http://www.qsm.com/resources/function-point-languages-table
+
+
+\paragraph{External Input (EI)}
+
+Count each unique user data or user control input type that enters the external boundary of the software system being measured.
+
+\paragraph{External Output (EO)}
+
+Count each unique user data or control output type that leaves the external boundary of the software system being measured.
+
+\paragraph{Internal Logical File (ILF)}
+Count each major logical group of user data or control information in the software system as a logical internal file type. Include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system.
+
+\paragraph{External Interface Files (EIF)} 
+
+Files passed or shared between software systems should be counted as external interface file types within each system.
+
+
+\paragraph{External Inquiry (EQ)} 
+Count each unique input-output combination, where input causes and generates an immediate output, as an external inquiry type.
 
 
 
+\subsection{CALCOLO FINALE}
 
+\begin{equation}
+\mFP = \sum_{T} x_t
+\end{equation}
 
-
-
-
-
+\begin{quotation}
+  It is like correcting the tallness of a person to relate it to a measure of his/her intelligence [Cit. Fenton]
+\end{quotation}
 
 
 
@@ -78,33 +108,195 @@
 
 \section{COCOMO}
 
-% \mathbf VS \boldsymbol
 
-\subsection{Source Lines of Code (SLOC)}
+In the following we are going to adopt the formulas defined in \mbox{\emph{COCOMO II.2000}} standard. Only a brief introduction of the theoretic meaning of the formulas is given. 
 
-
-\subsection{Scale Drivers}
+We are not going to present the whole tables from which values are extracted. Refer to the mentioned document for an insight on the COCOMO model. 
 
 
-\subsection{Cost Drivers}
+\subsection{Sizing the project}
 
+A good size estimate is very important for a good model estimation. However, at this stage of myTaxiService project, this is a challenging operation, since it is nearly impossible to correctly guess in which proportion it will be composed of new code and of reused or readapted code.
 
-\subsection{The Effort Equation}
+That is why we are going to provide the \mbox{worst-case}, highly improbable, estimation: we assume that the whole code will be written from scratch. 
 
+The quantity $\mSize$ is the estimated number of source lines of code (SLOC):
 \begin{equation}
-\mathbf{e} = 2.94 * \text{EAF} * {\left(\text{KSLOC}\right)}^E
+%
+	\mSize = p * \mFP
+%
+\end{equation}
+
+The parameter $ p = 46 $ (\url{http://www.qsm.com/resources/function-point-languages-table}) converts the function points to SLOC, in the specific case of J2EE (Java Enterprise Edition).
+
+In our case the sizing of the project results:
+\begin{equation}
+%
+	\mSize = 46 * YYY = XXX  % TODO Solve
+%
 \end{equation}
 
 
-\subsection{The Effort Adjustment Factor}
+
+\subsection{Effort estimation}
+
+Effort is expressed in terms of \mbox{person-months} (PM). A {person-month} is the amount of time one person spends working on the software development project for one month. COCOMO defines the following formula to estimate it:
+\begin{equation}
+%
+	\mEffort = 2.94 * { \left( \frac{\mSize}{1000} \right) }^{E} * \eaf \label{eqn:effort}
+%
+\end{equation}
+
+
+Exponent $ E $ and parameter $ \eaf $ are defined as follows:
+\begin{gather}
+%
+	%E = exponent derived from Scale Drivers
+	E = 0.91 + 0.01 * \sum_{i}^{5} \text{SF}_i \label{eqn:Eexp}\\%
+%
+	% EAF = Effort Adjustment Factor derived from Cost Drivers
+	\eaf     = \prod_{i=1}^{n} \text{EM}_i \label{eqn:eaf}
+%
+\end{gather}
 
 
 
-\subsection{The Schedule Equation}
+
+In the following paragraphs we are going to present the factors from which exponent $ E $ and parameter $ \eaf $ are derived. For a justification of the choices we made, please refer to \cref{chap:justification}.
+
+
+
+
+
+
+
+
+
+\paragraph{Scale factors} Exponent $ E $ is an aggregation of five scale factors that account for some possible overheads encountered for software projects. Each factor has a range of rating levels, from \emph{Very Low} to \emph{Extra high}, and each rating level has a weight. The specific value of the weight is called a scale factor ($ \text{SF} $). In the following table we are going to present the adopted values.
+
+
+
+\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}c X c c }
+
+\toprule
+\normalfont\textsc{ID} & \normalfont\textsc{Scale factor} & \normalfont\textsc{Level} & $ \text{SF} $ \\
+\toprule
+PREC	& Precedentedness			& Low		& $ 4.96 $ \\ \midrule
+FLEX	& Development flexibility	& High		& $ 2.03 $ \\ \midrule
+RESL	& Risk resolution			& Nominal	& $ 4.24 $\\ \midrule
+TEAM	& Team cohesion				& Very high	& $ 1.10 $\\ \midrule
+PMAT	& Process maturity			& High		& $ 3.12 $\\ 
+
+\bottomrule
+	
+\end{tabularx}
+\end{table}
+
+
+
+As a result of the previous choices and on the basis of \cref{eqn:Eexp}, the parameter $ E $ results:
+\begin{equation}
+	E = 0.91 + 0.01 * 15.45 = 1.0645
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\paragraph{Cost drivers} The parameter $ \eaf $ is derived from the effort multipliers ($ \text{EM} $) of the Cost drivers. Cost drivers are used to capture characteristics of the product under development, of the personnel working on it, and of general practices that affect the effort to complete the project.
+
+
+
+\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}c X c c }
+
+\toprule
+\normalfont\textsc{ID} & \normalfont\textsc{Cost factor} & \normalfont\textsc{Level} & $ \text{EM} $ \\
+\toprule
+
+RELY	& Required software reliability	& Low		& $ 0.92 $ \\ \midrule
+DATA	& Data base size					& Nominal	& $ 1.00 $ \\ \midrule
+CPLX	& Product complexity				& High		& $ 1.17 $ \\ \midrule
+RUSE	& Developed for reusability		& High		& $ 1.07 $ \\ \midrule
+DOCU	& Documentation match to lifecycle needs		& High		& $ 1.11 $ \\ \midrule
+
+TIME	& Execution time constraint		& --			& $  --  $ \\ \midrule
+STOR	& Main storage constraint		& --			& $  --  $ \\ \midrule
+PVOL	& Platform volatility			& Low		& $ 0.87 $ \\ \midrule
+
+ACAP	& Analyst capability				& High		& $ 0.85 $ \\ \midrule
+PCAP	& Programmer capability			& High		& $ 0.88 $ \\ \midrule
+PCON	& Personnel continuity			& Very low	& $ 1.29 $ \\ \midrule
+APEX	& Applications experience 		& Nominal	& $ 1.00 $ \\ \midrule
+PLEX	& Platform Experience			& Nominal	& $ 1.00 $ \\ \midrule
+LTEX	& Language and tool experience	& Nominal	& $ 1.00 $ \\ \midrule
+
+TOOL	& Use of software tools			& Nominal	& $ 1.00 $ \\ \midrule
+SITE	& Multisite development			& Extra high	& $ 0.80 $ \\ \midrule
+SCED	& Required development schedule	& High		& $ 1.00 $ \\
+
+
+
+\bottomrule
+	
+\end{tabularx}\end{table}
+
+
+
+
+
+
+
+As a result of the previous choices, the parameter $ \eaf $, defined in \cref{eqn:eaf}, results:
 
 \begin{equation}
-\mathbf{d} = 3.67 * {\left(\mathbf{e}\right)}^E
+	\eaf = 0.85858	
 \end{equation}
+
+
+
+
+
+\paragraph{Effort estimation}
+
+Person/month.
+
+Total:
+
+\begin{equation}
+%
+	\mEffort = 2.94 * { \left( \frac{\mSize}{1000} \right) }^{E} * \eaf
+%
+\end{equation}
+
+
+
+
+
+
+
+
+
+\subsection{Schedule estimation}
+
+Duration:\begin{equation}%
+%
+\mathbf{d} = 3.67 * {\left(\mathbf{e}\right)}^F
+%
+\end{equation}
+
+$ F = 0.28 + 0.2 * \left( E - B \right) $
 
 
 Number of people:
@@ -114,7 +306,7 @@ Number of people:
 \end{equation}
 
 
-\subsection{The SCED (Schedule Constraints) Cost Driver}
+%\subsection{The SCED (Schedule Constraints) Cost Driver}
 
 
 
