@@ -2,87 +2,300 @@
 
 
 \newcommand{\mSize}{\mathbf{s}}
-\newcommand{\mFP}{\text{UFP}}
+\newcommand{\mFP}{\text{FP}}
 \newcommand{\mEffort}{\mathbf{e}}
 \newcommand{\eaf}{\text{EAF}}  % Effort Adjustment Factor
 
 
 \section{Function points}
 
+The function point cost estimation approach is based on the amount of functionality in a software project and a set of individual project factors. In particular they measure a software project by quantifying the information processing functionality associated with major external data or control input, output, or file types. Five user function types should be identified, as defined in the following sections. 
 
+At the end of quantification, the total number of function points ($ \mFP $) is given by the following formula:
 \begin{equation}
-\mFP = \sum \text{\#functions\_by\_type} * \text{weight}
+\mFP = \sum \text{\#functions\_by\_type} * \text{weight} \label{eqn:fp}
 \end{equation}
 
 
+In \cref{tab:FPweights} the weights for each function type are presented, as a reference. Then, in the following sections, each type is analysed and the corresponding function points are calculated.
 
 \newcommand{\myW}{1.5cm}
-% TODO Format!
-\begin{table}\begin{tabularx}{\textwidth}{ X C{\myW} C{\myW} C{\myW} }
+
+% TODO Togliere? Format!
+\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}C{.6cm} X C{\myW} C{\myW} C{\myW} }
 
 \toprule
-	
-	\multirow{2}{*}{Function type} & \multicolumn{3}{c}{Complexity weight}\\
+	\multirow{2}{*}{\normalfont\textsc{ID}} &
+	\multirow{2}{*}{\normalfont\textsc{Function type}} & \multicolumn{3}{c}{\normalfont\textsc{Complexity weight}}\\
 
-\cmidrule{2-4}%
+\cmidrule{3-5}%
 	
-	 & Simple & Average & Complex \\
+	 && Simple & Average & Complex \\
 		
 
 \toprule
 
-	External Input (EI)				& 3 	& 4 & 6 \\
+	EI & External input				& $3$ 	& $4$	& $6$ \\
 \midrule
-	External Output (EO)				& 4 & 5 & 7 \\
+	EO & External output				& $4$	& $5$	& $7$ \\
 \midrule
-	Internal Logical File (ILF)		& 7 & 10 & 15 \\
+	ILF & Internal logical file		& $7$	& $10$	& $15$ \\
 \midrule
-	External Interface Files (EIF)	& 5 & 7 & 10 \\
+	EIF & External interface files	& $5$	& $7$	& $10$ \\
 \midrule
-	External Inquiry (EQ)			& 3 	& 4 & 6 \\
+	EQ & External inquiry			& $3$ 	& $4$	& $6$ \\
 
 \bottomrule
 
 
-\end{tabularx}\end{table}
+\end{tabularx}
+
+\caption{Function points complexity weights table.}
+\label{tab:FPweights}
+
+\end{table}
 
 
 
 
-% http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
-% http://www.qsm.com/resources/function-point-languages-table
 
-
-\paragraph{External Input (EI)}
-
-Count each unique user data or user control input type that enters the external boundary of the software system being measured.
-
-\paragraph{External Output (EO)}
-
-Count each unique user data or control output type that leaves the external boundary of the software system being measured.
-
-\paragraph{Internal Logical File (ILF)}
-Count each major logical group of user data or control information in the software system as a logical internal file type. Include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system.
-
-\paragraph{External Interface Files (EIF)} 
-
-Files passed or shared between software systems should be counted as external interface file types within each system.
-
-
-\paragraph{External Inquiry (EQ)} 
-Count each unique input-output combination, where input causes and generates an immediate output, as an external inquiry type.
+%TODO Total XX in \texttt!!!
+
 
 
 
-\subsection{CALCOLO FINALE}
 
+\subsection*{External input}
+
+%Count each unique user data or user control input type that enters the external boundary of the software system being measured.
+
+Users interact with the application in many ways:
+\begin{description}
+	\item [Login, logout and registration] these are simple operations managed by simple components.	
+	\item [Memorise an address] simple operation.	
+	\item [Make a request, reservation] for each request or reservation the systems must interact with many entities. Moreover a taxi has to be allocated. These are complex operations, since many entities are involved.	
+	\item [Cancel a reservation] a simple operation that requires only an object elimination. 	
+	\item [Report taxi availability] this operation requires looking for the pertinence area of the taxi, in order to correctly enqueue it; this can be estimated as an average operation.	
+	\item [Taxi driver accepts or refuses a ride] the first case involves two simple operations, since the ride shall be initiated and a notification must be prepared. Instead, the second case is more complicated: whenever a ride is refused, the system makes a new allocation.
+
+\end{description}
+
+\newcommand{\myWFP}{2.5cm}
+
+\begin{table*}\begin{tabularx}{\textwidth}{ X >{\itshape}C{\myWFP} C{\myWFP} C{\myWFP} }
+
+\toprule
+	
+	\normalfont\textsc{Function} &
+	\normalfont\textsc{Complexity}	& 
+	\normalfont\textsc{Number} &
+	\normalfont\textsc{Total weight} \\
+
+\toprule
+
+	Login, logout, registration	& Simple		& $ 3 $		& $ 3*3 = 9 $ \\
+\midrule
+	Address memorisation			& Simple		& $ 1 $		& $ 1*3 = 3 $ \\
+\midrule
+	Request, reservation			& Complex	& $ 3 $		& $ 3*6 = 18 $ \\
+\midrule
+	Cancel reservation			& Simple		& $ 1 $ 		& $ 1*3 = 3 $ \\
+\midrule
+	Report availability			& Average	& $ 1 $ 		& $ 1*4 = 4 $ \\
+\midrule
+	Ride accepted				& Simple		& $ 2 $ 		& $ 2*3 = 6 $ \\
+\midrule
+	Ride refused				& Complex	& $ 1 $ 		& $ 1*6 = 6 $ \\
+
+\bottomrule
+
+\normalfont\textsc{Total} EI && & $ 49 $ \\
+
+\bottomrule
+
+
+\end{tabularx}\end{table*}
+
+
+
+
+
+
+
+
+
+\subsection*{External output}
+
+%Count each unique user data or control output type that leaves the external boundary of the software system being measured.
+
+The system shall provide notification to all types of users, which can be of various type (SMS, push, \dots). Each notification contains a small amount of data, however those must follow a precise protocol to be sent, which makes the operation a bit more complex: an average cost is to be considered.
+
+
+
+\begin{table*}\begin{tabularx}{\textwidth}{ X >{\itshape}C{\myWFP} C{\myWFP} C{\myWFP} }
+
+\toprule
+	
+	\normalfont\textsc{Function} &
+	\normalfont\textsc{Complexity}	& 
+	\normalfont\textsc{Number} &
+	\normalfont\textsc{Total weight} \\
+
+\toprule
+
+	Notification	& Average		& $ 1 $		& $ 1*5 = 5 $ \\
+
+\bottomrule
+
+\normalfont\textsc{Total} EO && & $ 5 $ \\
+\bottomrule
+
+
+\end{tabularx}\end{table*}
+
+
+\subsection*{Internal logical file}
+%Count each major logical group of user data or control information in the software system as a logical internal file type. Include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system.
+
+
+The system includes many ILFs, as they are needed to store all the information about customers, areas and addresses, cabs and drivers, requests, reservations and allocations. In detail:
+
+\begin{itemize}
+	\item few information about customers are stored, in simple structures: first and last name, login credential and phone number. However, since registered customers' addresses are stored as well, it is appropriate to consider an average cost.
+	\item to map the whole city in addresses and in their pertinence areas few data are needed: string and GPS data types may be sufficient to the purpose. However, every area contains a great amount of addresses, so an high complexity is to be accounted for.
+	\item although many information about taxi drivers and taxi cabs are stored in the system, data needed for the operation of the system are more limited and very simple. Given that, we assign a low complexity level.
+	\item the system needs to store many information for each request, reservation and many other information are needed to allocate the taxi. This requires a high complexity operation.
+\end{itemize}
+
+
+
+
+
+
+\begin{table*}\begin{tabularx}{\textwidth}{ X >{\itshape}C{\myWFP} C{\myWFP} C{\myWFP} }
+
+\toprule
+	
+	\normalfont\textsc{Function} &
+	\normalfont\textsc{Complexity}	& 
+	\normalfont\textsc{Number} &
+	\normalfont\textsc{Total weight} \\
+
+\toprule
+
+	Customers	& Average	& $ 1 $		& $ 1*10 = 10 $ \\
+\midrule
+	Areas and addresses		& Complex	& $ 2 $		& $ 2*15 = 30 $ \\
+\midrule
+	Taxis, taxi drivers		& Simple		& $ 1 $		& $ 1*7 = 7 $ \\
+\midrule
+	Requests, reservations, allocations	& Complex	& $ 3 $ 	& $ 3*15 = 45 $ \\
+
+\bottomrule
+
+\normalfont\textsc{Total} ILF && & $ 92 $ \\
+
+\bottomrule
+
+
+\end{tabularx}\end{table*}
+
+
+
+
+
+\subsection*{External interface files} 
+
+%Files passed or shared between software systems should be counted as external interface file types within each system.
+
+However, myTaxiService system does not require external data, so this is to be set to $ 0 $.
+
+
+
+
+
+
+
+\subsection*{External inquiry} 
+%Count each unique \mbox{input-output} combination, where input causes and generates an immediate output, as an external inquiry type.
+
+Registered customers can access their profile and their memorised addresses. Both operations can be considered as simple.
+
+
+\begin{table*}\begin{tabularx}{\textwidth}{ X >{\itshape}C{\myWFP} C{\myWFP} C{\myWFP} }
+
+\toprule
+	
+	\normalfont\textsc{Function} &
+	\normalfont\textsc{Complexity}	& 
+	\normalfont\textsc{Number} &
+	\normalfont\textsc{Total weight} \\
+
+\toprule
+
+	Profile				& Simple		& $ 1 $		& $ 1*3 = 3 $ \\
+\midrule
+	Memorise address	& Simple		& $ 1 $		& $ 1*3 = 3 $ \\
+
+
+\bottomrule
+
+\normalfont\textsc{Total} EQ && & $ 6 $ \\
+
+
+
+\bottomrule
+
+
+\end{tabularx}\end{table*}
+
+
+
+
+
+\subsection{Total function points}
+
+The results of the previous sections are summarised in \cref{tab:FPtotal}.
+
+\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}C{.6cm} X C{\myW} }
+
+\toprule
+\normalfont\textsc{ID} & \normalfont\textsc{Function type} & $ \mFP $\\
+
+\toprule
+
+	EI & External input				& $49$ \\
+\midrule
+	EO & External output				& $5$ \\
+\midrule
+	ILF & Internal logical file		& $92$ \\
+\midrule
+	EIF & External interface files	& $0$ \\
+\midrule
+	EQ & External inquiry			& $6$\\
+
+\bottomrule
+
+\multicolumn{2}{l}{\normalfont\textsc{Total}} & $ 152 $ \\
+
+\bottomrule
+
+\end{tabularx}
+
+
+\caption{Total function points.}
+\label{tab:FPtotal}
+
+\end{table}
+
+
+
+By applying \cref{eqn:fp}, we get:
 \begin{equation}
-\mFP = \sum_{T} x_t
+	\mFP = 107 % TODO correggi!
 \end{equation}
 
-\begin{quotation}
-  It is like correcting the tallness of a person to relate it to a measure of his/her intelligence [Cit. Fenton]
-\end{quotation}
+Those we obtained are the Unadjusted Function Points (UFP). An attempt to adapt this result, which focuses on functionality, to the prediction of development costs, was made, but as it was wittily noted, ``it is like correcting the tallness of a person to relate it to a measure of his/her intelligence'' (N. Fenton), so we are not going to follow this road.
 
 
 
@@ -172,7 +385,7 @@ In the following paragraphs we are going to present the factors from which expon
 
 
 
-\paragraph{Scale factors} Exponent $ E $ is an aggregation of five scale factors that account for some possible overheads encountered for software projects. Each factor has a range of rating levels, from \emph{Very Low} to \emph{Extra high}, and each rating level has a weight. The specific value of the weight is called a scale factor ($ \text{SF} $). In the following table we are going to present the adopted values.
+\subsection*{Scale factors} Exponent $ E $ is an aggregation of five scale factors that account for some possible overheads encountered for software projects. Each factor has a range of rating levels, from \emph{Very Low} to \emph{Extra high}, and each rating level has a weight. The specific value of the weight is called a scale factor ($ \text{SF} $). In the following table we are going to present the adopted values.
 
 
 
@@ -215,11 +428,11 @@ As a result of the previous choices and on the basis of \cref{eqn:Eexp}, the par
 
 
 
-\paragraph{Cost drivers} The parameter $ \eaf $ is derived from the effort multipliers ($ \text{EM} $) of the Cost drivers. Cost drivers are used to capture characteristics of the product under development, of the personnel working on it, and of general practices that affect the effort to complete the project.
+\subsection*{Cost drivers} The parameter $ \eaf $ is derived from the effort multipliers ($ \text{EM} $) of the Cost drivers. Cost drivers are used to capture characteristics of the product under development, of the personnel working on it, and of general practices that affect the effort to complete the project.
 
 
 
-\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}c X c c }
+\begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}c X >{\itshape}c c }
 
 \toprule
 \normalfont\textsc{ID} & \normalfont\textsc{Cost factor} & \normalfont\textsc{Level} & $ \text{EM} $ \\
@@ -229,10 +442,10 @@ RELY	& Required software reliability	& Low		& $ 0.92 $ \\ \midrule
 DATA	& Data base size					& Nominal	& $ 1.00 $ \\ \midrule
 CPLX	& Product complexity				& High		& $ 1.17 $ \\ \midrule
 RUSE	& Developed for reusability		& High		& $ 1.07 $ \\ \midrule
-DOCU	& Documentation match to lifecycle needs		& High		& $ 1.11 $ \\ \midrule
+DOCU	& Documentation for lifecycle needs		& High		& $ 1.11 $ \\ \midrule
 
-TIME	& Execution time constraint		& --			& $  --  $ \\ \midrule
-STOR	& Main storage constraint		& --			& $  --  $ \\ \midrule
+TIME	& Execution time constraint		& --			&    --    \\ \midrule
+STOR	& Main storage constraint		& --			&    --    \\ \midrule
 PVOL	& Platform volatility			& Low		& $ 0.87 $ \\ \midrule
 
 ACAP	& Analyst capability				& High		& $ 0.85 $ \\ \midrule
@@ -268,7 +481,7 @@ As a result of the previous choices, the parameter $ \eaf $, defined in \cref{eq
 
 
 
-\paragraph{Effort estimation}
+\subsection*{Effort estimation}
 
 Person/month.
 
