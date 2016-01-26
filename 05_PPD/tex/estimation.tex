@@ -1,40 +1,36 @@
 \chapter{Cost and effort estimation}\label{chap:estimation}
 
+In this chapter we are going to estimate the size of myTaxiService project by means of the Function points method, which is a language-independent way of quantifying program functionality.
+
+Then, after converting Function points into number of lines of source code, we are able to derive a development effort estimation based on system requirements and design specification, in terms of time and number of people. This is possible thanks to the formulas elaborated in \mbox{COCOMO II.2000} (\emph{Constructive Cost Model}), which we are going to present in the next sections.
+
 
 \newcommand{\mSize}{\mathbf{s}}
 \newcommand{\mFP}{\text{FP}}
 \newcommand{\mEffort}{\mathbf{e}}
 \newcommand{\eaf}{\text{EAF}}  % Effort Adjustment Factor
+\newcommand{\myW}{1.5cm}
 
 
 \section{Function points}
 
-The function point cost estimation approach is based on the amount of functionality in a software project and a set of individual project factors. In particular they measure a software project by quantifying the information processing functionality associated with major external data or control input, output, or file types. Five user function types should be identified, as defined in the following sections. 
-
-At the end of quantification, the total number of function points ($ \mFP $) is given by the following formula:
+The Function points approach tries to measure the program functionalities, by quantifying the information processing functionality associated with major external data or control input, output, or file types. Five user function types are identified. At the end of estimation, the total number of function points ($ \mFP $) is given by the following formula:
 \begin{equation}
 \mFP = \sum \text{\#functions\_by\_type} * \text{weight} \label{eqn:fp}
 \end{equation}
 
 
-In \cref{tab:FPweights} the weights for each function type are presented, as a reference. Then, in the following sections, each type is analysed and the corresponding function points are calculated.
+In \cref{tab:FPweights} the weights for each function type, according to their complexity, are presented, as a reference. Then, in the following paragraph, each type is analysed and the corresponding function points are calculated.
 
-\newcommand{\myW}{1.5cm}
 
-% TODO Togliere? Format!
 \begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}C{.6cm} X C{\myW} C{\myW} C{\myW} }
 
 \toprule
 	\multirow{2}{*}{\normalfont\textsc{ID}} &
 	\multirow{2}{*}{\normalfont\textsc{Function type}} & \multicolumn{3}{c}{\normalfont\textsc{Complexity weight}}\\
-
-\cmidrule{3-5}%
-	
-	 && Simple & Average & Complex \\
-		
-
+	\cmidrule{3-5}%
+	&& \itshape{Simple} & \itshape{Average} & \itshape{Complex} \\
 \toprule
-
 	EI & External input				& $3$ 	& $4$	& $6$ \\
 \midrule
 	EO & External output				& $4$	& $5$	& $7$ \\
@@ -44,9 +40,7 @@ In \cref{tab:FPweights} the weights for each function type are presented, as a r
 	EIF & External interface files	& $5$	& $7$	& $10$ \\
 \midrule
 	EQ & External inquiry			& $3$ 	& $4$	& $6$ \\
-
 \bottomrule
-
 
 \end{tabularx}
 
@@ -58,8 +52,10 @@ In \cref{tab:FPweights} the weights for each function type are presented, as a r
 
 
 
-
-%TODO Total XX in \texttt!!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO	Rivedi da qui.
+%		Ripensa riga TOTAL!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -109,7 +105,7 @@ Users interact with the application in many ways:
 
 \bottomrule
 
-\normalfont\textsc{Total} EI && & $ 49 $ \\
+\normalfont\textsc{Total} \texttt{EI} && & $ 49 $ \\
 
 \bottomrule
 
@@ -147,7 +143,7 @@ The system shall provide notification to all types of users, which can be of var
 
 \bottomrule
 
-\normalfont\textsc{Total} EO && & $ 5 $ \\
+\normalfont\textsc{Total} \texttt{EO} && & $ 5 $ \\
 \bottomrule
 
 
@@ -193,7 +189,7 @@ The system includes many ILFs, as they are needed to store all the information a
 
 \bottomrule
 
-\normalfont\textsc{Total} ILF && & $ 92 $ \\
+\normalfont\textsc{Total} \texttt{ILF} && & $ 92 $ \\
 
 \bottomrule
 
@@ -240,7 +236,7 @@ Registered customers can access their profile and their memorised addresses. Bot
 
 \bottomrule
 
-\normalfont\textsc{Total} EQ && & $ 6 $ \\
+\normalfont\textsc{Total} \texttt{EQ} && & $ 6 $ \\
 
 
 
@@ -511,7 +507,9 @@ Duration:\begin{equation}%
 %
 \end{equation}
 
-$ F = 0.28 + 0.2 * \left( E - B \right) $
+\begin{equation}
+	F = 0.28 + 0.2 * \left( E - 0.91 \right)
+\end{equation}  
 
 
 Number of people:
