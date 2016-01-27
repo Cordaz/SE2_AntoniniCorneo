@@ -1,5 +1,10 @@
 \chapter{Cost and effort estimation}\label{chap:estimation}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO	Ripensa riga TOTAL!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 In this chapter we are going to estimate the size of myTaxiService project by means of the Function points method, which is a language-independent way of quantifying program functionality.
 
 Then, after converting Function points into number of lines of source code, we are able to derive a development effort estimation based on system requirements and design specification, in terms of time and number of people. This is possible thanks to the formulas elaborated in \mbox{COCOMO II.2000} (\emph{Constructive Cost Model}), which we are going to present in the next sections.
@@ -52,10 +57,6 @@ In \cref{tab:FPweights} the weights for each function type, according to their c
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO	Rivedi da qui.
-%		Ripensa riga TOTAL!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -63,18 +64,18 @@ In \cref{tab:FPweights} the weights for each function type, according to their c
 
 \subsection*{External input}
 
-%Count each unique user data or user control input type that enters the external boundary of the software system being measured.
+External input functions deal with unique user data or user control input type that enters the external boundary of the software system being measured.
 
-Users interact with the application in many ways:
-\begin{description}
-	\item [Login, logout and registration] these are simple operations managed by simple components.	
-	\item [Memorise an address] simple operation.	
-	\item [Make a request, reservation] for each request or reservation the systems must interact with many entities. Moreover a taxi has to be allocated. These are complex operations, since many entities are involved.	
-	\item [Cancel a reservation] a simple operation that requires only an object elimination. 	
-	\item [Report taxi availability] this operation requires looking for the pertinence area of the taxi, in order to correctly enqueue it; this can be estimated as an average operation.	
-	\item [Taxi driver accepts or refuses a ride] the first case involves two simple operations, since the ride shall be initiated and a notification must be prepared. Instead, the second case is more complicated: whenever a ride is refused, the system makes a new allocation.
+Users interact with myTaxiService system in many ways:
+\begin{itemize}
+		\item Login, logout and registration: these are simple operations managed by simple components.	
+	\item Memorise an address: it is a simple operation.	
+	\item Make a request, reservation: for each request or reservation the systems must interact with many entities. Moreover a taxi has to be allocated. These are complex operations, since many entities are involved.	
+	\item Cancel a reservation: a simple operation that requires only an object elimination. 	
+	\item Report taxi availability: this operation requires looking for the pertinence area of the taxi, in order to correctly enqueue it; this can be estimated as an average operation.	
+	\item Taxi driver accepts or refuses a ride: the first case involves two simple operations, since the ride shall be initiated and a notification must be prepared. Instead, the second case is more complicated: whenever a ride is refused, the system makes a new allocation.
 
-\end{description}
+\end{itemize}
 
 \newcommand{\myWFP}{2.5cm}
 
@@ -109,8 +110,9 @@ Users interact with the application in many ways:
 
 \bottomrule
 
+\caption{External input summary table.}
 
-\end{tabularx}\end{table*}
+\label{tab:ei}\end{tabularx}\end{table*}
 
 
 
@@ -122,9 +124,9 @@ Users interact with the application in many ways:
 
 \subsection*{External output}
 
-%Count each unique user data or control output type that leaves the external boundary of the software system being measured.
+This kind of functions counts each unique user data or control output type that leaves the external boundary of the software system.
 
-The system shall provide notification to all types of users, which can be of various type (SMS, push, \dots). Each notification contains a small amount of data, however those must follow a precise protocol to be sent, which makes the operation a bit more complex: an average cost is to be considered.
+myTaxiService system shall provide notification to all types of users, which can be of various type (SMS, push, \dots). Each notification contains a small amount of data, however those must comply with protocols, which makes the operation a bit more complex: an average cost is to be considered.
 
 
 
@@ -146,15 +148,15 @@ The system shall provide notification to all types of users, which can be of var
 \normalfont\textsc{Total} \texttt{EO} && & $ 5 $ \\
 \bottomrule
 
+\caption{External output summary table.}
 
-\end{tabularx}\end{table*}
+\label{tab:eo}\end{tabularx}\end{table*}
 
 
 \subsection*{Internal logical file}
-%Count each major logical group of user data or control information in the software system as a logical internal file type. Include each logical file (e.g., each logical group of data) that is generated, used, or maintained by the software system.
+Internal logical files are the major logical group of user data or control information in the software system as a logical internal file type. These include each logical file that is generated, used, or maintained by the software system.
 
-
-The system includes many ILFs, as they are needed to store all the information about customers, areas and addresses, cabs and drivers, requests, reservations and allocations. In detail:
+Our system includes many ILFs, as they are needed to store all information about customers, areas and addresses, cabs and drivers, requests, reservations and allocations. In detail:
 
 \begin{itemize}
 	\item few information about customers are stored, in simple structures: first and last name, login credential and phone number. However, since registered customers' addresses are stored as well, it is appropriate to consider an average cost.
@@ -193,8 +195,9 @@ The system includes many ILFs, as they are needed to store all the information a
 
 \bottomrule
 
+\caption{Internal logical files summary table.}
 
-\end{tabularx}\end{table*}
+\label{tab:ilf}\end{tabularx}\end{table*}
 
 
 
@@ -202,9 +205,9 @@ The system includes many ILFs, as they are needed to store all the information a
 
 \subsection*{External interface files} 
 
-%Files passed or shared between software systems should be counted as external interface file types within each system.
+Files passed or shared between software systems should be counted as external interface file types within each system.
 
-However, myTaxiService system does not require external data, so this is to be set to $ 0 $.
+As a matter of fact, myTaxiService system does not require any external data, so this is set to $ 0 $.
 
 
 
@@ -213,7 +216,7 @@ However, myTaxiService system does not require external data, so this is to be s
 
 
 \subsection*{External inquiry} 
-%Count each unique \mbox{input-output} combination, where input causes and generates an immediate output, as an external inquiry type.
+Here we count each unique input-output combination, where input causes and generates an immediate output, as an external inquiry type.
 
 Registered customers can access their profile and their memorised addresses. Both operations can be considered as simple.
 
@@ -242,8 +245,9 @@ Registered customers can access their profile and their memorised addresses. Bot
 
 \bottomrule
 
+\caption{External inquiry summary table.}
 
-\end{tabularx}\end{table*}
+\label{tab:eq}\end{tabularx}\end{table*}
 
 
 
@@ -251,7 +255,7 @@ Registered customers can access their profile and their memorised addresses. Bot
 
 \subsection{Total function points}
 
-The results of the previous sections are summarised in \cref{tab:FPtotal}.
+The results from previous sections (\crefrange{tab:ei}{tab:eq}) are summarised in \cref{tab:FPtotal}.
 
 \begin{table}\begin{tabularx}{\textwidth}{ >{\ttfamily}C{.6cm} X C{\myW} }
 
@@ -269,15 +273,9 @@ The results of the previous sections are summarised in \cref{tab:FPtotal}.
 	EIF & External interface files	& $0$ \\
 \midrule
 	EQ & External inquiry			& $6$\\
-
-\bottomrule
-
-\multicolumn{2}{l}{\normalfont\textsc{Total}} & $ 152 $ \\
-
 \bottomrule
 
 \end{tabularx}
-
 
 \caption{Total function points.}
 \label{tab:FPtotal}
@@ -286,13 +284,12 @@ The results of the previous sections are summarised in \cref{tab:FPtotal}.
 
 
 
-By applying \cref{eqn:fp}, we get:
+By applying \cref{eqn:fp}, we get the total number of Function points:
 \begin{equation}
-	\mFP = 107 % TODO correggi!
+	\mFP = 152
 \end{equation}
 
-Those we obtained are the Unadjusted Function Points (UFP). An attempt to adapt this result, which focuses on functionality, to the prediction of development costs, was made, but as it was wittily noted, ``it is like correcting the tallness of a person to relate it to a measure of his/her intelligence'' (N. Fenton), so we are not going to follow this road.
-
+Those we obtained are the Unadjusted function points (UFP). An attempt to adapt this result (which focuses on functionality) to the prediction of development costs was made, but as it was wittily noted, ``it is like correcting the tallness of a person to relate it to a measure of his/her intelligence'' (N. Fenton), so we are not going down this road.
 
 
 
@@ -317,33 +314,26 @@ Those we obtained are the Unadjusted Function Points (UFP). An attempt to adapt 
 
 \section{COCOMO}
 
-% TODO Definizione COCOMO!
-
-
-In the following we are going to adopt the formulas defined in \mbox{\emph{COCOMO II.2000}} standard. Only a brief introduction of the theoretic meaning of the formulas is given. 
-
-We are not going to present the whole tables from which values are extracted. Refer to the mentioned document for an insight on the COCOMO model. 
+In the following we are going to adopt the formulas defined in \mbox{\emph{COCOMO II.2000}} standard. Only a brief introduction of the theoretic meaning of the formulas is given. For the sake of compactness, we are not going to present the whole tables from which values are extracted\footnote{Refer to the documents mentioned in \cref{sec:references} for an insight on COCOMO model.}.  
 
 
 \subsection{Sizing the project}
 
-A good size estimate is very important for a good model estimation. However, at this stage of myTaxiService project, this is a challenging operation, since it is nearly impossible to correctly guess in which proportion it will be composed of new code and of reused or readapted code.
+A reasonable size estimate of a project is very important for a good model estimation. However, at this stage this is a challenging operation, since it is nearly impossible to correctly guess how much of myTaxiService code will be newly written, and how much, instead, will be reused or readapted.
 
-That is why we are going to provide the \mbox{worst-case}, highly improbable, estimation: we assume that the whole code will be written from scratch. 
-
-The quantity $\mSize$ is the estimated number of source lines of code (SLOC):
+That is why we are going to provide the (very unlikely) worst-case estimation: we assume that the whole code will be written from scratch. The quantity $\mSize$ is the estimated number of source lines of code (SLOC):
 \begin{equation}
 %
 	\mSize = p * \mFP
 %
 \end{equation}
 
-The parameter $ p = 46 $ (\url{http://www.qsm.com/resources/function-point-languages-table}) converts the function points to SLOC, in the specific case of J2EE (Java Enterprise Edition).
+Parameter $ p = 46 $ converts the function points to SLOC, in the specific case of J2EE\footnote{See \cref{sec:references} for the source of this figure.} (Java Enterprise Edition).
 
 In our case the sizing of the project results:
 \begin{equation}
 %
-	\mSize = 46 * YYY = XXX  % TODO Solve
+	\mSize = 46 * 152 = 6992
 %
 \end{equation}
 
@@ -351,7 +341,7 @@ In our case the sizing of the project results:
 
 \subsection{Effort estimation}
 
-Effort is expressed in terms of \mbox{person-months} (PM). A {person-month} is the amount of time one person spends working on the software development project for one month. COCOMO defines the following formula to estimate it:
+Effort is expressed in terms of \mbox{person-months} (PM). A \mbox{person-month} is the amount of time one person spends working on the software development project for one month. COCOMO defines the following formula to estimate it:
 \begin{equation}
 %
 	\mEffort = 2.94 * { \left( \frac{\mSize}{1000} \right) }^{E} * \eaf \label{eqn:effort}
@@ -373,7 +363,7 @@ Exponent $ E $ and parameter $ \eaf $ are defined as follows:
 
 
 
-In the following paragraphs we are going to present the factors from which exponent $ E $ and parameter $ \eaf $ are derived. For a justification of the choices we made, please refer to \cref{chap:justification}.
+In the following paragraphs we are going to present the factors from which exponent $ E $ and parameter $ \eaf $ are derived. For a justification of the choices we made, refer to \cref{chap:justification}.
 
 
 
@@ -383,7 +373,7 @@ In the following paragraphs we are going to present the factors from which expon
 
 
 
-\subsection*{Scale factors} Exponent $ E $ is an aggregation of five scale factors that account for some possible overheads encountered for software projects. Each factor has a range of rating levels, from \emph{Very Low} to \emph{Extra high}, and each rating level has a weight. The specific value of the weight is called a scale factor ($ \text{SF} $). In the following table we are going to present the adopted values.
+\subsection*{Scale factors} Exponent $ E $ is the aggregation of five scale factors that account for some possible overheads encountered for software projects. Each factor has a range of rating levels, from \emph{Very low} to \emph{Extra high}, and each rating level has a weight. The specific value of the weight is called a scale factor ($ \text{SF} $). In \cref{tab:sf} we are presenting the values we adopted.
 
 
 
@@ -401,13 +391,17 @@ PMAT	& Process maturity			& High		& $ 3.12 $\\
 \bottomrule
 	
 \end{tabularx}
+
+\caption{Scale factors summary table.}
+\label{tab:sf}
+
 \end{table}
 
 
 
 As a result of the previous choices and on the basis of \cref{eqn:Eexp}, the parameter $ E $ results:
 \begin{equation}
-	E = 0.91 + 0.01 * 15.45 = 1.0645
+	E = 0.91 + 0.01 * 15.45 = 1.0645 \label{eqn:expVAL}
 \end{equation}
 
 
@@ -426,7 +420,10 @@ As a result of the previous choices and on the basis of \cref{eqn:Eexp}, the par
 
 
 
-\subsection*{Cost drivers} The parameter $ \eaf $ is derived from the effort multipliers ($ \text{EM} $) of the Cost drivers. Cost drivers are used to capture characteristics of the product under development, of the personnel working on it, and of general practices that affect the effort to complete the project.
+
+\subsection*{Cost drivers} The parameter $ \eaf $ is derived from the effort multipliers ($ \text{EM} $) of the Cost drivers. Cost drivers are used to capture characteristics of the product under development, of the personnel working on it, and of general practices that affect the effort to complete the project. 
+
+Again, in \cref{tab:cd} we present only the summary of our evaluation of the parameters.
 
 
 
@@ -461,18 +458,25 @@ SCED	& Required development schedule	& High		& $ 1.00 $ \\
 
 \bottomrule
 	
-\end{tabularx}\end{table}
+\end{tabularx}
+
+\caption{Cost drivers summary table.}
+\label{tab:cd}
+
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-
-
-
-
-As a result of the previous choices, the parameter $ \eaf $, defined in \cref{eqn:eaf}, results:
+As a result of the previous choices, parameter $ \eaf $, defined in \cref{eqn:eaf}, results:
 
 \begin{equation}
-	\eaf = 0.85858	
+	\eaf  = 0.8586	 \label{eqn:eafVAL}
 \end{equation}
 
 
@@ -481,16 +485,14 @@ As a result of the previous choices, the parameter $ \eaf $, defined in \cref{eq
 
 \subsection*{Effort estimation}
 
-Person/month.
-
-Total:
-
+Thanks to the results in \cref{eqn:expVAL,eqn:eafVAL}, we are now able to estimate the value of the effort, defined in \cref{eqn:effort}:
 \begin{equation}
 %
-	\mEffort = 2.94 * { \left( \frac{\mSize}{1000} \right) }^{E} * \eaf
+	\mEffort = 2.94 * { \left( \frac{6992}{1000} \right) }^{1.0645} * 0.8586 = 20.0086
 %
 \end{equation}
 
+So, according to COCOMO model and our estimation, almost exactly 20 person-months are needed to fully develop myTaxiService system.
 
 
 
@@ -501,25 +503,37 @@ Total:
 
 \subsection{Schedule estimation}
 
-Duration:\begin{equation}%
+Now, thanks to the previous results, it is possible to evaluate the time to develop ($ \mathbf{t} $). Time to develop is the calendar time in months that goes from the determination of the product's requirements to the completion of an acceptance activity certifying that the product satisfies its requirements.
+
+The time to develop is given by this formula:\begin{equation}%
 %
-\mathbf{d} = 3.67 * {\left(\mathbf{e}\right)}^F
+\mathbf{t} = 3.67 * {\left(\mathbf{e}\right)}^F \label{eqn:ttdev}
 %
 \end{equation}
 
+
+Exponent $ F $ is defined as follows:
 \begin{equation}
-	F = 0.28 + 0.2 * \left( E - 0.91 \right)
+	F = 0.28 + 0.2 * \left( E - 0.91 \right) \label{eqn:expF}
 \end{equation}  
 
+Bu substituting the results from previous sections in \cref{eqn:ttdev,eqn:expF}, we obtain:
 
-Number of people:
+\begin{gather}
+	F = 0.28 + 0.2 * \left( 1.0645 - 0.91 \right) = 0.3109
+	\\
+	\mathbf{t} = 3.67 * {\left( 20.0086 \right)}^{0.3109} = 9.3157
+\end{gather}
 
+
+The development of myTaxiService as a whole is expected to take more than 9 months.
+
+By dividing the effort $ \mathbf{e} $ by the time to develop $ \mathbf{t} $, we get the estimated number of people needed for the project:
 \begin{equation}
-\mathbf{n} = \frac{\mathbf{e}}{\mathbf{d}}
+	\mathbf{n} = \frac{\mathbf{e}}{\mathbf{t}} = \frac{20.0086}{9.3157} = 2.1478
 \end{equation}
 
-
-%\subsection{The SCED (Schedule Constraints) Cost Driver}
+Some considerations about these figures will be done in the next chapter. 
 
 
 
