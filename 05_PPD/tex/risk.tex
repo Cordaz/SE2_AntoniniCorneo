@@ -1,3 +1,73 @@
 \chapter{Risk report}\label{chap:risk}
 
-\lipsum[1-2]
+In order to perform risk identification and analysis, we are adopting Sommerville's checklist\footnote{Ian~Sommerville. \emph{Software Engineering}. 10th edition. Pearson, 2015.}, as we believe it to be a comprehensive and intuitive categorisation of risks. 
+
+There are six types of risk that may be considered, and they are analysed in the following sections.
+
+\section{Technology risks}
+
+These risks derive from the software and hardware technologies that are used to develop the system. 
+
+We can identify a number of them:
+\begin{itemize}
+	\item The database cannot process as many transactions per second as expected. To overcome this problem, the possibility of buying a higher-performance database should be considered.
+	\item Reusable software components need severe refactoring. In-depth analysis should be performed before using already written code, and only valid components should be adopted.
+	\item Data corruption in the communication between clients and servers occurs more frequently than expected. Protocols to improve the reliability of the communications should be introduced.
+\end{itemize}
+
+
+
+\section{People risks}
+
+People risks are associated with the people in the development team.
+
+Trivially, we have the following:
+\begin{itemize}
+	\item Key staff are ill and unavailable at critical times: since our team is currently composed of two people, any absence would almost certainly cause delays, unless the team is reorganised so that there is more overlap of work, and thus people get more insight into each other's jobs.
+\end{itemize}
+
+
+
+
+
+\section{Organisational risks}
+
+Risks deriving from the organisational environment where the software is being developed are grouped in this category.
+
+We only came up with possible financial problems, but the municipality's commitment is strong, so reductions in the project budget are very unlikely.
+
+
+
+
+
+\section{Tools risks}
+
+This kind of risks derive from the software tools and other support software used to develop the system.
+
+Limited specification was made about the tools to be used. No relevant risk relating to this category can be spotted.
+
+
+
+
+\section{Requirements risks}
+
+Risks that derive from changes to the customer requirements fall into this category.
+
+Changes to requirements that require major design rework may be proposed. This is totally uncontrollable by us, and we can only cope with the possibility. The only thing we can do is to deliver a detailed requirement analysis document and discuss it with the municipality representatives. Also, deriving traceability information to assess requirements changes may be of help.
+
+
+
+
+\section{Estimation risks}
+
+Here we collect risks that derive from the management estimates of the resources required to build the system.
+
+This risk depends mainly on the accuracy of the estimations in \cref{chap:estimation}. Thorough investigations should be performed to check the thoroughness of the values.
+
+
+
+
+
+
+
+	
