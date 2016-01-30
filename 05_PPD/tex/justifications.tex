@@ -1,17 +1,27 @@
 \chapter{Factors justification}\label{chap:justification}
 
+We are going to motivate here the values we adopted for scale factors and cost drivers (\cref{sec:cocomo}), which we used to compute some relevant COCOMO parameters. We chose not to clutter the main section and to dedicate some space here to this justification.
+
+Each parameter is thoroughly described in COCOMO model (see \cref{sec:references} for reference), where factor tables are provided in their entirety. We are not going to present them here, because a theoretical description of the model goes far beyond the scope of this document.
+
+
+
+
+
+
+
 \section{Scale factors}
 
 \begin{description}
 	
 	
-	\item [\normalfont\texttt{PREC}] It reflects the previous experience we had with this kind of projects. Since for us this was the first experience using this framework and these development methodologies, we set this value to \emph{Low}.
+	\item [\normalfont\texttt{PREC}] It reflects the previous experience we had with this kind of projects. Since this was our first experience with this framework and methodologies, we set this value to \emph{Low}.
 	
 	\item [\normalfont\texttt{FLEX}] It conveys the degree of flexibility in the development process. Since the high level description was pretty general, this value is set to \emph{High}.
 	
 	\item [\normalfont\texttt{RESL}] It measures the degree of uncertainty and risk in the development process. It is set to \emph{Nominal} because a great portion of time was dedicated to designing the system, but some aspects (e.g., user interface, COTS\footnote{A commercial-off-the-shelf (COTS) product is a software system, available in the commercial marketplace, that can be bought and adapted to the needs of different customers. COTS purchases are a form of software reuse, and constitute alternatives to custom developments.}, hardware) are still partially undefined.
 	
-	\item [\normalfont\texttt{TEAM}] It accounts for the sources of project turbulence and entropy because of difficulties in synchronising the stakeholders: users, customers, developers, maintainers, others. In our case, given the limited number of people involved in the project and the great mutual trust between the two of us, the parameter is set to \emph{Very high}.
+	\item [\normalfont\texttt{TEAM}] It accounts for the sources of project turbulence and entropy because of difficulties in synchronising the stakeholders (users, customers, developers, maintainers, others). In our case, given the limited number of people involved in the project and the great mutual trust between the two of us, the parameter is set to \emph{Very high}.
 	
 	\item [\normalfont\texttt{PMAT}] It evaluates the maturity of the project at a certain point. This was determined by means of the Key Process Area (KPA) Questionnaire, which gave a result of $ 2.87 $: this is why this parameter is set to \emph{High} (level 3).
 
@@ -41,13 +51,13 @@
 
 	\item [\normalfont\texttt{RELY}] This is the measure of the extent to which the software must perform its intended function over a period of time. Since software failures don't have critical consequences, the parameter is set to \emph{Low}.
 
-	\item [\normalfont\texttt{DATA}] This cost driver attempts to capture the effect large test data requirements have on product development. The rating is determined by calculating the ratio of bytes in the testing database to SLOC in the program. At this stage of the project there is no testing database, but considering the size of the project, it is possible to set this parameter to \emph{Nominal}.
+	\item [\normalfont\texttt{DATA}] This cost driver attempts to capture the effect large test data requirements have on product development. The rating is determined by calculating the ratio of bytes in the testing database to SLOC in the program. At this stage there is no testing database, but considering the size of the project, it is possible to set this parameter to \emph{Nominal}.
 
-	\item [\normalfont\texttt{CPLX}] Complexity is divided into five areas: control operations, computational operations, \mbox{device-dependent} operations, data management operations, and user interface management operations. After considering the size and nature of myTaxiService system, we set this parameter to \emph{High}.
+	\item [\normalfont\texttt{CPLX}] Complexity is divided into five areas: control operations, computational operations, device-dependent operations, data management operations, and user interface management operations. After considering the size and nature of myTaxiService system, we set this parameter to \emph{High}.
 
-	\item [\normalfont\texttt{RUSE}] This cost driver accounts for the additional effort needed to construct components intended for reuse on current or future projects. This effort is consumed with creating more generic design of software, more elaborate documentation, and more extensive testing to ensure components are ready for use in other applications. Since we require extensive documentation and thorough testing, it is reasonable to set this parameter to \emph{High}.
+	\item [\normalfont\texttt{RUSE}] This cost driver accounts for the additional effort needed to construct components intended for reuse on current or future projects. This effort is consumed with creating more generic design of software, more elaborate documentation, and more extensive testing to ensure components are ready for external use. Since we require extensive documentation and thorough testing, it is reasonable to set this parameter to \emph{High}.
 
-	\item [\normalfont\texttt{DOCU}] The rating scale for the DOCU cost driver is evaluated in terms of the suitability of the project's documentation to its lifecycle needs. We believe that documentation is crucial in any project, we set this parameter to \emph{High}.
+	\item [\normalfont\texttt{DOCU}] The rating scale for the DOCU cost driver is evaluated in terms of the suitability of the project's documentation to its lifecycle needs. We believe that documentation is crucial in any project, therefore we set this parameter to \emph{High}.
 
 	\item [\normalfont\texttt{TIME}] This is a measure of the execution time constraint imposed upon a software system. In our project this parameter is \emph{not relevant}.
 
@@ -55,22 +65,22 @@
 
 	\item [\normalfont\texttt{PVOL}] The term \emph{platform} is used here to mean the complex of hardware and software (OS, DBMS, etc.) the software product calls on to perform its tasks. Since the platform shouldn't change too often, this value is set to \emph{Low}.
 
-	\item [\normalfont\texttt{ACAP}] Analysts are personnel who work on requirements, \mbox{high-level} design and detailed design. The major attributes that should be considered in this rating are analysis and design ability, efficiency and thoroughness, and the ability to communicate and cooperate. This parameter is set to \emph{High}, since we dedicated a great effort in analysing the problem requirements and its potential integration in the real world.
+	\item [\normalfont\texttt{ACAP}] Analysts are personnel who work on requirements and design. The major attributes that should be considered in this rating are analysis and design ability, efficiency and thoroughness, and the ability to communicate and cooperate. This parameter is set to \emph{High}, since we dedicated a great effort in analysing the problem requirements and its potential integration in the real world, and also in designing the whole system.
 
 	\item [\normalfont\texttt{PCAP}] Evaluation should be based on the capability of the programmers as a team rather than as individuals. Major factors which should be considered in the rating are ability, efficiency and thoroughness, and the ability to communicate and cooperate. Should development be upon us, we set this parameter to \emph{High}.
 
-	\item [\normalfont\texttt{PCON}] The rating scale for PCON is in terms of the project's annual personnel turnover. This parameter is set to \emph{Very low}, since in our case the available time is less than half a year.
+	\item [\normalfont\texttt{PCON}] The rating scale for this factor is in terms of the project's annual personnel turnover. This parameter is set to \emph{Very low}, since in our case the available time is less than half a year.
 
-	\item [\normalfont\texttt{APEX}] The rating for this cost driver is dependent on the level of applications experience of the project team developing the software system. The ratings are defined in terms of the project team's equivalent level of experience with this type of application. Considering our education, we can set this parameter to \emph{Nominal}.
+	\item [\normalfont\texttt{APEX}] The rating for this cost driver depends on the level of applications experience of the project team developing the software system. The ratings are defined in terms of the project team's equivalent level of experience with this type of application. Considering our education, we can set this parameter to \emph{Nominal}.
 
-	\item [\normalfont\texttt{PLEX}] This parameter recognises the importance of understanding the use of more powerful platforms, including more graphic user interface, database, networking, and distributed middleware capabilities. Since our knowledge about databases, user interfaces, and \mbox{server-side} development is around one year, this parameter is set to \emph{Nominal}.
+	\item [\normalfont\texttt{PLEX}] This parameter recognises the importance of understanding the use of more powerful platforms, including more graphic user interface, database, networking, and distributed middleware capabilities. Since our knowledge about databases, user interfaces, and server-side development is around one year, this parameter is set to \emph{Nominal}.
 
 	\item [\normalfont\texttt{LTEX}] This is a measure of the level of programming language and software tool experience of the project team developing the software system or subsystem. Software development includes the use of tools that perform requirements and design representation and analysis, configuration management, document extraction, library management, program style and formatting, consistency checking, planning and control, etc. In addition to experience in the project's programming language, experience on the project's supporting tool set also affects development effort. Considering our education, we can set this parameter to \emph{Nominal}.
 
-	\item [\normalfont\texttt{TOOL}] This parameter evaluates the use of tools to support the development and testing. Since there is no mandatory prescription to the developers, we set this parameter to \emph{Nominal}.
+	\item [\normalfont\texttt{TOOL}] This parameter evaluates the use of tools to support the development and testing. Since we set no mandatory prescription to the developers, we set this parameter to \emph{Nominal}.
 
 	\item [\normalfont\texttt{SITE}] Given the increasing frequency of multisite developments, and indications that multisite development effects are significant, this parameter measures the impact on the development process of site collocation and communication support. Since we met daily and used phone calls and messaging applications to communicate, we set this parameter to \emph{Extra high}.
 
-	\item [\normalfont\texttt{SCED}] This rating measures the schedule constraint imposed on the project team developing the software. The ratings are defined in terms of the percentage of schedule stretch-out or acceleration with respect to a nominal schedule for a project requiring a given amount of effort. Accelerated schedules tend to produce more effort in the earlier phases to eliminate risks and refine the architecture, more effort in the later phases to accomplish more testing and documentation in parallel. In spite of the well defined deadlines, which facilitated the distribution of our efforts over the time, some phases required much work. For this reason this parameter is set to \emph{High}.
+	\item [\normalfont\texttt{SCED}] This rating measures the schedule constraint imposed on the project team developing the software. The ratings are defined in terms of the percentage of schedule stretch-out or acceleration with respect to a nominal schedule for a project requiring a given amount of effort. In spite of the well defined deadlines, which facilitated the distribution of our efforts over the time, some phases required much work. For this reason this parameter is set to \emph{High}.
 
 \end{description}
