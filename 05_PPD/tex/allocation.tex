@@ -21,14 +21,13 @@ Le us start with the phases we already have gone though. For each, denoted by th
 RASD & 		61 &	3 weeks & 	$\simeq$ 4 days \\\midrule
 DD &		68 &	4 weeks & 	$\simeq$ 5 days \\\midrule
 ITPD &		10 &	2 weeks &	$\simeq$ 1 day  \\\midrule
-PPD &		XX &	2 weeks & 	$\simeq$ X days \\
+PPD &		16 &	2 weeks & 	$\simeq$ 1 day  \\
 
 \bottomrule
 	
 \end{tabular}
 \vspace{\baselineskip}
 \end{table}
-% TODO Correggi PPD!!!!!
 
 
 Notice that it is nearly impossible for us to define a role for the two of us in the team, because we always worked together on the whole documents. 
@@ -50,7 +49,7 @@ As one can notice, the first phase is now completed with the delivery of this do
 \mathbf{t} - 2 * \left\lceil \frac{ \text{ \textsc{EM}(\texttt{DD})} +  
 									\text{\textsc{EM}(\texttt{ITPD})} +
 									\text{\textsc{EM}(\texttt{PPD}) }
-								   }{7} \right\rceil = XX
+								   }{7} \right\rceil = 38
 %	
 \end{equation}
 
@@ -64,79 +63,6 @@ However, we find it pointless to prescribe the allocation of coding tasks to eac
 
 
 
-
-
-
-
-
-\begin{comment}
-	
-
-
-
-
-%TODO Correggi: RASD esterno.
-\begin{figure*}%
-	\includestandalone[mode=tex, width=\textwidth]{img/gantt/gantt}
-	\caption{myTaxiService Gantt chart.}\label{fig:gantt1}
-\end{figure*}
-
-
-\begin{figure*}
-%	Textwidth: \the\textwidth
-	\newlength{\imagewidth}%
-	\settowidth\imagewidth{\input{img/ganttDEV/ganttDEV}}%
-	\includestandalone[mode=tex, width=.81\imagewidth]{img/ganttDEV/ganttDEV}
-\end{figure*}
-
-
-
-The following phases are identified:\begin{description}
-	\item [\normalfont\texttt{RASD}] requirements analysis and specification; the resulting document, which required three weeks, was delivered on \printdate{2015-11-6}.
-	\item [\normalfont\texttt{DD}] designing; the resulting document, which required four weeks, was delivered on \printdate{2015-12-4}.
-	\item [\normalfont\texttt{ITPD}] integration testing plan; the resulting document, which required three weeks, was delivered on \printdate{2016-1-21} (notice that there is a temporal hiatus between the previous phase and this one).
-	\item [\normalfont\texttt{PPD}] project planning; the resulting document, which required three weeks, is this one, and is going to be delivered on \printdate{2016-2-2}.
-	\item [\normalfont\texttt{Dev}] development and unit testing; this phase will require about 21 weeks; in a few lines, we are going to detail this phase.
-	\item [\normalfont\texttt{Int}] integration and testing; eight weeks will be dedicated to this phase.
-\end{description}
-
-
-
-As of the development phase, we are now presenting again in \cref{fig:intsequence} the sequence of integration scheme (already introduced in the \emph{Integration testing plan document}), because it gives a reasonable view on the critical components which need to be developed first.
-
-
-\begin{figure*}
-	\centering
-	\includestandalone[mode=tex, width=\textwidth]{img/sequence/sequence_o}  
-	\caption{Sequence of development and integration.}
-	\label{fig:intsequence}
-\end{figure*}
-
-
-
-As of the development phase, we are presenting again in \cref{fig:component} the well known component diagram of myTaxiService system. 
-
-
-\begin{figure*}
-	\includegraphics[width=\textwidth]{img/ComponentView__ComponentDiagram_1}
-	\caption{Component diagram.}
-	\label{fig:component}
-\end{figure*}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{comment}
 
 
 
