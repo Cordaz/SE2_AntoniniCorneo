@@ -1,0 +1,42 @@
+\begin{frame}[allowframebreaks]{Functional requirements}
+
+\begin{enumerate}
+	\item The service shall accept only valid input: \begin{enumerate}
+		\item The service shall assure that each provided address exists.
+		\item The service can accept only requests with full personal data of the customer (name, surname and phone number).
+	\end{enumerate}
+	
+	\item The service shall guarantee the non-ubiquity of the actors: \begin{enumerate}
+		\item A taxi driver must be registered once.		\item A registered customer can be registered only once.		\item A taxi shall be registered only once.		\item A taxi must have one and only one taxi driver, a taxi driver must have one and only one taxi.
+	\end{enumerate}
+	
+	\item The system has to ensure the security in the login process: \begin{enumerate}
+		\item Only registered customer can login in myTaxiApp.
+		\item Only verified taxi driver can login in myTaxiAssist.
+	\end{enumerate}
+	
+	\item The service shall provide a method to verify the driver: \begin{enumerate}
+		\item Only authorised personnel can add or remove a taxi driver and/or a taxi.
+	\end{enumerate}
+	
+	\item The service shall accept only valid reservations: \begin{enumerate}
+		\item The service shall allow only registered customers to reserve a taxi.
+		\item The system shall accept reservations only if they are made between 24 hours and 2 hours before the request time.
+	\end{enumerate}
+	
+	\item The service shall guarantee a correct taxi allocation: \begin{enumerate}
+		\item One taxi cab every four passengers must be allocated by the system.
+		\item The service must ensure that a taxi is allocated to only one request at the same time.
+		\item A non available taxi cab shall not be allocated to a request.
+		\item The service has to provide a taxi to a customer within 10 mins.
+		\item The service has to guarantee a fair management of the taxi queue.
+		\item When a taxi driver refuses a request, the system must push the taxi at the end of the queue.
+		\item While a taxi has a customer on board, it cannot be allocated.
+		\item If a request has been accepted by the system, the customer must be taken to its destination: \begin{enumerate}
+			\item If the taxi driver refuses the request, the request is forwarded to the first taxi in the queue.
+			\item If no taxis are available in the area, the first taxi in the queue of adjacent areas must be selected.
+			\item If the taxi breaks down, another taxi has to be allocated.
+		\end{enumerate}
+	\end{enumerate} 
+\end{enumerate}
+\end{frame}

@@ -1,0 +1,69 @@
+\ProvidesPackage{mystyle}
+
+\usetheme{metropolis}
+
+\usepackage{graphicx}
+
+\usepackage[british]{babel}
+
+
+
+\usepackage{fontspec}
+\usefonttheme{professionalfonts} % required for mathspec
+\usepackage{mathspec}
+
+\setsansfont{HelveticaNeue-Light}[       BoldFont       = HelveticaNeue-Medium ,       ItalicFont     = HelveticaNeue-LightItalic ,       BoldItalicFont = HelveticaNeue-MediumItalic ]
+%
+%\setmainfont{PalatinoLinotype-Roman}[%       BoldFont       = PalatinoLinotype-Bold ,%       ItalicFont     = PalatinoLinotype-Italic ,%       BoldItalicFont = PalatinoLinotype-BoldItalic ]
+
+
+
+
+
+
+
+% Title page and colours
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{red}{rgb}{0.95,0.20,0.20} %red
+\definecolor{black}{rgb}{0,0,0} % black
+\definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
+
+
+
+
+
+%\usefonttheme[stillsansserifsmall, stillsansseriflarge]{serif}
+
+
+
+
+
+
+
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+%\setbeamertemplate{frametitle}{\expandafter\MakeUppercase\expandafter\insertframetitle}
+%\setbeamerfont{frametitle}{family=\sffamily, series=\bfseries}
+
+\usecolortheme[named=red]{structure}
+
+
+\metroset{	%background = dark,
+			block = fill,
+			progressbar = frametitle,
+		  }
+
+\setbeamercolor{progress bar}{ fg=red , bg=grey }
+\setbeamercolor{alerted text}{fg=red}
+
+
+
+
+
+
+\title{myTaxiService}
+\author{Paolo Antonini, Andrea Corneo}
+\date{}\institute{Politecnico di Milano} 
+
+
