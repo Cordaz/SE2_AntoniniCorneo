@@ -1,3 +1,116 @@
-\begin{frame}
-	Lorem ipsum again.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   \section{Project planning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mSize}{\mathbf{s}}
+\newcommand{\mFP}{\text{FP}}
+\newcommand{\mEffort}{\mathbf{e}}
+\newcommand{\eaf}{\text{EAF}}  % Effort Adjustment Factor
+
+
+\begin{frame}{Function points}
+
+
+\begin{tabularx}{\textwidth}{ >{\small\ttfamily}C{1cm} >{\small}X >{\small}C{1.5cm} }
+
+\toprule
+\normalfont\textsc{ID} & \normalfont\textsc{Function type} & $ \mFP $ \\
+
+\toprule
+
+	EI & External input				& $49$ \\
+\midrule
+	EO & External output				& $5$ \\
+\midrule
+	ILF & Internal logical file		& $92$ \\
+\midrule
+	EIF & External interface files	& $0$ \\
+\midrule
+	EQ & External inquiry			& $6$\\
+\bottomrule
+
+\end{tabularx}
+
+
+\begin{block}{Total function points}\begin{equation*}
+%
+\mFP = \sum \text{\#functions\_by\_type} * \text{weight} = 152
+%
+\end{equation*}\end{block}
+
+
+
+
 \end{frame}
+
+
+
+
+
+\begin{frame}[allowframebreaks]{COCOMO II.2000}
+	
+\begin{block}{Size (SLOC)}\begin{equation*}
+%
+	\mSize = p * \mFP = 46 * 152 = 6992
+%
+\end{equation*}\end{block}
+
+
+
+
+
+\begin{block}{Effort (person-months)}\begin{equation*}
+%
+	\mEffort = 2.94 * { \left( \frac{6992}{1000} \right) }^{1.0645} * 0.8586 = 20.0086
+%
+\end{equation*}\end{block}
+
+	
+\framebreak	
+	
+	
+\begin{block}{Time to develop}\begin{equation*}
+%
+	\mathbf{t} = 3.67 * {\left( 20.0086 \right)}^{0.3109} = 9.3157 \text{ months} \simeq 40 \text{ weeks}
+%
+\end{equation*}\end{block}
+
+
+
+\begin{block}{Number of people}\begin{equation*}
+%
+	\mathbf{n} = \frac{\mathbf{e}}{\mathbf{t}} = \frac{20.0086}{9.3157} = 2.1478
+%
+\end{equation*}\end{block}
+
+
+
+
+
+	
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

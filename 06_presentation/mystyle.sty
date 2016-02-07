@@ -1,67 +1,53 @@
 \ProvidesPackage{mystyle}
 
+\usepackage{standalone}
 \usetheme{metropolis}
-
-\usepackage{graphicx}
-
 \usepackage[british]{babel}
+\usepackage[none]{hyphenat}
+\usepackage{amsmath}
 
 
-
+%% FONT SELECTION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fontspec}
-\usefonttheme{professionalfonts} % required for mathspec
-\usepackage{mathspec}
 
+\setmainfont{HelveticaNeue-Light}[       BoldFont       = HelveticaNeue-Medium ,       ItalicFont     = HelveticaNeue-LightItalic ,       BoldItalicFont = HelveticaNeue-MediumItalic ]
+	   
 \setsansfont{HelveticaNeue-Light}[       BoldFont       = HelveticaNeue-Medium ,       ItalicFont     = HelveticaNeue-LightItalic ,       BoldItalicFont = HelveticaNeue-MediumItalic ]
-%
-%\setmainfont{PalatinoLinotype-Roman}[%       BoldFont       = PalatinoLinotype-Bold ,%       ItalicFont     = PalatinoLinotype-Italic ,%       BoldItalicFont = PalatinoLinotype-BoldItalic ]
 
+\setmonofont{Menlo-Regular}[       BoldFont       = Menlo-Bold ,       ItalicFont     = Menlo-Italic ,       BoldItalicFont = Menlo-BoldItalic ,
+	   Scale		  = MatchLowercase ]
 
-
-
-
-
-
-% Title page and colours
-\usepackage{tikz}
+%% TITLE PAGE and COLOURS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{tikz}
+\usepackage{myTikz}
 \usepackage{graphicx}
 \usepackage{xcolor}
-\definecolor{red}{rgb}{0.95,0.20,0.20} %red
-\definecolor{black}{rgb}{0,0,0} % black
-\definecolor{grey}{rgb}{0.45,0.45,0.45} % dark grey
+\definecolor{red}{rgb}{0.95,0.20,0.20}  % red
+\definecolor{black}{rgb}{0,0,0}  % black
+\definecolor{grey}{rgb}{0.45,0.45,0.45}  % dark grey
 
 
-
-
-
-%\usefonttheme[stillsansserifsmall, stillsansseriflarge]{serif}
-
-
-
-
-
-
-
-\setbeamertemplate{navigation symbols}{}%remove navigation symbols
-%\setbeamertemplate{frametitle}{\expandafter\MakeUppercase\expandafter\insertframetitle}
-%\setbeamerfont{frametitle}{family=\sffamily, series=\bfseries}
-
+%% BEAMER and METROPOLIS FIXING  %%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}  % remove navigation symbols
 \usecolortheme[named=red]{structure}
-
-
 \metroset{	%background = dark,
 			block = fill,
 			progressbar = frametitle,
 		  }
-
 \setbeamercolor{progress bar}{ fg=red , bg=grey }
 \setbeamercolor{alerted text}{fg=red}
 
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 
 
-
+%% PRESENTATION DETAILS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{myTaxiService}
 \author{Paolo Antonini, Andrea Corneo}
 \date{}\institute{Politecnico di Milano} 

@@ -1,0 +1,23 @@
+\ProvidesPackage{myTikz}
+
+\usepackage{tikz}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc}
+
+\tikzset{
+%
+	>=Straight Barb[round],
+%	
+	block/.style = {
+		draw, 
+		shape=rectangle, 
+		rounded corners=1mm, 
+		align=center, 
+		minimum width=2.6cm,
+		minimum height=1.2cm
+	},
+%
+	node distance=.6cm and -1cm
+%
+}
+
