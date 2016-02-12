@@ -2,10 +2,12 @@
 
 \usepackage{../../myTikz}
 
-%\usepackage[scaled]{beramono}
-\usepackage[T1]{fontenc}
+\usepackage{fontspec}
 
-\begin{document}\begin{tikzpicture}[font=\ttfamily, node distance= 0cm and .8cm]
+\setmonofont{Menlo-Regular}[       BoldFont       = Menlo-Bold ,       ItalicFont     = Menlo-Italic ,       BoldItalicFont = Menlo-BoldItalic ,
+	   Scale		  = MatchUppercase ]
+
+\begin{document}\begin{tikzpicture}[font=\ttfamily]
 
 	\node	(reqmanag)	[block]
 		{Request\\Management};

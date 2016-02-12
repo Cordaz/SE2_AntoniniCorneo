@@ -3,146 +3,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\begin{frame}{Test procedures}
 
-\begin{frame}{Test cases}
-
-	\vspace{.3cm}
+	%\vspace{.3cm}
 	
 	\includestandalone[width = \textwidth]{img/sequence/sequence_O}
 
-	\vspace{.15cm}
-
-	\only<1>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I1T1}
-	\\\midrule
-	Test items & \texttt{ReservationCreation $\to$ ReservationManagement}
-	\\\midrule
-	Input specification & Typical reservation data	
-	\\\midrule
-	Output specification & Check if the reservation is properly created and data are valid	
-	\\\midrule
-	Environmental needs	&	Client devices: smartphone (myTaxiApp) and PC (myTaxiWeb)	
-	\\\bottomrule\end{tabularx}}
-
+	\vspace{.2cm}
 	
-	\only<2>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I2T1}
-	\\\midrule
-	Test items & \texttt{ReservationManagement $\to$ RequestCreation} 
-	\\\midrule
-	Input specification & Typical reservation data
-	\\\midrule
-	Output specification & Check if the request is properly created with reservation output
-	\\\midrule
-	Environmental needs & \texttt{I1} succeeded	
-	\\\bottomrule\end{tabularx}}
+	\scriptsize
 	
-	
-	\only<3>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I3T1}
+	\only<1>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+	\toprule	Procedure ID & \texttt{TP1} 
 	\\\midrule
-	Test items & \texttt{RequestCreation $\to$ RequestManagement}
+	Purpose & This procedure verifies the correct creation of a request.
 	\\\midrule
-	Input specification & Typical request data	
-	\\\midrule
-	Output specification & Check if the request is correctly handled by \texttt{RequestManagement}
-	\\\midrule
-	Environmental needs & \texttt{I2} succeeded
-	\\\bottomrule\end{tabularx}}
-
-
-
-	\only<4>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I3T2}
-	\\\midrule
-	Test items & \texttt{AddressManagement $\to$ RequestManagement}
-	\\\midrule
-	Input specification & Typical request data
-	\\\midrule
-	Output specification & Check if addresses are correctly mapped
-	\\\midrule
-	Environmental needs & \texttt{I3T1} succeeded
-	\\\bottomrule\end{tabularx}}
-
-
-
-	\only<5>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I4T1}
-	\\\midrule
-	Test items & \texttt{RequestManagement $\to$ AreaManagement}
-	\\\midrule
-	Input specification & Typical request data
-	\\\midrule
-	Output specification & Check the taxi allocation (correct area, taxi dequeuing, ...)
-	\\\midrule
-	Environmental needs & \texttt{I3} succeeded
-	\\\bottomrule\end{tabularx}}
-
-
-
-	\only<6>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I5T1}
-	\\\midrule
-	Test items & \texttt{AreaManagement $\to$ NotificationEngine}
-	\\\midrule
-	Input specification & Typical request data
-	\\\midrule
-	Output specification & Check if notification are correctly created (proper data, ...)
-	\\\midrule
-	Environmental needs & \texttt{I4} succeeded
-	\\\bottomrule\end{tabularx}}
-
-
-
-	\only<7>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I6T1}
-	\\\midrule
-	Test items & \texttt{AreaManagement $\to$ RideManagement}
-	\\\midrule
-	Input specification & Typical customer's withdrawal address data
-	\\\midrule
-	Output specification & Check if the data are in the correct format for the driver (myTaxiAssist)
-	\\\midrule
-	Environmental needs & \texttt{I5} succeeded
-	\\\bottomrule\end{tabularx}}
-
-
-
-	\only<8>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I7T1}
-	\\\midrule
-	Test items & \texttt{NotificationEngine $\to$ NotificationReader}
-	\\\midrule
-	Input specification & Create notification message
-	\\\midrule
-	Output specification & Check if the communication protocol works properly and the correct format of the notification
-	\\\midrule
-	Environmental needs & \texttt{I6} succeeded
-	\\\bottomrule\end{tabularx}}
+	Procedure steps & Execute \texttt{I3}
+	\\
+	\bottomrule\end{tabularx}}
 
 
 
 
-	\only<9>{\begin{tabularx}{\textwidth}{ >{\footnotesize\bfseries}l >{\footnotesize}X }
-	\toprule%
-	Test case identifier & \texttt{I7T2}
-	\\\midrule
-	Test items & \texttt{NotificationEngine $\to$ NotificationReader}
-	\\\midrule
-	Input specification & Create notification message
-	\\\midrule
-	Output specification & Check if the SMS is sent
-	\\\midrule
-	Environmental needs & \texttt{I6} succeeded
-	\\\bottomrule\end{tabularx}}
+
+\only<2>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+\toprule%
+Procedure ID	&	\texttt{TP2}	\\\midrule
+Purpose				&	This procedure verifies the correct creation of a request, starting from a reservation.	\\\midrule
+Procedure steps			&	Execute \texttt{I3} after \texttt{I1-I2}	\\
+\bottomrule\end{tabularx}}
+
+
+
+\only<3>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+\toprule%
+Procedure ID	&	\texttt{TP3}	\\\midrule
+Purpose				&	This procedure verifies the correct allocation of a taxi.	\\\midrule
+Procedure steps			&	Execute \texttt{I6} after \texttt{I3-I4}	\\
+\bottomrule\end{tabularx}}
 
 
 
@@ -150,6 +48,162 @@
 
 
 
-	
-	
+\only<4>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+\toprule%Procedure ID	&	\texttt{TP4}	\\\midrule
+Purpose				&	This procedure verifies the correct notification of the ride start.	\\\midrule
+Procedure steps			&	Execute \texttt{I7} after \texttt{I3-I6}		\\
+\bottomrule\end{tabularx}}
+
+
 \end{frame}
+
+
+%\begin{frame}{Test cases}
+%
+%	\vspace{.3cm}
+%	
+%	\includestandalone[width = \textwidth]{img/sequence/sequence_O}
+%
+%	\vspace{.15cm}
+%
+%	\only<1>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I1T1}
+%	\\\midrule
+%	Test items & \texttt{ReservationCreation $\to$ ReservationManagement}
+%	\\\midrule
+%	Input specification & Typical reservation data	
+%	\\\midrule
+%	Output specification & Check if the reservation is properly created and data are valid	
+%	\\\midrule
+%	Environmental needs	&	Client devices: smartphone (myTaxiApp) and PC (myTaxiWeb)	
+%	\\\bottomrule\end{tabularx}}
+%
+%	
+%	\only<2>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I2T1}
+%	\\\midrule
+%	Test items & \texttt{ReservationManagement $\to$ RequestCreation} 
+%	\\\midrule
+%	Input specification & Typical reservation data
+%	\\\midrule
+%	Output specification & Check if the request is properly created with reservation output
+%	\\\midrule
+%	Environmental needs & \texttt{I1} succeeded	
+%	\\\bottomrule\end{tabularx}}
+%	
+%	
+%	\only<3>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I3T1}
+%	\\\midrule
+%	Test items & \texttt{RequestCreation $\to$ RequestManagement}
+%	\\\midrule
+%	Input specification & Typical request data	
+%	\\\midrule
+%	Output specification & Check if the request is correctly handled by \texttt{RequestManagement}
+%	\\\midrule
+%	Environmental needs & \texttt{I2} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%	\only<4>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I3T2}
+%	\\\midrule
+%	Test items & \texttt{AddressManagement $\to$ RequestManagement}
+%	\\\midrule
+%	Input specification & Typical request data
+%	\\\midrule
+%	Output specification & Check if addresses are correctly mapped
+%	\\\midrule
+%	Environmental needs & \texttt{I3T1} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%	\only<5>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I4T1}
+%	\\\midrule
+%	Test items & \texttt{RequestManagement $\to$ AreaManagement}
+%	\\\midrule
+%	Input specification & Typical request data
+%	\\\midrule
+%	Output specification & Check the taxi allocation (correct area, taxi dequeuing, \dots)
+%	\\\midrule
+%	Environmental needs & \texttt{I3} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%	\only<6>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I5T1}
+%	\\\midrule
+%	Test items & \texttt{AreaManagement $\to$ NotificationEngine}
+%	\\\midrule
+%	Input specification & Typical request data
+%	\\\midrule
+%	Output specification & Check if notification are correctly created (proper data, ...)
+%	\\\midrule
+%	Environmental needs & \texttt{I4} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%	\only<7>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I6T1}
+%	\\\midrule
+%	Test items & \texttt{AreaManagement $\to$ RideManagement}
+%	\\\midrule
+%	Input specification & Typical customer's withdrawal address data
+%	\\\midrule
+%	Output specification & Check if the data are in the correct format for the driver (myTaxiAssist)
+%	\\\midrule
+%	Environmental needs & \texttt{I5} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%	\only<8>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I7T1}
+%	\\\midrule
+%	Test items & \texttt{NotificationEngine $\to$ NotificationReader}
+%	\\\midrule
+%	Input specification & Create notification message
+%	\\\midrule
+%	Output specification & Check if the communication protocol works properly and the correct format of the notification
+%	\\\midrule
+%	Environmental needs & \texttt{I6} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%
+%	\only<9>{\begin{tabularx}{\textwidth}{ >{\bfseries}l X }
+%	\toprule%
+%	Test case identifier & \texttt{I7T2}
+%	\\\midrule
+%	Test items & \texttt{NotificationEngine $\to$ NotificationReader}
+%	\\\midrule
+%	Input specification & Create notification message
+%	\\\midrule
+%	Output specification & Check if the SMS is sent
+%	\\\midrule
+%	Environmental needs & \texttt{I6} succeeded
+%	\\\bottomrule\end{tabularx}}
+%
+%
+%
+%
+%
+%
+%
+%	
+%	
+%\end{frame}

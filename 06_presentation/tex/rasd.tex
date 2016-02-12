@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[allowframebreaks]{Functional requirements (at least, a subset of them)}
+\begin{frame}[allowframebreaks]{Functional requirements (a subset of them)}
 
 \begin{enumerate}
 			
@@ -13,11 +13,12 @@
 	\end{enumerate}
 
 
+\framebreak	
+
+
 	\item The service shall guarantee a \textbf{correct taxi allocation}: \begin{enumerate}
-		\item One taxi cab every four passengers must be allocated by the system.
-		\item A taxi is allocated to only one request at the same time.
-		\item An unavailable taxi cab shall not be allocated to a request.
-		\item The service has to guarantee a fair management of the taxi queue.
+		\item A taxi is allocated to \emph{only one request at the same time}.
+		\item An \emph{unavailable taxi cab} shall not be allocated to a request.
 		\item When a taxi driver refuses a request, the system pushes the taxi at the end of the queue.
 		\item If a request has been accepted by the system, the customer must be taken to its destination: \begin{enumerate}
 			\item If the taxi driver refuses the request, the request is forwarded to the first taxi in the queue.

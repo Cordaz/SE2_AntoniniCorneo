@@ -51,7 +51,7 @@
 	
 \begin{block}{Size (SLOC)}\begin{equation*}
 %
-	\mSize = p * \mFP = 46 * 152 = 6992
+	\mSize = p_{\text{J2E}} * \mFP = 46 * 152 = 6992
 %
 \end{equation*}\end{block}
 
@@ -94,10 +94,47 @@
 
 
 
+\begin{frame}{Time scheduling}
+	
+\begingroup	
+
+\footnotesize\centering\begin{tabular}{ >{\ttfamily}c c c c }
+
+\toprule
+\normalfont\textbf{Phase} & \normalfont\textbf{H} & \normalfont\textbf{AT} & \normalfont\textbf{ET} \\
+\toprule
+
+RASD & 		61 &	3 weeks & 	$\simeq$ 4 days \\\midrule
+DD &		68 &	4 weeks & 	$\simeq$ 5 days \\\midrule
+ITPD &		10 &	2 weeks &	$\simeq$ 1 day  \\\midrule
+PPD &		16 &	2 weeks & 	$\simeq$ 1 day  \\
+
+\bottomrule
+	
+\end{tabular}
+	
+	\endgroup
+	
+	\vspace{.2cm}
+
+	\begin{block}{Time to develop and test}\begin{equation*}
+%
+\mathbf{t} - 2 * \left\lceil \frac{ \text{ \textsc{EM}(\texttt{DD})} + \text{\textsc{EM}(\texttt{ITPD})} + \text{\textsc{EM}(\texttt{PPD}) }}{7} \right\rceil = 38
+%	
+\end{equation*}\end{block}
+	
+	
+	
+	
+\end{frame}
 
 
 
 
+
+\begin{frame}{Precedences}%
+	\includestandalone[width = \textwidth]{img/sequence/sequence_O}%
+\end{frame}
 
 
 
